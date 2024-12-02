@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">User Management</h1>
+    
+    <div class="bg-white shadow rounded-lg">
+        <table class="w-full">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="p-3 text-left">Username</th>
+                    <th class="p-3 text-left">Role</th>
+                    <th class="p-3 text-left">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr class="border-b">
+                    <td class="p-3">{{ user.username }}</td>
+                    <td class="p-3">{{ user.role }}</td>
+                    <td class="p-3 space-x-2">
+                        <a href="{{ url_for('admin.edit_user', user_id=user.id) }}" 
+                           class="text-blue-600 hover:underline">Edit</a>
+                        <a href="{{ url_for('admin.user_activity', user_id=user.id) }}" 
+                           class="text-green-600 hover:underline">Activity</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

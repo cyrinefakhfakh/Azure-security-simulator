@@ -1,0 +1,39 @@
+{% extends "base2.html" %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+   
+
+    <!-- Assign Role Form -->
+    <div class="p-6 max-w-md mx-auto bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold mb-4">Assign Role to {{ user.username }}</h2>
+        <form method="POST" action="{{ url_for('admin_bp.assign_role', user_id=user.id) }}" class="space-y-6">
+            <!-- User Information -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">User</label>
+                <input type="text" value="{{ user.username }} ({{ user.email }})" disabled
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-100">
+            </div>
+
+            <!-- Role Selection -->
+            <div>
+                <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+                <div class="mt-1">
+                    <select id="role" name="role_id" required class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <option value="">Select a role</option>
+                        {% for role in roles %}
+                            <option value="{{ role.id }}">{{ role.name|capitalize }} - {{ role.description }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div>
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition">
+                    Assign Role
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

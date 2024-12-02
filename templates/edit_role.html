@@ -1,0 +1,213 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h3 class="mb-0">Role Management</h3>
+                    <button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#createRoleModal">
+                        <i class="fas fa-plus me-2"></i>Create New Role
+                    </button>
+                </div>
+                
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Permissions</th>
+                                    <th>Users</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for role in roles %}
+                                <tr>
+                                    <td>{{ role.name }}</td>
+                                    <td>{{ role.description or 'No description' }}</td>
+                                    <td>
+                                        {% for permission in role.permissions %}
+                                            <span class="badge bg-info me-1">{{ permission }}</span>
+                                        {% endfor %}
+                                    </td>
+                                    <td>{{ role.users.count() }}</td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <button class="btn btn-sm btn-outline-primary" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#editRoleModal"
+                                                    data-role-id="{{ role.id }}"
+                                                    data-role-name="{{ role.name }}"
+                                                    data-role-description="{{ role.description }}"
+                                                    onclick="populateEditModal(this)">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#deleteRoleModal"
+                                                    data-role-id="{{ role.id }}"
+                                                    data-role-name="{{ role.name }}"
+                                                    onclick="populateDeleteModal(this)">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{# Create Role Modal #}
+<div class="modal fade" id="createRoleModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Create New Role</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST" action="{{ url_for('admin_bp.create_role') }}">
+                {{ create_role_form.hidden_tag() }}
+                <div class="modal-body">
+                    <div class="mb-3">
+                        {{ create_role_form.name.label(class="form-label") }}
+                        {{ create_role_form.name(class="form-control") }}
+                    </div>
+                    <div class="mb-3">
+                        {{ create_role_form.description.label(class="form-label") }}
+                        {{ create_role_form.description(class="form-control") }}
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Permissions</label>
+                        <div class="row">
+                            {% for permission in all_permissions %}
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" 
+                                           name="permissions" 
+                                           value="{{ permission }}"
+                                           id="permission_{{ permission }}">
+                                    <label class="form-check-label" for="permission_{{ permission }}">
+                                        {{ permission.replace('_', ' ').title() }}
+                                    </label>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    {{ create_role_form.submit(class="btn btn-primary") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{# Edit Role Modal #}
+<div class="modal fade" id="editRoleModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Role</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST" action="{{ url_for('admin.update_role') }}">
+                {{ edit_role_form.hidden_tag() }}
+                <input type="hidden" name="role_id" id="edit-role-id">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Role Name</label>
+                        <input type="text" class="form-control" name="name" id="edit-role-name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" name="description" id="edit-role-description" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Permissions</label>
+                        <div class="row">
+                            {% for permission in all_permissions %}
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" 
+                                           name="permissions" 
+                                           value="{{ permission }}"
+                                           id="edit_permission_{{ permission }}">
+                                    <label class="form-check-label" for="edit_permission_{{ permission }}">
+                                        {{ permission.replace('_', ' ').title() }}
+                                    </label>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Update Role</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{# Delete Role Modal #}
+<div class="modal fade" id="deleteRoleModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">Confirm Role Deletion</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="POST" action="{{ url_for('admin.delete_role') }}">
+                {{ delete_role_form.hidden_tag() }}
+                <input type="hidden" name="role_id" id="delete-role-id">
+                <div class="modal-body">
+                    <p>Are you sure you want to delete the role <strong id="delete-role-name"></strong>?</p>
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        This action cannot be undone. Users with this role will be unassigned.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">Delete Role</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function populateEditModal(button) {
+        const roleId = button.getAttribute('data-role-id');
+        const roleName = button.getAttribute('data-role-name');
+        const roleDescription = button.getAttribute('data-role-description');
+
+        document.getElementById('edit-role-id').value = roleId;
+        document.getElementById('edit-role-name').value = roleName;
+        document.getElementById('edit-role-description').value = roleDescription;
+    }
+
+    function populateDeleteModal(button) {
+        const roleId = button.getAttribute('data-role-id');
+        const roleName = button.getAttribute('data-role-name');
+
+        document.getElementById('delete-role-id').value = roleId;
+        document.getElementById('delete-role-name').textContent = roleName;
+    }
+</script>
+{% endblock %}

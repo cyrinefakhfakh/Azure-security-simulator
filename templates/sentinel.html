@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-6">Azure Sentinel</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="p-4 bg-blue-50 rounded-lg">
+            <h3 class="font-semibold text-lg mb-2">Total Events</h3>
+            <p class="text-3xl font-bold text-blue-600">{{ analysis.total_events }}</p>
+        </div>
+        <div class="p-4 bg-red-50 rounded-lg">
+            <h3 class="font-semibold text-lg mb-2">High Severity</h3>
+            <p class="text-3xl font-bold text-red-600">{{ analysis.high_severity }}</p>
+        </div>
+        <div class="p-4 bg-yellow-50 rounded-lg">
+            <h3 class="font-semibold text-lg mb-2">Medium Severity</h3>
+            <p class="text-3xl font-bold text-yellow-600">{{ analysis.medium_severity }}</p>
+        </div>
+    </div>
+    
+    <div>
+        <h3 class="text-xl font-semibold mb-4">Recent Threats</h3>
+        <div class="space-y-4">
+            {% for threat in analysis.recent_threats %}
+            <div class="border p-4 rounded-md {% if threat.severity == 'HIGH' %}bg-red-50{% else %}bg-yellow-50{% endif %}">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-sm text-gray-600">{{ threat.description }}</p>
+                        <p class="text-xs text-gray-500 mt-1">{{ threat.timestamp.strftime('%Y-%m-
+
+%d %H:%M:%S') }}</p>
+                    </div>
+                    <span class="px-2 py-1 text-sm rounded-full {% if threat.severity == 'HIGH' %}bg-red-100 text-red-800{% else %}bg-yellow-100 text-yellow-800{% endif %}">
+                        {{ threat.severity }}
+                    </span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

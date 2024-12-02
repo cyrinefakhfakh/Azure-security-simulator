@@ -1,0 +1,97 @@
+{% extends "base2.html" %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+        <div class="p-6">
+            <h1 class="text-3xl font-bold mb-6">Firewall Rules</h1>
+            
+            <!-- Firewall Rule Form -->
+            <form id="firewallRuleForm" method="POST" class="mb-6">
+                <div class="mb-4">
+                    <label for="rule" class="block text-gray-700 font-semibold mb-2">Rule:</label>
+                    <input 
+                        type="text" 
+                        id="rule" 
+                        name="rule" 
+                        required 
+                        maxlength="100"
+                        pattern="[a-zA-Z0-9\s\-_]+"
+                        class="w-full py-2 px-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                    <p class="text-sm text-gray-600 mt-1">
+                        Rule must be 100 characters or less, using only alphanumeric characters, spaces, hyphens, and underscores.
+                    </p>
+                </div>
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none">
+                    Add Rule
+                </button>
+            </form>
+
+            <!-- Firewall Rules List -->
+            <div class="mb-6">
+                <h2 class="font-bold text-lg mb-4">Current Firewall Rules:</h2>
+                <ul id="firewallRulesList" class="list-disc list-inside text-gray-700">
+                    {% for rule in rules %}
+                        <li>{{ rule }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('firewallRuleForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const rule = document.getElementById('rule').value.trim();
+    
+    // Enhanced client-side validation
+    if (!rule || rule.length > 100 || !/^[a-zA-Z0-9\s\-_]+$/.test(rule)) {
+        alert('Invalid rule. Must be 1-100 characters, using only alphanumeric characters, spaces, hyphens, and underscores.');
+        return;
+    }
+
+    fetch('/firewall_rules', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ rule: rule })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            alert('Firewall rule added');
+            const rulesList = document.getElementById('firewallRulesList');
+            const newRule = document.createElement('li');
+            newRule.textContent = rule;
+            rulesList.appendChild(newRule);
+            document.getElementById('rule').value = ''; // Clear input
+        } else {
+            alert('Error: ' + data.error);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while adding the rule');
+    });
+});
+
+// Fetch and display current firewall rules
+fetch('/firewall_rules')
+.then(response => response.json())
+.then(data => {
+    const rulesList = document.getElementById('firewallRulesList');
+    data.rules.forEach(rule => {
+        const ruleItem = document.createElement('li');
+        ruleItem.textContent = rule;
+        rulesList.appendChild(ruleItem);
+    });
+});
+</script>
+{% endblock %}

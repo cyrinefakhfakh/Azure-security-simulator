@@ -1,0 +1,86 @@
+{% extends "base2.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+        <div class="p-6">
+            <h1 class="text-3xl font-bold mb-6">Thread Protection Dashboard</h1>
+
+            <!-- Protection Level Form -->
+            <form id="threadProtectionForm" method="POST" class="mb-6">
+                <div class="mb-4">
+                    <label for="protectionLevel" class="block text-gray-700 font-semibold mb-2">Protection Level:</label>
+                    <select id="protectionLevel" name="protectionLevel" required class="w-full py-2 px-3 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <button type="submit" class="bg-gray-800  text-white font-bold py-2 px-4 rounded focus:outline-none">
+                    Enable Protection
+                </button>
+            </form>
+
+            <!-- Security Tips Section -->
+            <div class="mb-6 p-4 bg-gray-100 rounded shadow-inner">
+                <h2 class="font-bold text-lg">Security Tips:</h2>
+                <ul class="list-disc list-inside text-gray-700">
+                    <li>Regularly update your software.</li>
+                    <li>Use strong and unique passwords.</li>
+                    <li>Enable multi-factor authentication (MFA).</li>
+                </ul>
+            </div>
+
+            <!-- Recent Activity Section -->
+            <div class="mb-6">
+                <h2 class="font-bold text-lg mb-4">Recent Security Activities:</h2>
+                <table class="w-full border-collapse border border-gray-300">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="border py-2 px-4">Timestamp</th>
+                            <th class="border py-2 px-4">Event</th>
+                            <th class="border py-2 px-4">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="activityLog">
+                        <!-- Placeholder for recent activities -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Alert Creation -->
+            <button id="createAlertButton" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none">
+                Create Alert
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('threadProtectionForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+        const protectionLevel = document.getElementById('protectionLevel').value;
+        
+        fetch('/thread_protection', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ protectionLevel })
+        }).then(response => response.json()).then(data => {
+            alert(data.success ? `Thread protection set to ${protectionLevel}` : 'Error: ' + data.error);
+        });
+    });
+
+    document.getElementById('createAlertButton').addEventListener('click', function () {
+        const message = 'Security Alert: A high-priority threat was detected on ' + new Date().toLocaleString() +
+            '. Immediate action is required to investigate and contain the threat. Please verify user activities and system logs. Consider raising system-level protection measures.';
+
+        fetch('/create_alert', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message })
+        }).then(response => response.json()).then(data => {
+            alert(data.success ? 'Alert created and email sent' : 'Error: ' + data.error);
+        });
+    });
+</script>
+{% endblock %}

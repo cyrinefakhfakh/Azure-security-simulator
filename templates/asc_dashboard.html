@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Azure Security Center Dashboard</h1>
+
+    <section class="risk-overview mb-8">
+        <h2 class="text-xl font-semibold mb-4">Risk Overview</h2>
+        <div class="grid grid-cols-4 gap-4">
+            <!-- Risk cards with more informative design -->
+            {% for risk_level, count, color in [
+                ('High', high_risk_count, 'red'),
+                ('Medium', medium_risk_count, 'yellow'),
+                ('Low', low_risk_count, 'green'),
+                ('Resolved', resolved_count, 'blue')
+            ] %}
+            <div class="bg-{{ color }}-100 p-4 rounded-lg text-center shadow-md">
+                <h3 class="font-bold text-{{ color }}-700">{{ risk_level }} Risk</h3>
+                <p class="text-2xl font-bold text-{{ color }}-900">{{ count }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="security-trends mb-8">
+        <!-- More detailed trend visualization -->
+        <h2 class="text-xl font-semibold mb-4">Security Trends</h2>
+        <div class="grid grid-cols-3 gap-4">
+            {% for metric, value, trend, colors in [
+                ('Alerts This Month', alerts_this_month, alerts_trend, 
+                 {'trend_color': 'green-600' if alerts_trend >= 0 else 'red-600'}),
+                ('Unresolved Recommendations', unresolved_recommendations, recommendations_trend,
+                 {'trend_color': 'red-600' if recommendations_trend > 0 else 'green-600'}),
+                ('Compliance Rate', compliance_rate, None,
+                 {'trend_color': 'green-600' if compliance_rate >= 80 else 'red-600'})
+            ] %}
+            <div class="bg-gray-100 p-4 rounded-lg shadow-md">
+                <h3 class="font-bold mb-2">{{ metric }}</h3>
+                <div class="flex items-center">
+                    <span class="text-2xl mr-2">{{ value }}{{ '%' if metric == 'Compliance Rate' else '' }}</span>
+                    {% if trend is not none %}
+                    <span class="text-{{ colors.trend_color }}">
+                        {{ '+' if trend >= 0 else '' }}{{ trend }}%
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Security Alerts section with more details -->
+    <section class="security-alerts">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-semibold">Security Alerts</h2>
+            <div class="space-x-2">
+                <button class="btn btn-primary">Resolve All Low Risk</button>
+                <button class="btn btn-secondary">Generate Report</button>
+            </div>
+        </div>
+        
+        {% for alert in alerts %}
+        <div class="alert-card p-4 border rounded-lg mb-2 
+            {{ 'bg-red-100' if alert.severity == 'High' else 'bg-yellow-100' }}">
+            <div class="flex justify-between items-center mb-2">
+                <h3 class="font-bold">{{ alert.title }}</h3>
+                <span class="text-sm text-gray-500">
+                    {{ alert.timestamp.strftime('%b %d, %Y') }}
+                </span>
+            </div>
+            <p class="mb-2">{{ alert.description }}</p>
+            <div class="flex justify-between items-center">
+                <span class="font-bold text-sm 
+                    {{ 'text-red-700' if alert.severity == 'High' else 'text-yellow-700' }}">
+                    {{ alert.severity }}
+                </span>
+                <button class="btn btn-sm btn-outline">Investigate</button>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+</div>
+{% endblock %}

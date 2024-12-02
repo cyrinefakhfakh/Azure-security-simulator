@@ -1,0 +1,136 @@
+{% extends "base2.html" %}
+{% block content %}
+<div class="container mx-auto px-4 py-8 max-w-xl">
+    <div class="bg-white shadow-2xl rounded-xl overflow-hidden">
+        <div class="bg-gray-800 p-6 text-center">
+            <h1 class="text-3xl font-bold text-white">API Key Management</h1>
+        </div>
+
+        <div class="p-6">
+            <!-- Generate API Key Button -->
+            <div class="mb-6 text-center">
+                <button 
+                    onclick="generateApiKey()" 
+                    class="bg-gray-800 hover:bg-gray-600 text-white px-6 py-3 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                >
+                    <i class="fas fa-key mr-2"></i>Generate API Key
+                </button>
+                
+                <div id="loading" class="hidden mt-3 text-blue-600 flex items-center justify-center">
+                    <svg class="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Generating API Key...
+                </div>
+            </div>
+
+            <!-- API Key Display -->
+            <div id="api-key-section" class="hidden mb-6">
+                <div class="bg-gray-100 rounded-lg p-4 flex items-center shadow-inner">
+                    <span 
+                        id="api-key" 
+                        class="flex-grow text-gray-800 font-mono bg-transparent p-2 rounded-l-md break-all"
+                    ></span>
+                    <button 
+                        onclick="copyApiKey()" 
+                        class="bg-gray-500 hover:bg-green-600 text-white px-4 py-2 rounded-r-md transition duration-300 ease-in-out transform hover:scale-105"
+                    >
+                        <i class="fas fa-copy mr-2"></i>Copy
+                    </button>
+                </div>
+                <p class="text-xs text-gray-500 mt-2 text-center">
+                    Keep this key confidential. Do not share it publicly.
+                </p>
+            </div>
+
+            <!-- Usage Stats -->
+            <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <h4 class="text-lg font-semibold text-gray-800 mb-3">
+                    <i class="fas fa-chart-bar mr-2 text-blue-500"></i>Usage Stats
+                </h4>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <p class="text-sm text-gray-600">Total Requests</p>
+                        <p id="request-count" class="text-2xl font-bold text-blue-600">0</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-600">Last Used</p>
+                        <p id="last-used" class="text-lg text-gray-800">N/A</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Message -->
+            <div 
+                id="error-message" 
+                class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mt-4 text-center"
+                role="alert"
+            >
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                An error occurred. Please try again later.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+<script>
+    async function generateApiKey() {
+        const loadingEl = document.getElementById('loading');
+        const apiKeySection = document.getElementById('api-key-section');
+        const errorMessage = document.getElementById('error-message');
+
+        // Reset previous states
+        errorMessage.classList.add('hidden');
+        loadingEl.classList.remove('hidden');
+        apiKeySection.classList.add('hidden');
+
+        try {
+            const response = await fetch('/generate_api_key', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user_id: 'user123' })
+            });
+
+            if (!response.ok) throw new Error("Failed to generate API key");
+
+            const data = await response.json();
+            const apiKeyEl = document.getElementById('api-key');
+            
+            apiKeyEl.innerText = data.api_key;
+            apiKeySection.classList.remove('hidden');
+        } catch (error) {
+            errorMessage.classList.remove('hidden');
+            console.error(error);
+        } finally {
+            loadingEl.classList.add('hidden');
+        }
+    }
+
+    async function fetchApiUsage() {
+        const errorMessage = document.getElementById('error-message');
+        try {
+            const response = await fetch('/api_usage/user123');
+            if (!response.ok) throw new Error("Failed to fetch API usage");
+
+            const data = await response.json();
+            document.getElementById('request-count').innerText = data.requests || 0;
+            document.getElementById('last-used').innerText = data.last_used || 'N/A';
+        } catch (error) {
+            errorMessage.classList.remove('hidden');
+            console.error(error);
+        }
+    }
+
+    function copyApiKey() {
+        const apiKey = document.getElementById('api-key').innerText;
+        navigator.clipboard.writeText(apiKey).then(() => {
+            alert('API Key copied to clipboard!');
+        });
+    }
+
+    // Fetch usage stats on page load
+    fetchApiUsage();
+</script>
+{% endblock %}

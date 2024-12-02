@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-md mt-10">
+    <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Create Your Account</h2>
+    <form action="{{ url_for('register') }}" method="POST">
+        <div class="mb-5">
+            <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+            <input type="text" name="username" id="username" required 
+                   class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-300">
+        </div>
+        <div class="mb-5">
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="email" name="email" id="email" required 
+                   class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-300">
+        </div>
+        <div class="mb-5">
+            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+            <input type="password" name="password" id="password" required 
+                   class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-300">
+        </div>
+        <button type="submit" 
+                class="w-full bg-gray-800 hover:bg-blue-700 text-white font-semibold px-4 py-3 rounded-lg shadow-md transition duration-300">
+            Register
+        </button>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+      {% if messages %}
+        <div class="mt-6 space-y-4">
+          {% for category, message in messages %}
+            <div class="flex items-center justify-between p-4 rounded-lg shadow-md 
+                        {% if category == 'success' %} bg-green-100 border-l-4 border-green-500 text-green-700 
+                        {% elif category == 'error' %} bg-red-100 border-l-4 border-red-500 text-red-700 
+                        {% elif category == 'warning' %} bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 
+                        {% elif category == 'info' %} bg-blue-100 border-l-4 border-blue-500 text-blue-700 
+                        {% endif %}">
+                <div class="flex items-center">
+                    <i class="mr-3">
+                        {% if category == 'success' %}✔️{% elif category == 'error' %}❌{% elif category == 'warning' %}⚠️{% elif category == 'info' %}ℹ️{% endif %}
+                    </i>
+                    <span>{{ message }}</span>
+                </div>
+                <button onclick="this.parentElement.remove()" class="text-gray-500 hover:text-gray-700">
+                    <i>✖️</i>
+                </button>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+</div>
+{% endblock %}

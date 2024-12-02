@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold">Security Center</h2>
+            <div class="flex items-center space-x-4">
+                <div class="flex space-x-2">
+                    <span class="text-sm font-medium">Filter:</span>
+                    <select id="severity-filter" class="border rounded px-2 py-1 text-sm">
+                        <option value="all">All Severities</option>
+                        <option value="HIGH">High</option>
+                        <option value="MEDIUM">Medium</option>
+                        <option value="LOW">Low</option>
+                    </select>
+                </div>
+                <div class="flex space-x-2">
+                    <span class="text-sm font-medium">Search:</span>
+                    <input type="text" id="event-search" 
+                           placeholder="Search events..." 
+                           class="border rounded px-2 py-1 text-sm w-48">
+                </div>
+            </div>
+        </div>
+
+        <div id="events-container" class="space-y-4">
+            {% for event in events %}
+            <div class="event-item border p-4 rounded-md 
+                {% if event.severity == 'HIGH' %}bg-red-50 border-red-200
+                {% elif event.severity == 'MEDIUM' %}bg-yellow-50 border-yellow-200
+                {% else %}bg-green-50 border-green-200{% endif %}"
+                 data-severity="{{ event.severity }}"
+                 data-description="{{ event.description|lower }}">
+                <div class="flex justify-between items-start">
+                    <div class="flex-grow pr-4">
+                        <div class="flex items-center mb-2">
+                            <h4 class="font-semibold mr-3">{{ event.event_type }}</h4>
+                            <span class="px-2 py-0.5 text-xs rounded-full 
+                                {% if event.severity == 'HIGH' %}bg-red-100 text-red-800
+                                {% elif event.severity == 'MEDIUM' %}bg-yellow-100 text-yellow-800
+                                {% else %}bg-green-100 text-green-800{% endif %}">
+                                {{ event.severity }}
+                            </span>
+                        </div>
+                        <p class="text-sm text-gray-700 mb-1">{{ event.description }}</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-xs text-gray-500">
+                            {{ event.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if events|length == 0 %}
+        <div class="text-center py-8 text-gray-500">
+            <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p class="mt-2 text-sm">No security events found</p>
+        </div>
+        {% endif %}
+
+        <div class="mt-6 flex justify-between items-center">
+            <div class="text-sm text-gray-600">
+                Showing {{ events|length }} of {{ total_events }} events
+            </div>
+            <div class="flex space-x-2">
+                <button id="prev-page" class="px-3 py-1 border rounded hover:bg-gray-100">
+                    Previous
+                </button>
+                <button id="next-page" class="px-3 py-1 border rounded hover:bg-gray-100">
+                    Next
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const eventsContainer = document.getElementById('events-container');
+    const severityFilter = document.getElementById('severity-filter');
+    const searchInput = document.getElementById('event-search');
+    const prevPageBtn = document.getElementById('prev-page');
+    const nextPageBtn = document.getElementById('next-page');
+
+    // Filter events
+    function filterEvents() {
+        const severity = severityFilter.value;
+        const searchTerm = searchInput.value.toLowerCase();
+        const eventItems = document.querySelectorAll('.event-item');
+
+        eventItems.forEach(item => {
+            const itemSeverity = item.dataset.severity;
+            const itemDescription = item.dataset.description;
+
+            const severityMatch = severity === 'all' || itemSeverity === severity;
+            const searchMatch = searchTerm === '' || 
+                itemDescription.includes(searchTerm);
+
+            if (severityMatch && searchMatch) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    // Add event listeners for filtering
+    severityFilter.addEventListener('change', filterEvents);
+    searchInput.addEventListener('input', filterEvents);
+});
+</script>
+{% endblock %}

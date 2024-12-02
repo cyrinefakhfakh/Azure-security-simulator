@@ -1,0 +1,135 @@
+{% extends "base2.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<body class="bg-gray-50 text-gray-900">
+    
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+            <div class="p-6">
+
+                
+                <h1 class="text-2xl font-bold">Welcome to Azure Security Simulator</h1>
+                <p class="mt-4">This is the home page of the Azure Security Simulator. Use the navigation bar to access different features.</p>
+                
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Key Vault -->
+                    <div class="bg-blue-50 p-5 rounded-lg">
+                        <h3 class="text-xl font-semibold text-blue-800 mb-3 flex items-center">
+                            <i data-feather="key" class="mr-3 text-blue-600"></i>
+                            Key Vault
+                        </h3>
+                        <p class="text-gray-600">Securely manage and store sensitive information with advanced encryption.</p>
+                    </div>
+                    
+                    <!-- Security Center -->
+                    <div class="bg-green-50 p-5 rounded-lg">
+                        <h3 class="text-xl font-semibold text-green-800 mb-3 flex items-center">
+                            <i data-feather="shield" class="mr-3 text-green-600"></i>
+                            Security Center
+                        </h3>
+                        <p class="text-gray-600">Monitor and analyze security events in real-time across your infrastructure.</p>
+                    </div>
+                
+                    <!-- Sentinel -->
+                    <div class="bg-purple-50 p-5 rounded-lg">
+                        <h3 class="text-xl font-semibold text-purple-800 mb-3 flex items-center">
+                            <i data-feather="activity" class="mr-3 text-purple-600"></i>
+                            Sentinel
+                        </h3>
+                        <p class="text-gray-600">Advanced threat detection and response simulation platform.</p>
+                    </div>
+                
+                    <!-- Thread Protection -->
+                    <div class="bg-red-50 p-5 rounded-lg">
+                        <h3 class="text-xl font-semibold text-red-800 mb-3 flex items-center">
+                            <i data-feather="zap" class="mr-3 text-red-600"></i>
+                            Threat Protection
+                        </h3>
+                        <p class="text-gray-600">Proactively detect and mitigate potential threats using AI-driven insights.</p>
+                    </div>
+                
+                    <!-- Firewall Rules -->
+                    <div class="bg-yellow-50 p-5 rounded-lg">
+                        <h3 class="text-xl font-semibold text-yellow-800 mb-3 flex items-center">
+                            <i data-feather="shield-off" class="mr-3 text-yellow-600"></i>
+                            Firewall Rules
+                        </h3>
+                        <p class="text-gray-600">Define and enforce inbound and outbound network traffic rules to protect your environment.</p>
+                    </div>
+                
+                    <!-- RBAC -->
+                    <div class="bg-indigo-50 p-5 rounded-lg">
+                        <h3 class="text-xl font-semibold text-indigo-800 mb-3 flex items-center">
+                            <i data-feather="users" class="mr-3 text-indigo-600"></i>
+                            RBAC
+                        </h3>
+                        <p class="text-gray-600">Manage user access through role-based policies, ensuring least privilege principles.</p>
+                    </div>
+                
+                    <!-- IAM -->
+                    <div class="bg-teal-50 p-5 rounded-lg">
+                        <h3 class="text-xl font-semibold text-teal-800 mb-3 flex items-center">
+                            <i data-feather="lock" class="mr-3 text-teal-600"></i>
+                            IAM
+                        </h3>
+                        <p class="text-gray-600">Control and manage user identities, ensuring secure access to your resources.</p>
+                    </div>
+                
+                    <!-- MFA -->
+                    <div class="bg-pink-50 p-5 rounded-lg">
+                        <h3 class="text-xl font-semibold text-pink-800 mb-3 flex items-center">
+                            <i data-feather="smartphone" class="mr-3 text-pink-600"></i>
+                            MFA
+                        </h3>
+                        <p class="text-gray-600">Enhance security by requiring multiple forms of authentication before granting access.</p>
+                    </div>
+                    <!.. api key..>
+                    <div class="bg-blue-50 p-5 rounded-lg">
+                        <h3 class="text-xl font-semibold text-blue-800 mb-3 flex items-center">
+                            <i data-feather="key" class="mr-3 text-blue-600"></i>
+                            API Key
+                        </h3>
+                        <p class="text-gray-600">Generate an API key to access the Azure Security Simulator API.</p>
+                    </div>
+                </div>
+                
+                
+            
+
+                <div class="mt-8 text-center">
+                    {% if not current_user.is_authenticated %}
+                    <p class="text-gray-700 mb-4">
+                        Get started by creating an account or logging in to explore our security simulation features.
+                    </p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="{{ url_for('register') }}" class="bg-gray-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg transition flex items-center">
+                            <i data-feather="user-plus" class="mr-2"></i>
+                            Create Account
+                        </a>
+                        <a href="{{ url_for('login') }}" class="bg-gray-800 hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition flex items-center">
+                            <i data-feather="log-in" class="mr-2"></i>
+                            Login
+                        </a>
+                    </div>
+                    {% else %}
+                    <p class="text-gray-700">
+                         
+                    </p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
+
+    <script>
+        // Initialize Feather icons
+        feather.replace();
+    </script>
+</body>
+</html>

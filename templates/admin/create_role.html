@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="bg-gray-800 text-white px-6 py-4 flex justify-between items-center">
+            <h2 class="text-3xl font-bold">Create New Role</h2>
+            <div class="space-x-2">
+                <a href="{{ url_for('admin_bp.admin_dashboard') }}" class="bg-gray-500 hover:bg-gray-600 px-4 py-2 rounded transition flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+                    </svg>
+                    Back to Dashboard
+                </a>
+            </div>
+        </div>
+
+        <div class="p-6 max-w-2xl mx-auto">
+            <form method="POST" action="{{ url_for('admin_bp.create_role') }}" class="space-y-6">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                        Role Name
+                    </label>
+                    <div class="mt-1">
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            required 
+                            placeholder="Enter role name (e.g., editor, manager)"
+                            class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                        >
+                    </div>
+                </div>
+
+                <div>
+                    <label for="description" class="block text-sm font-medium text-gray-700 mb-2">
+                        Role Description
+                    </label>
+                    <div class="mt-1">
+                        <textarea 
+                            id="description" 
+                            name="description" 
+                            rows="3"
+                            required 
+                            placeholder="Provide a brief description of the role's responsibilities"
+                            class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                        ></textarea>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-4">
+                        Permissions
+                    </label>
+                    
+                    {% set permission_groups = {
+                        'User Management': [
+                            {'name': 'create_user', 'description': 'Create new user accounts'},
+                            {'name': 'edit_user', 'description': 'Modify user account details'},
+                            {'name': 'delete_user', 'description': 'Remove user accounts'},
+                            {'name': 'view_users', 'description': 'View list of users'}
+                        ],
+                        'Content Management': [
+                            {'name': 'create_content', 'description': 'Create new content'},
+                            {'name': 'edit_content', 'description': 'Edit existing content'},
+                            {'name': 'delete_content', 'description': 'Delete content'},
+                            {'name': 'publish_content', 'description': 'Publish content'}
+                        ],
+                        'Role & Permission Management': [
+                            {'name': 'create_role', 'description': 'Create new roles'},
+                            {'name': 'edit_role', 'description': 'Modify existing roles'},
+                            {'name': 'delete_role', 'description': 'Remove roles'},
+                            {'name': 'assign_roles', 'description': 'Assign roles to users'}
+                        ],
+                        'System Settings': [
+                            {'name': 'view_logs', 'description': 'View system logs'},
+                            {'name': 'manage_settings', 'description': 'Modify system configuration'},
+                            {'name': 'backup_system', 'description': 'Create system backups'},
+                            {'name': 'restore_system', 'description': 'Restore system from backups'}
+                        ]
+                    } %}
+            
+                    {% for group_name, permissions in permission_groups.items() %}
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-gray-800 mb-3 border-b pb-2">
+                            {{ group_name }}
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            {% for permission in permissions %}
+                            <div class="flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input 
+                                        type="checkbox" 
+                                        id="{{ permission.name }}" 
+                                        name="permissions" 
+                                        value="{{ permission.name }}"
+                                        class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                                    >
+                                </div>
+                                <div class="ml-3 text-sm">
+                                    <label for="{{ permission.name }}" class="font-medium text-gray-700">
+                                        {{ permission.name|replace('_', ' ')|title }}
+                                    </label>
+                                    <p class="text-gray-500">{{ permission.description }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+            
+                    <div class="mt-4">
+                        <button 
+                            type="button" 
+                            onclick="toggleAllPermissions(true)"
+                            class="mr-2 bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition"
+                        >
+                            Select All
+                        </button>
+                        <button 
+                            type="button" 
+                            onclick="toggleAllPermissions(false)"
+                            class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
+                        >
+                            Deselect All
+                        </button>
+                    </div>
+                </div>
+            
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="p-4 rounded 
+                                {% if category == 'error' %}bg-red-50 text-red-800
+                                {% elif category == 'success' %}bg-green-50 text-green-800
+                                {% else %}bg-yellow-50 text-yellow-800{% endif %}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            
+                <div>
+                    <button 
+                        type="submit" 
+                        class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-300"
+                    >
+                        Create Role
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleAllPermissions(select) {
+        const checkboxes = document.querySelectorAll('input[name="permissions"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = select;
+        });
+    }
+</script>
+{% endblock %}

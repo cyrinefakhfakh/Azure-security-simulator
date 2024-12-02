@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8 bg-gray-100 dark:bg-gray-900 min-h-screen">
+    <div class="bg-white dark:bg-gray-800 shadow-2xl rounded-xl overflow-hidden border border-gray-100 dark:border-gray-700">
+        <!-- Dashboard Header -->
+        <div class="bg-gray-800 text-white px-6 py-5 flex justify-between items-center">
+            <h1 class="text-3xl font-extrabold tracking-tight">User Management Dashboard</h1>
+            <div class="space-x-3">
+                <a href="{{ url_for('admin_bp.create_user') }}" 
+                   class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded-lg transition transform hover:scale-105 flex items-center shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
+                    </svg>
+                    Create User
+                </a>
+            </div>
+        </div>
+
+        <!-- User Management Section -->
+        <div class="p-6">
+            <div class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4">User Overview</h2>
+                
+                <!-- User Statistics -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+                    <div class="bg-blue-50 dark:bg-blue-900/50 border border-blue-200 dark:border-blue-800 p-5 rounded-xl transform transition hover:scale-102 hover:shadow-lg">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-2">Total Users</h3>
+                                <p class="text-4xl font-bold text-blue-600 dark:text-blue-300">{{ total_users }}</p>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-200 dark:text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.768-.231-1.481-.634-2.081M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.768.231-1.481.634-2.081M14 7a3 3 0 11-6 0 3 3 0 016 0zm-3-2a2 2 0 100 4 2 2 0 000-4z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/50 border border-green-200 dark:border-green-800 p-5 rounded-xl transform transition hover:scale-102 hover:shadow-lg">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-2">Active Users</h3>
+                                <p class="text-4xl font-bold text-green-600 dark:text-green-300">{{ active_users }}</p>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-green-200 dark:text-green-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-purple-50 dark:bg-purple-900/50 border border-purple-200 dark:border-purple-800 p-5 rounded-xl transform transition hover:scale-102 hover:shadow-lg">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="text-lg font-semibold text-purple-800 dark:text-purple-200 mb-2">User Roles</h3>
+                                <p class="text-4xl font-bold text-purple-600 dark:text-purple-300">{{ roles|length }}</p>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-purple-200 dark:text-purple-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Table -->
+                <div class="bg-white dark:bg-gray-800 shadow-lg rounded-xl overflow-hidden border dark:border-gray-600">
+                    <table class="w-full">
+                        <thead class="bg-gray-100 dark:bg-gray-900 border-b dark:border-gray-600">
+                            <tr class="text-gray-600 dark:text-gray-300 uppercase text-sm leading-normal">
+                                <th class="py-4 px-6 text-left">Username</th>
+                                <th class="py-4 px-6 text-left">Email</th>
+                                <th class="py-4 px-6 text-center">Role</th>
+                                <th class="py-4 px-6 text-center">Status</th>
+                                <th class="py-4 px-6 text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-600 dark:text-gray-300 text-sm">
+                            {% for user in users %}
+                            <tr class="border-b dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                                <td class="py-4 px-6">
+                                    <div class="flex items-center">
+                                        <div class="mr-4">
+                                            <div class="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold">
+                                                {{ user.username[0]|upper }}
+                                            </div>
+                                        </div>
+                                        <span class="font-medium dark:text-gray-200">{{ user.username }}</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-6 dark:text-gray-200">{{ user.email }}</td>
+                                <td class="py-4 px-6 text-center">
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold 
+                                        {% if user.role_relation.name == 'admin' %}bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300
+                                        {% elif user.role_relation.name == 'manager' %}bg-yellow-100 text-yellow-800 dark:bg-yellow-900/50 dark:text-yellow-300
+                                        {% else %}bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300{% endif %}">
+                                        {{ user.role_relation.name }}
+                                    </span>
+                                </td>
+                                <td class="py-4 px-6 text-center">
+                                    <span class="px-3 py-1 rounded-full text-xs font-semibold 
+                                        {% if user.is_active %}bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300
+                                        {% else %}bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300{% endif %}">
+                                        {{ 'Active' if user.is_active else 'Inactive' }}
+                                    </span>
+                                </td>
+                                <td class="py-4 px-6 text-center">
+                                    <div class="flex item-center justify-center space-x-3">
+                                        {% if current_user.has_permission('edit_user') %}
+                                        <a href="{{ url_for('admin_bp.edit_user', user_id=user.id) }}" 
+                                           class="text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 transition transform hover:scale-125" title="Edit User">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                                            </svg>
+                                        </a>
+                                        {% endif %}
+                                        {% if current_user.has_permission('deactivate_user') %}
+                                        <button onclick="toggleUserStatus({{ user.id }})" 
+                                                class="text-red-500 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 transition transform hover:scale-125" title="Toggle User Status">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m2.829 2.829L15 15" />
+                                            </svg>
+                                        </button>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            <!-- Roles & Permissions Section -->
+            <div class="grid md:grid-cols-2 gap-6 mt-8">
+                <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg border dark:border-gray-600 p-6">
+                    <div class="flex justify-between items-center mb-5">
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-gray-200">Roles</h3>
+                        {% if current_user.has_permission('create_role') %}
+                        <a href="{{ url_for('admin_bp.create_role') }}" class="text-blue-500 hover:text-blue-700 transition transform hover:scale-125">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% for role in roles %}
+                    <div class="flex justify-between items-center mb-2 p-2 bg-white rounded shadow">
+                        <div>
+                            <span class="font-medium text-gray-700">{{ role.name }}</span>
+                            <p class="text-sm text-gray-500">{{ role.description }}</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            {% if current_user.has_permission('edit_role') %}
+                            <a href="{{ url_for('admin_bp.edit_role', role_id=role.id) }}" 
+                               class="text-blue-500 hover:text-blue-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                                </svg>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg p-5">
+                    <h3 class="text-xl font-semibold mb-4">Permissions</h3>
+                    <div class="space-y-2">
+                        {% for permission in permissions %}
+                        <div class="bg-white shadow rounded px-4 py-2 flex justify-between items-center">
+                            <div>
+                                <span class="font-medium text-gray-700">{{ permission.name }}</span>
+                                <p class="text-sm text-gray-500">{{ permission.description }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleUserStatus(userId) {
+    fetch(`{{ url_for('admin_bp.toggle_user_status') }}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            
+        },
+        body: JSON.stringify({ user_id: userId })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();
+        } else {
+            alert('Failed to toggle user status');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred');
+    });
+}
+</script>
+{% endblock %}

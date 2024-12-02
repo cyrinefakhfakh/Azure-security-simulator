@@ -1,0 +1,114 @@
+
+{% extends "base2.html" %}
+{% block content %}
+
+<div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-6">Key Vault</h2>
+    
+    
+    <div class="mb-8">
+        <h3 class="text-xl font-semibold mb-4">Add New Secret</h3>
+        <form method="POST" action="{{ url_for('add_secret') }}" class="space-y-4">
+            <div>
+                <label class="block text-gray-700">Secret Name</label>
+                <input type="text" name="name" required 
+                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+            </div>
+            <div>
+                <label class="block text-gray-700">Secret Value</label>
+                <input type="password" name="value" required 
+                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+            </div>
+            <button type="submit" 
+                    class="bg-gray-800 text-white py-2 px-4 rounded-md hover:bg-blue-700">
+                Add Secret
+            </button>
+        </form>
+    </div>
+    
+    <div>
+        <h3 class="text-xl font-semibold mb-4">Stored Secrets</h3>
+        <div class="space-y-4">
+            {% for secret in secrets %}
+            <div class="border p-4 rounded-md">
+                <div class="flex justify-between items-start mb-2">
+                    <h4 class="font-medium">{{ secret.name }}</h4>
+                    <div class="flex space-x-2">
+                        <button onclick="toggleSecret('secret-{{ secret.id }}')"
+                                class="text-sm px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-md flex items-center">
+                            <span class="toggle-text">Show</span>
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                        </button>
+                        <button onclick="copyToClipboard('secret-{{ secret.id }}')"
+                                class="text-sm px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-md flex items-center">
+                            Copy
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                      d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="mt-2">
+                    <input type="password" 
+                           id="secret-{{ secret.id }}" 
+                           value="{{ secret.value }}" 
+                           readonly
+                           class="w-full bg-gray-50 px-3 py-2 rounded-md text-sm font-mono">
+                </div>
+                <p class="text-sm text-gray-500 mt-2">Created: {{ secret.created_at }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleSecret(elementId) {
+    const input = document.getElementById(elementId);
+    const button = event.currentTarget;
+    const toggleText = button.querySelector('.toggle-text');
+    
+    if (input.type === "password") {
+        input.type = "text";
+        toggleText.textContent = "Hide";
+    } else {
+        input.type = "password";
+        toggleText.textContent = "Show";
+    }
+}
+
+function copyToClipboard(elementId) {
+    const input = document.getElementById(elementId);
+    input.type = "text";  // Temporarily show the text to copy it
+    input.select();
+    document.execCommand('copy');
+    input.type = "password";  // Hide it again
+    
+    // Show feedback
+    const button = event.currentTarget;
+    const originalText = button.textContent;
+    button.textContent = "Copied!";
+    setTimeout(() => {
+        button.innerHTML = originalText;
+    }, 2000);
+}
+
+// Auto-hide secrets after 30 seconds if they're visible
+setInterval(() => {
+    const inputs = document.querySelectorAll('input[type="text"]');
+    inputs.forEach(input => {
+        if (input.id.startsWith('secret-')) {
+            input.type = "password";
+            const button = input.parentElement.parentElement.querySelector('.toggle-text');
+            if (button) button.textContent = "Show";
+        }
+    });
+}, 30000);
+</script>
+{% endblock %}
