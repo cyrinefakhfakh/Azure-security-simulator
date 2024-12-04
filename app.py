@@ -11,9 +11,7 @@ import logging
 from cryptography.fernet import Fernet
 import pyotp
 import io
-import base64
 import qrcode
-from flask import send_file  
 from flask_mail import Mail, Message
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
@@ -171,6 +169,22 @@ def thread_protection():
 
 
 
+@app.route('/create_alert', methods=['POST'])
+def create_alert():
+    data = request.get_json()
+    message = data.get('message')
+    
+    if not message:
+        return jsonify({'success': False, 'error': 'Message is required'}), 400
+    
+    # Send email (assuming you have configured Flask-Mail)
+    try:
+        msg = Message("Security Alert", sender="sirinefakhfakh03@gmail.com", recipients=["sirinefakhfakh03@gmail.com"])
+        msg.body = message
+        mail.send(msg)
+        return jsonify({'success': True})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 
 
@@ -736,7 +750,7 @@ def login():
         if current_user.role == 'admin':
             return redirect(url_for('admin_bp.admin_dashboard'))  # Admin goes to dashboard
         else:
-            return redirect(url_for('key_vault'))  # Users go to Key Vault
+            return redirect(url_for('/')) 
 
     if request.method == 'POST':
         username = request.form.get('username')
@@ -770,7 +784,12 @@ def login():
                 return jsonify({'error': 'Invalid MFA token'}), 401
         
         login_user(user)
-        return jsonify({'success': 'Logged in successfully'}), 200
+        login_user(user)
+        if user.role == 'admin':
+            return jsonify({'redirect': url_for('admin_bp.admin_dashboard')})
+        else:
+            return jsonify({'redirect': url_for('index')})
+        
 
     return render_template('login.html')
 
@@ -1077,57 +1096,35 @@ def manage_roles():
     ).all()
     return render_template('admin/manage_roles.html', roles=roles)
 
+class CreateRoleForm(FlaskForm):
+    name = StringField('Role Name', validators=[DataRequired()])
+    description = TextAreaField('Description')
+    submit = SubmitField('Create Role')
 
-@admin_bp.route('/edit-role/<int:role_id>', methods=['GET', 'POST'])
+class EditRoleForm(FlaskForm):
+    name = StringField('Role Name', validators=[DataRequired()])
+    description = TextAreaField('Description')
+    submit = SubmitField('Update Role')
+class DeleteRoleForm(FlaskForm):
+    submit = SubmitField('Delete Role')
+@admin_bp.route('/edit_role/<int:role_id>', methods=['GET', 'POST'])
 @login_required
 def edit_role(role_id):
-    if not current_user.has_permission('edit_role'):
-        flash('Access denied. Insufficient permissions.', 'danger')
-        return redirect(url_for('index'))
-    
     role = Role.query.get_or_404(role_id)
-    
-    # Prevent editing system roles
-    if role.s_system_role:
-        flash('System roles cannot be modified', 'danger')
-        return redirect(url_for('admin_bp.manage_roles'))
-    
-    form = RoleForm(obj=role)
-    
+    form = EditRoleForm(obj=role)
+
     if form.validate_on_submit():
         try:
-            # Update role details
-            role.name = form.name.data
-            role.description = form.description.data
-            
-            # Remove existing permissions
-            RolePermission.query.filter_by(role_id=role.id).delete()
-            
-            # Add new permissions
-            for permission_name in form.permissions.data:
-                permission = Permission.query.filter_by(name=permission_name).first()
-                if permission:
-                    role_permission = RolePermission(
-                        role_id=role.id, 
-                        permission_id=permission.id
-                    )
-                    db.session.add(role_permission)
-            
+            form.populate_obj(role)
             db.session.commit()
-            flash('Role updated successfully', 'success')
-            return redirect(url_for('admin_bp.manage_roles'))
-        
+            flash('Role updated successfully!', 'success')
         except Exception as e:
             db.session.rollback()
-            flash(f'Error updating role: {str(e)}', 'danger')
+            flash(f'Error updating role: {e}', 'danger')
+        return redirect(url_for('admin_bp.manage_roles'))
     
-    # Populate existing permissions
-    existing_permissions = [
-        rp.permission.name for rp in role.role_permissions
-    ]
-    form.permissions.data = existing_permissions
-    
-    return render_template('admin/edit_role.html', form=form, role=role)
+    return render_template('edit_role.html', form=form, role=role)
+
 
 
 @admin_bp.route('manage_roles', methods=['GET'])
@@ -1179,52 +1176,31 @@ def create_role():
 
 from sqlalchemy.orm import joinedload
 
-@admin_bp.route('/admin/delete-role/<int:role_id>', methods=['GET'])
-@login_required
+@admin_bp.route('/delete_role/<int:role_id>', methods=['POST'])
 def delete_role(role_id):
-    # Ensure only users with delete role permissions can access
-    if not current_user.has_permission('delete_role'):
-        raise Forbidden("You do not have permission to delete roles.")
-    
     role = Role.query.get_or_404(role_id)
-    
-    # Prevent deletion of system-defined roles or roles with active users
-    if role.s_system_role:
-        flash('System roles cannot be deleted.', 'error')
-        return redirect(url_for('admin_bp.manage_roles'))
-    
-    if role.users:  # Check if any users have this role
-        flash('Cannot delete a role that is currently assigned to users.', 'error')
-        return redirect(url_for('admin_bp.manage_roles'))
-    
-    try:
-        db.session.delete(role)
-        db.session.commit()
-        flash('Role deleted successfully!', 'success')
-    except Exception as e:
-        db.session.rollback()
-        flash(f'Error deleting role: {str(e)}', 'error')
-    
+    db.session.delete(role)
+    db.session.commit()
+    flash('Role deleted successfully', 'success')
     return redirect(url_for('admin_bp.manage_roles'))
 
-@admin_bp.route('/user/assign-role/<int:user_id>', methods=['GET', 'POST'])
+@admin_bp.route('/assign_role/<int:user_id>', methods=['GET', 'POST'])
 @login_required
 def assign_role(user_id):
-    
     user = User.query.get_or_404(user_id)
     roles = Role.query.all()
-
+    
     if request.method == 'POST':
         role_id = request.form.get('role_id')
-        role = Role.query.get_or_404(role_id)
-
-        # Assign the role correctly based on your ORM relation
-        user.role = role  # Adjust based on your actual field name in the User model
-        db.session.commit()
-
-        flash('Role assigned successfully', 'success')
-        return redirect(url_for('admin_bp.manage_users'))
-
+        if role_id:
+            role = Role.query.get(role_id)
+            if role:
+                user.role = role
+                db.session.commit()
+                flash('Role assigned successfully', 'success')
+                return redirect(url_for('admin_bp.manage_users'))
+        flash('Invalid role selected', 'danger')
+    
     return render_template('admin/assign_role.html', user=user, roles=roles)
 
 

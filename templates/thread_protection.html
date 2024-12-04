@@ -31,22 +31,8 @@
                 </ul>
             </div>
 
-            <!-- Recent Activity Section -->
-            <div class="mb-6">
-                <h2 class="font-bold text-lg mb-4">Recent Security Activities:</h2>
-                <table class="w-full border-collapse border border-gray-300">
-                    <thead>
-                        <tr class="bg-gray-200">
-                            <th class="border py-2 px-4">Timestamp</th>
-                            <th class="border py-2 px-4">Event</th>
-                            <th class="border py-2 px-4">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="activityLog">
-                        <!-- Placeholder for recent activities -->
-                    </tbody>
-                </table>
-            </div>
+            
+            
 
             <!-- Alert Creation -->
             <button id="createAlertButton" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none">
@@ -70,17 +56,139 @@
         });
     });
 
-    document.getElementById('createAlertButton').addEventListener('click', function () {
-        const message = 'Security Alert: A high-priority threat was detected on ' + new Date().toLocaleString() +
-            '. Immediate action is required to investigate and contain the threat. Please verify user activities and system logs. Consider raising system-level protection measures.';
+    function createDetailedSecurityAlert() {
+        // Collect extensive system and threat information
+        const systemInfo = {
+            timestamp: new Date().toISOString(),
+            severity: 'HIGH',
+            hostname: window.location.hostname,
+            fullURL: window.location.href,
+            userAgent: navigator.userAgent,
+            platform: navigator.platform,
+            language: navigator.language,
+            screenResolution: `${window.screen.width}x${window.screen.height}`,
+            timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            browserInfo: {
+                name: getBrowserName(),
+                version: getBrowserVersion()
+            },
+            networkInfo: {
+                connectionType: navigator.connection ? navigator.connection.effectiveType : 'unknown',
+                downlinkSpeed: navigator.connection ? navigator.connection.downlink : 'N/A'
+            }
+        };
+
+        // Detailed email content generator
+        function generateEmailContent(details) {
+            return `
+                URGENT SECURITY ALERT
+                =====================================================
+                Timestamp: ${details.timestamp}
+                Severity: ${details.severity}
+                Hostname: ${details.hostname}
+                Full URL: ${details.fullURL}
+                User Agent: ${details.userAgent}
+                Platform: ${details.platform}
+                Language: ${details.language}
+                Screen Resolution: ${details.screenResolution}
+                Time Zone: ${details.timeZone}
+                Browser Info: ${details.browserInfo.name} ${details.browserInfo.version}
+                Network Info: Connection Type - ${details.networkInfo.connectionType}, Downlink Speed - ${details.networkInfo.downlinkSpeed}
+            `;
+        }
+
+        const emailContent = generateEmailContent(systemInfo);
 
         fetch('/create_alert', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message })
-        }).then(response => response.json()).then(data => {
-            alert(data.success ? 'Alert created and email sent' : 'Error: ' + data.error);
+            body: JSON.stringify({ message: emailContent })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'ALERT DISPATCHED',
+                    text: 'A comprehensive security alert has been dispatched to the SOC. Immediate investigation is recommended.',
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Acknowledge Threat'
+                });
+            } else {
+                throw new Error(data.error || 'Alert transmission failed');
+            }
+        })
+        .catch(error => {
+            console.error('Critical Security Alert Failure:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'ALERT TRANSMISSION ERROR',
+                text: `Critical failure in security alert system: ${error.message}`,
+                confirmButtonText: 'Contact Support'
+            });
         });
-    });
+
+        // Generate a temporary security token (mock implementation)
+        function generateSecurityToken() {
+            return btoa(navigator.userAgent + Date.now());
+        }
+    }
+
+    // Attach event listener
+    document.getElementById('createAlertButton').addEventListener('click', createDetailedSecurityAlert);
+
+    // Helper functions to get browser name and version
+    function getBrowserName() {
+        const userAgent = navigator.userAgent;
+        if (userAgent.indexOf("Firefox") > -1) {
+            return "Firefox";
+        } else if (userAgent.indexOf("SamsungBrowser") > -1) {
+            return "Samsung Internet";
+        } else if (userAgent.indexOf("Opera") > -1 || userAgent.indexOf("OPR") > -1) {
+            return "Opera";
+        } else if (userAgent.indexOf("Trident") > -1) {
+            return "Internet Explorer";
+        } else if (userAgent.indexOf("Edge") > -1) {
+            return "Microsoft Edge";
+        } else if (userAgent.indexOf("Chrome") > -1) {
+            return "Chrome";
+        } else if (userAgent.indexOf("Safari") > -1) {
+            return "Safari";
+        } else {
+            return "Unknown";
+        }
+    }
+
+    function getBrowserVersion() {
+        const userAgent = navigator.userAgent;
+        const browserName = getBrowserName();
+        let version = "Unknown";
+
+        switch (browserName) {
+            case "Firefox":
+                version = userAgent.substring(userAgent.indexOf("Firefox") + 8);
+                break;
+            case "Samsung Internet":
+                version = userAgent.substring(userAgent.indexOf("SamsungBrowser") + 15);
+                break;
+            case "Opera":
+                version = userAgent.substring(userAgent.indexOf("OPR") + 4);
+                break;
+            case "Internet Explorer":
+                version = userAgent.substring(userAgent.indexOf("rv:") + 3);
+                break;
+            case "Microsoft Edge":
+                version = userAgent.substring(userAgent.indexOf("Edge") + 5);
+                break;
+            case "Chrome":
+                version = userAgent.substring(userAgent.indexOf("Chrome") + 7);
+                break;
+            case "Safari":
+                version = userAgent.substring(userAgent.indexOf("Version") + 8);
+                break;
+        }
+
+        return version.split(" ")[0];
+    }
 </script>
 {% endblock %}

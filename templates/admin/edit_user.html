@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="bg-gray-800 text-white px-6 py-4 flex justify-between items-center">
+            <h2 class="text-3xl font-bold">Edit User</h2>
+            <div class="space-x-2">
+                <a href="{{ url_for('admin_bp.manage_users') }}" class="bg-gray-500 hover:bg-gray-600 px-4 py-2 rounded transition flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+                    </svg>
+                    Back to Users
+                </a>
+            </div>
+        </div>
+
+        <div class="p-6 max-w-2xl mx-auto">
+            <form method="POST" action="{{ url_for('admin_bp.edit_user', user_id=user.id) }}" class="space-y-6">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        value="{{ user.username }}" 
+                        required 
+                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        pattern="^[a-zA-Z0-9_]{3,20}$"
+                        title="3-20 characters, letters, numbers, and underscores only"
+                    >
+                    <p class="mt-2 text-sm text-gray-500">Username must be 3-20 characters long</p>
+                </div>
+
+                <div>
+                    <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+                    <select 
+                        id="role" 
+                        name="role" 
+                        required 
+                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                    >
+                        <option value="admin" {{ 'selected' if user.role == 'admin' else '' }}>
+                            Admin (Full Access)
+                        </option>
+                        <option value="moderator" {{ 'selected' if user.role == 'moderator' else '' }}>
+                            Moderator (Limited Access)
+                        </option>
+                        <option value="user" {{ 'selected' if user.role == 'user' else '' }}>
+                            User (Standard Access)
+                        </option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">New Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="Leave blank to keep current password"
+                        class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+                        title="Minimum 8 characters, at least one letter, one number, and one special character"
+                    >
+                    <p class="mt-2 text-sm text-gray-500">
+                        Optional. Must be at least 8 characters with letters, numbers, and symbols
+                    </p>
+                </div>
+
+                <div class="flex justify-end space-x-4">
+                    <a 
+                        href="{{ url_for('admin_bp.manage_users') }}" 
+                        class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition"
+                    >
+                        Cancel
+                    </a>
+                    <button 
+                        type="submit" 
+                        class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded transition"
+                    >
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
