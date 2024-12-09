@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
@@ -24,8 +25,12 @@ from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationE
 from flask import request, jsonify, render_template, abort
 from flask_login import login_user, current_user
 from werkzeug.security import check_password_hash
-
-
+from cryptography.fernet import Fernet
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from cryptography.hazmat.primitives.kdf.scrypt import Scrypt
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.backends import default_backend
+import base64
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
@@ -166,6 +171,135 @@ def thread_protection():
         return jsonify({'success': f'Thread protection set to {level}'}), 200
 
     return render_template('thread_protection.html')
+
+
+
+
+
+
+
+
+fernet_cipher = Fernet(Fernet.generate_key())
+
+def generate_key_from_password(password, salt, algorithm='scrypt'):
+    if algorithm == 'scrypt':
+        kdf = Scrypt(
+            salt=salt,
+            length=32,
+            n=2**14,
+            r=8,
+            p=1,
+            backend=default_backend()
+        )
+        return base64.urlsafe_b64encode(kdf.derive(password.encode()))
+    else:
+        raise ValueError("Unsupported algorithm")
+
+def caesar_cipher_encrypt(text, shift):
+    encrypted = []
+    for char in text:
+        if char.isalpha():
+            shift_base = 65 if char.isupper() else 97
+            encrypted.append(chr((ord(char) - shift_base + shift) % 26 + shift_base))
+        else:
+            encrypted.append(char)
+    return ''.join(encrypted)
+
+def aes_encrypt(data, key):
+    backend = default_backend()
+    iv = os.urandom(16)
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=backend)
+    encryptor = cipher.encryptor()
+    padder = padding.PKCS7(128).padder()
+    padded_data = padder.update(data.encode()) + padder.finalize()
+    encrypted = encryptor.update(padded_data) + encryptor.finalize()
+    return base64.b64encode(iv + encrypted).decode()
+
+def aes_decrypt(encrypted_data, key):
+    backend = default_backend()
+    encrypted_data = base64.b64decode(encrypted_data)
+    iv = encrypted_data[:16]
+    encrypted_data = encrypted_data[16:]
+    cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=backend)
+    decryptor = cipher.decryptor()
+    decrypted_padded = decryptor.update(encrypted_data) + decryptor.finalize()
+    unpadder = padding.PKCS7(128).unpadder()
+    decrypted = unpadder.update(decrypted_padded) + unpadder.finalize()
+    return decrypted.decode()
+
+@app.route('/encrypt', methods=['GET', 'POST'])
+def encrypt():
+    if request.method == 'POST':
+        data = request.form['data']
+        encryption_type = request.form['encryption_type']
+        password = request.form.get('password', None)
+
+        if encryption_type == 'fernet':
+            encrypted_data = fernet_cipher.encrypt(data.encode()).decode()
+        elif encryption_type == 'scrypt':
+            if not password:
+                return jsonify({'error': 'Password is required for key derivation encryption'}), 400
+            salt = os.urandom(16)
+            key = generate_key_from_password(password, salt)
+            cipher = Fernet(key)
+            encrypted_data = cipher.encrypt(data.encode()).decode()
+        elif encryption_type == 'caesar':
+            shift = int(request.form.get('shift', 3))  # Default shift of 3
+            encrypted_data = caesar_cipher_encrypt(data, shift)
+        elif encryption_type == 'aes':
+            if not password:
+                return jsonify({'error': 'Password is required for AES encryption'}), 400
+            key = password.encode().ljust(32)[:32]
+            encrypted_data = aes_encrypt(data, key)
+        else:
+            return jsonify({'error': 'Unsupported encryption type'}), 400
+
+        return jsonify({'encrypted_data': encrypted_data})
+
+    return render_template('encrypt.html')
+
+@app.route('/decrypt', methods=['POST'])
+def decrypt():
+    encrypted_data = request.form['encrypted_data']
+    decryption_type = request.form['decryption_type']
+    password = request.form.get('decrypt_password', None)
+
+    try:
+        if decryption_type == 'fernet':
+            decrypted_data = fernet_cipher.decrypt(encrypted_data.encode()).decode()
+        elif decryption_type in ['scrypt']:
+            if not password:
+                return jsonify({'error': 'Password is required for key derivation decryption'}), 400
+            salt = os.urandom(16)  # This must match the encryption salt for production.
+            key = generate_key_from_password(password, salt)
+            cipher = Fernet(key)
+            decrypted_data = cipher.decrypt(encrypted_data.encode()).decode()
+        elif decryption_type == 'caesar':
+            shift = int(request.form.get('shift', -3))  # Reversing shift by default
+            decrypted_data = caesar_cipher_encrypt(encrypted_data, shift)
+        elif decryption_type == 'aes':
+            if not password:
+                return jsonify({'error': 'Password is required for AES decryption'}), 400
+            key = password.encode().ljust(32)[:32]
+            decrypted_data = aes_decrypt(encrypted_data, key)
+        else:
+            return jsonify({'error': 'Unsupported decryption type'}), 400
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
+
+    return jsonify({'decrypted_data': decrypted_data})
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

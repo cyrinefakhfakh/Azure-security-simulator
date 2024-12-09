@@ -1,0 +1,176 @@
+{% extends "base2.html" %}
+
+{% block content %}
+<div class="home-container px-4 py-8">
+    <section class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="p-6">
+            <h1 class="text-3xl font-bold mb-6">Data Encryption & Decryption</h1>
+
+            <form method="POST" action="/encrypt" id="encryptionForm" class="mb-6">
+                <div class="mb-4">
+                    <label for="data" class="block text-gray-700 font-semibold mb-2">
+                        Data to Encrypt:
+                    </label>
+                    <textarea 
+                        id="data" 
+                        name="data" 
+                        required 
+                        class="w-full py-3 px-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                        rows="5" 
+                        placeholder="Enter the text you want to encrypt..."
+                    ></textarea>
+                </div>
+
+                <div class="mb-4">
+                    <label for="encryption_type" class="block text-gray-700 font-semibold mb-2">
+                        Encryption Type:
+                    </label>
+                    <select 
+                        id="encryption_type" 
+                        name="encryption_type" 
+                        required 
+                        class="w-full py-3 px-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        <option value="fernet">Fernet - Symmetric Encryption</option>
+                        <option value="caesar">Caesar Cipher - Simple Encryption</option>
+                        <option value="scrypt">Scrypt - Memory-Hard Key Derivation</option>
+                        <option value="aes">AES - Advanced Encryption Standard</option>
+
+                    </select>
+                </div>
+
+                <div id="password-field" class="mb-4" style="display: none;">
+                    <label for="password" class="block text-gray-700 font-semibold mb-2">
+                        Password:
+                    </label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        class="w-full py-3 px-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                        placeholder="Enter encryption password"
+                    >
+                </div>
+
+                <div class="flex justify-between">
+                    <button type="button" id="clearButton" class="bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none">
+                        Clear
+                    </button>
+                    <button 
+                        type="submit" 
+                        class="bg-gray-800 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none"
+                    >
+                        Encrypt Data
+                    </button>
+                </div>
+            </form>
+
+            <hr class="my-6">
+
+            <form method="POST" action="/decrypt" id="decryptionForm" class="mb-6">
+                <div class="mb-4">
+                    <label for="encrypted_data" class="block text-gray-700 font-semibold mb-2">
+                        Encrypted Data:
+                    </label>
+                    <textarea 
+                        id="encrypted_data" 
+                        name="encrypted_data" 
+                        required 
+                        class="w-full py-3 px-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                        rows="5" 
+                        placeholder="Enter the encrypted text..."
+                    ></textarea>
+                </div>
+
+                <div class="mb-4">
+                    <label for="decryption_type" class="block text-gray-700 font-semibold mb-2">
+                        Decryption Type:
+                    </label>
+                    <select 
+                        id="decryption_type" 
+                        name="decryption_type" 
+                        required 
+                        class="w-full py-3 px-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        <option value="fernet">Fernet - Symmetric Decryption</option>
+                        <option value="caesar">Caesar Cipher - Simple Decryption</option>
+                        <option value="scrypt">Scrypt - Memory-Hard Key Derivation</option>
+                    </select>
+                </div>
+
+                <div id="decrypt-password-field" class="mb-4" style="display: none;">
+                    <label for="decrypt_password" class="block text-gray-700 font-semibold mb-2">
+                        Password:
+                    </label>
+                    <input 
+                        type="password" 
+                        id="decrypt_password" 
+                        name="decrypt_password" 
+                        class="w-full py-3 px-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                        placeholder="Enter decryption password"
+                    >
+                </div>
+
+                <div class="flex justify-between">
+                    <button type="button" id="clearDecryptButton" class="bg-gray-500 text-white font-bold py-2 px-4 rounded focus:outline-none">
+                        Clear
+                    </button>
+                    <button 
+                        type="submit" 
+                        class="bg-gray-800 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none"
+                    >
+                        Decrypt Data
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const encryptionTypeSelect = document.getElementById('encryption_type');
+    const passwordField = document.getElementById('password-field');
+    const passwordInput = document.getElementById('password');
+    const decryptionTypeSelect = document.getElementById('decryption_type');
+    const decryptPasswordField = document.getElementById('decrypt-password-field');
+    const decryptPasswordInput = document.getElementById('decrypt_password');
+
+    encryptionTypeSelect.addEventListener('change', function() {
+        if (this.value === 'scrypt') {
+            passwordField.style.display = 'block';
+            passwordInput.required = true;
+        } else {
+            passwordField.style.display = 'none';
+            passwordInput.required = false;
+        }
+    });
+
+    decryptionTypeSelect.addEventListener('change', function() {
+        if (this.value === 'scrypt') {
+            decryptPasswordField.style.display = 'block';
+            decryptPasswordInput.required = true;
+        } else {
+            decryptPasswordField.style.display = 'none';
+            decryptPasswordInput.required = false;
+        }
+    });
+
+    clearButton.addEventListener('click', function() {
+        document.getElementById('data').value = '';
+        encryptionTypeSelect.value = 'fernet';
+        passwordField.style.display = 'none';
+        passwordInput.value = '';
+        passwordInput.required = false;
+    });
+
+    clearDecryptButton.addEventListener('click', function() {
+        document.getElementById('encrypted_data').value = '';
+        decryptionTypeSelect.value = 'fernet';
+        decryptPasswordField.style.display = 'none';
+        decryptPasswordInput.value = '';
+        decryptPasswordInput.required = false;
+    });
+});
+</script>
+{% endblock %}

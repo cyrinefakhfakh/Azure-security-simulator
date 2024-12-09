@@ -18,18 +18,22 @@
             </div>
             <div class="flex items-center space-x-4">
                 {% if current_user.is_authenticated %}
-                    <a href="{{ url_for('key_vault') }}" class="hover:bg-blue-600 px-3 py-2 rounded transition flex items-center">
+                    <a href="{{ url_for('key_vault') }}" class="hover:bg-gray-600 px-3 py-2 rounded transition flex items-center">
                         <i data-feather="key" class="mr-2"></i>Key Vault
                     </a>
-                    <a href="{{ url_for('thread_protection') }}" class="hover:bg-blue-600 px-3 py-2 rounded transition flex items-center">
+                    <a href="{{ url_for('thread_protection') }}" class="hover:bg-gray-600 px-3 py-2 rounded transition flex items-center">
                         <i data-feather="shield" class="mr-2"></i>Threat Protection
                     </a>
-                    <a href="{{ url_for('firewall_rules') }}" class="hover:bg-blue-600 px-3 py-2 rounded transition flex items-center">
+                    <a href="{{ url_for('firewall_rules') }}" class="hover:bg-gray-600 px-3 py-2 rounded transition flex items-center">
                         <i data-feather="activity" class="mr-2"></i>Firewall Rules
                     </a>
-                    <a href="{{ url_for('api_key_page') }}" class="hover:bg-blue-600 px-3 py-2 rounded transition flex items-center">
+                    <a href="{{ url_for('api_key_page') }}" class="hover:bg-gray-600 px-3 py-2 rounded transition flex items-center">
                         <i data-feather="key" class="mr-2"></i>API Key
                     </a>
+                    <a href="{{ url_for('encrypt') }}" class=" hover:bg-gray-600 px-4 py-2 rounded transition flex items-center">
+                        <i data-feather="lock" class="mr-2"></i>Encrypt
+                    </a>
+                    
                     <form action="{{ url_for('logout') }}" method="POST">
                         <button type="submit" class="hover:text-gray-200">Logout</button>
                     </form>
@@ -40,6 +44,7 @@
                     <a href="{{ url_for('register') }}" class="bg-gray-500 hover:bg-green-600 px-4 py-2 rounded transition flex items-center">
                         <i data-feather="user-plus" class="mr-2"></i>Register
                     </a>
+                    
                 {% endif %}
             </div>
         </div>
