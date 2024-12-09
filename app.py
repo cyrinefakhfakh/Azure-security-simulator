@@ -18,7 +18,6 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 from sqlalchemy import func, and_, exists
 from wtforms import TextAreaField, SelectMultipleField, SubmitField
-from wtforms.validators import DataRequired, Length
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SelectField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
@@ -31,6 +30,8 @@ from cryptography.hazmat.primitives.kdf.scrypt import Scrypt
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.backends import default_backend
 import base64
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.primitives import padding
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
@@ -174,6 +175,15 @@ def thread_protection():
 
 
 
+def verify_permissions():
+    with app.app_context():
+        roles = Role.query.all()
+        permissions = Permission.query.all()
+        for role in roles:
+            for permission in permissions:
+                existing_assoc = RolePermission.query.filter_by(role_id=role.id, permission_id=permission.id).first()
+                if not existing_assoc:
+                    print(f"Permission '{permission.name}' is not assigned to role '{role.name}'")
 
 
 
@@ -228,7 +238,11 @@ def aes_decrypt(encrypted_data, key):
     return decrypted.decode()
 
 @app.route('/encrypt', methods=['GET', 'POST'])
+@login_required
 def encrypt():
+    if not current_user.has_permission('encrypt'):
+        return render_template('error.html')  # Redirigez vers la page d'accueil ou une autre page
+
     if request.method == 'POST':
         data = request.form['data']
         encryption_type = request.form['encryption_type']
@@ -258,8 +272,14 @@ def encrypt():
 
     return render_template('encrypt.html')
 
+
 @app.route('/decrypt', methods=['POST'])
+@login_required
 def decrypt():
+    
+    if not current_user.has_permission('decrypt'):
+        return render_template('error.html')
+    
     encrypted_data = request.form['encrypted_data']
     decryption_type = request.form['decryption_type']
     password = request.form.get('decrypt_password', None)
@@ -302,7 +322,6 @@ def decrypt():
 
 
 
-
 @app.route('/create_alert', methods=['POST'])
 def create_alert():
     data = request.get_json()
@@ -313,7 +332,7 @@ def create_alert():
     
     # Send email (assuming you have configured Flask-Mail)
     try:
-        msg = Message("Security Alert", sender="sirinefakhfakh03@gmail.com", recipients=["sirinefakhfakh03@gmail.com"])
+        msg = Message("Security Alert", sender="sirinefakhfakh03@gmail.com", recipients=["kahlaoui.firas2017@gmail.com"])
         msg.body = message
         mail.send(msg)
         return jsonify({'success': True})
@@ -688,7 +707,9 @@ class RoleForm(FlaskForm):
             ('view_logs', 'View Logs'),
             ('manage_settings', 'Manage Settings'),
             ('backup_system', 'Backup System'),
-            ('restore_system', 'Restore System')
+            ('restore_system', 'Restore System'),
+            ('encrypt','decrypt')
+            
         ])
     
     submit = SubmitField('Save Role')
@@ -1329,7 +1350,7 @@ def assign_role(user_id):
         if role_id:
             role = Role.query.get(role_id)
             if role:
-                user.role = role
+                user.role_relation = role
                 db.session.commit()
                 flash('Role assigned successfully', 'success')
                 return redirect(url_for('admin_bp.manage_users'))
@@ -1355,9 +1376,108 @@ def generate_login_qr(user):
     qr_buffer.seek(0)
     return qr_buffer
 app.register_blueprint(admin_bp, url_prefix='/admin')
+
+
+
+
+
+
+
+
+from werkzeug.utils import secure_filename
+
+UPLOAD_FOLDER = './uploads'
+ENCRYPTED_FOLDER = './encrypted'
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+os.makedirs(ENCRYPTED_FOLDER, exist_ok=True)
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['ENCRYPTED_FOLDER'] = ENCRYPTED_FOLDER
+
+def encrypt_file(file_path, key):
+    """Encrypts a file with AES encryption."""
+    with open(file_path, 'rb') as file:
+        data = file.read()
+
+    iv = os.urandom(16)
+    cipher = Cipher(algorithms.AES(key), modes.CFB(iv), backend=default_backend())
+    encryptor = cipher.encryptor()
+    encrypted_data = iv + encryptor.update(data) + encryptor.finalize()
+
+    encrypted_file_path = os.path.join(app.config['ENCRYPTED_FOLDER'], f"encrypted_{os.path.basename(file_path)}")
+    with open(encrypted_file_path, 'wb') as enc_file:
+        enc_file.write(encrypted_data)
+    
+    return encrypted_file_path
+
+def decrypt_file(file_path, key):
+    """Decrypts a file encrypted with AES encryption."""
+    with open(file_path, 'rb') as file:
+        data = file.read()
+
+    iv = data[:16]
+    encrypted_data = data[16:]
+    cipher = Cipher(algorithms.AES(key), modes.CFB(iv), backend=default_backend())
+    decryptor = cipher.decryptor()
+    decrypted_data = decryptor.update(encrypted_data) + decryptor.finalize()
+
+    decrypted_file_path = os.path.join(app.config['UPLOAD_FOLDER'], f"decrypted_{os.path.basename(file_path)}")
+    with open(decrypted_file_path, 'wb') as dec_file:
+        dec_file.write(decrypted_data)
+    
+    return decrypted_file_path
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        if 'file' not in request.files:
+            flash('No file part', 'error')
+            return redirect(request.url)
+
+        file = request.files['file']
+        if file.filename == '':
+            flash('No selected file', 'error')
+            return redirect(request.url)
+
+        if file:
+            # Secure the filename
+            filename = secure_filename(file.filename)
+
+            # Read file contents in memory
+            file_data = file.read()
+
+            # Generate a fixed encryption key (you can replace this with dynamic key logic)
+            encryption_key = b'16byteslongkey__'
+
+            # Encrypt the file data
+            iv = os.urandom(16)  # Initialization vector for AES
+            cipher = Cipher(algorithms.AES(encryption_key), modes.CFB(iv), backend=default_backend())
+            encryptor = cipher.encryptor()
+            encrypted_data = iv + encryptor.update(file_data) + encryptor.finalize()
+
+            # Save the encrypted file
+            encrypted_file_path = os.path.join(app.config['ENCRYPTED_FOLDER'], f"encrypted_{filename}")
+            with open(encrypted_file_path, 'wb') as encrypted_file:
+                encrypted_file.write(encrypted_data)
+
+            flash(f"File encrypted and saved at {encrypted_file_path}", 'success')
+            return redirect(url_for('index'))
+
+    return render_template('upload.html')
+
+
+
+
+
+
+
+
+
+
+
 if __name__ == '__main__':
     with app.app_context():
         init_db()
         init_permissions()
         assign_all_permissions_to_admin()
-    app.run(debug=True)
+    app.run(debug=True,port=5001)

@@ -1,0 +1,5 @@
+This is a sample file to demonstrate disk encryption.
+
+The quick brown fox jumps over the lazy dog.
+
+File encryption ensures that the data remains secure and unreadable without the proper key.

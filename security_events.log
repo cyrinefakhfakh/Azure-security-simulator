@@ -1,1045 +1,4 @@
-2024-11-30 23:39:56 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-11-30 23:39:56 - INFO - [33mPress CTRL+C to quit[0m
-2024-11-30 23:39:56 - INFO -  * Restarting with stat
-2024-11-30 23:39:57 - WARNING -  * Debugger is active!
-2024-11-30 23:39:57 - INFO -  * Debugger PIN: 937-297-038
-2024-11-30 23:40:07 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-11-30 23:40:07 - INFO - [33mPress CTRL+C to quit[0m
-2024-11-30 23:40:07 - INFO -  * Restarting with stat
-2024-11-30 23:40:08 - WARNING -  * Debugger is active!
-2024-11-30 23:40:08 - INFO -  * Debugger PIN: 937-297-038
-2024-11-30 23:40:30 - INFO - 127.0.0.1 - - [30/Nov/2024 23:40:30] "GET /asc_dashboard HTTP/1.1" 200 -
-2024-11-30 23:40:53 - INFO - 127.0.0.1 - - [30/Nov/2024 23:40:53] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-11-30 23:40:57 - INFO - 127.0.0.1 - - [30/Nov/2024 23:40:57] "GET /admin/create_role HTTP/1.1" 200 -
-2024-11-30 23:41:13 - INFO - 127.0.0.1 - - [30/Nov/2024 23:41:13] "[32mPOST /admin/create_role HTTP/1.1[0m" 302 -
-2024-11-30 23:41:14 - INFO - 127.0.0.1 - - [30/Nov/2024 23:41:14] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-11-30 23:41:16 - INFO - 127.0.0.1 - - [30/Nov/2024 23:41:16] "GET /admin/create_role HTTP/1.1" 200 -
-2024-11-30 23:41:53 - INFO - 127.0.0.1 - - [30/Nov/2024 23:41:53] "[32mPOST /admin/create_role HTTP/1.1[0m" 302 -
-2024-11-30 23:41:53 - INFO - 127.0.0.1 - - [30/Nov/2024 23:41:53] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-11-30 23:41:56 - INFO - 127.0.0.1 - - [30/Nov/2024 23:41:56] "GET /admin/create_role HTTP/1.1" 200 -
-2024-11-30 23:42:15 - INFO - 127.0.0.1 - - [30/Nov/2024 23:42:15] "[32mPOST /admin/create_role HTTP/1.1[0m" 302 -
-2024-11-30 23:42:15 - INFO - 127.0.0.1 - - [30/Nov/2024 23:42:15] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-11-30 23:42:25 - INFO - 127.0.0.1 - - [30/Nov/2024 23:42:25] "GET /admin/create_role HTTP/1.1" 200 -
-2024-11-30 23:42:57 - INFO - 127.0.0.1 - - [30/Nov/2024 23:42:57] "[32mPOST /admin/create_role HTTP/1.1[0m" 302 -
-2024-11-30 23:42:57 - INFO - 127.0.0.1 - - [30/Nov/2024 23:42:57] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-11-30 23:43:01 - INFO - 127.0.0.1 - - [30/Nov/2024 23:43:01] "GET /admin/create_role HTTP/1.1" 200 -
-2024-11-30 23:43:53 - INFO - 127.0.0.1 - - [30/Nov/2024 23:43:53] "[32mPOST /admin/create_role HTTP/1.1[0m" 302 -
-2024-11-30 23:43:53 - INFO - 127.0.0.1 - - [30/Nov/2024 23:43:53] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-11-30 23:44:31 - INFO - 127.0.0.1 - - [30/Nov/2024 23:44:31] "GET /security-center HTTP/1.1" 200 -
-2024-11-30 23:44:39 - INFO - 127.0.0.1 - - [30/Nov/2024 23:44:39] "GET /sentinel HTTP/1.1" 200 -
-2024-11-30 23:44:41 - INFO - 127.0.0.1 - - [30/Nov/2024 23:44:41] "GET /security-center HTTP/1.1" 200 -
-2024-11-30 23:44:42 - INFO - 127.0.0.1 - - [30/Nov/2024 23:44:42] "GET /sentinel HTTP/1.1" 200 -
-2024-11-30 23:44:42 - INFO - 127.0.0.1 - - [30/Nov/2024 23:44:42] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-11-30 23:44:56 - INFO - 127.0.0.1 - - [30/Nov/2024 23:44:56] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-11-30 23:45:16 - INFO - 127.0.0.1 - - [30/Nov/2024 23:45:16] "GET /admin/create_user HTTP/1.1" 200 -
-2024-11-30 23:45:31 - INFO - Attempting to log out user: admin
-2024-11-30 23:45:31 - INFO - User admin logged out successfully
-2024-11-30 23:45:31 - INFO - 127.0.0.1 - - [30/Nov/2024 23:45:31] "[32mPOST /logout HTTP/1.1[0m" 302 -
-2024-11-30 23:45:31 - INFO - 127.0.0.1 - - [30/Nov/2024 23:45:31] "GET /login HTTP/1.1" 200 -
-2024-11-30 23:45:47 - WARNING - Login attempt for non-existent user: sirine
-2024-11-30 23:45:47 - INFO - 127.0.0.1 - - [30/Nov/2024 23:45:47] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
-2024-11-30 23:45:56 - INFO - 127.0.0.1 - - [30/Nov/2024 23:45:56] "GET /register HTTP/1.1" 200 -
-2024-11-30 23:46:06 - INFO - 127.0.0.1 - - [30/Nov/2024 23:46:06] "GET / HTTP/1.1" 200 -
-2024-11-30 23:46:30 - INFO - 127.0.0.1 - - [30/Nov/2024 23:46:30] "GET /register HTTP/1.1" 200 -
-2024-12-01 13:03:22 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-12-01 13:03:22 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-01 13:03:22 - INFO -  * Restarting with stat
-2024-12-01 13:03:22 - WARNING -  * Debugger is active!
-2024-12-01 13:03:22 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:04:35 - INFO - 127.0.0.1 - - [01/Dec/2024 13:04:35] "GET /login HTTP/1.1" 200 -
-2024-12-01 13:04:39 - INFO - 127.0.0.1 - - [01/Dec/2024 13:04:39] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2024-12-01 13:05:44 - INFO - 127.0.0.1 - - [01/Dec/2024 13:05:44] "GET /register HTTP/1.1" 200 -
-2024-12-01 13:06:08 - INFO - Attempting to send MFA setup email
-2024-12-01 13:06:12 - INFO - 127.0.0.1 - - [01/Dec/2024 13:06:12] "[32mPOST /register HTTP/1.1[0m" 302 -
-2024-12-01 13:06:12 - INFO - 127.0.0.1 - - [01/Dec/2024 13:06:12] "GET /login HTTP/1.1" 200 -
-2024-12-01 13:06:45 - WARNING - Login attempt for non-existent user: cyrine
-2024-12-01 13:06:45 - INFO - 127.0.0.1 - - [01/Dec/2024 13:06:45] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
-2024-12-01 13:06:52 - WARNING - MFA token missing for user: Cyrine
-2024-12-01 13:06:52 - INFO - 127.0.0.1 - - [01/Dec/2024 13:06:52] "[31m[1mPOST /login HTTP/1.1[0m" 400 -
-2024-12-01 13:07:24 - INFO - 127.0.0.1 - - [01/Dec/2024 13:07:24] "POST /login HTTP/1.1" 200 -
-2024-12-01 13:07:24 - INFO - 127.0.0.1 - - [01/Dec/2024 13:07:24] "[35m[1mGET / HTTP/1.1[0m" 500 -
-2024-12-01 13:07:24 - INFO - 127.0.0.1 - - [01/Dec/2024 13:07:24] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
-2024-12-01 13:07:24 - INFO - 127.0.0.1 - - [01/Dec/2024 13:07:24] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
-2024-12-01 13:07:24 - INFO - 127.0.0.1 - - [01/Dec/2024 13:07:24] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=BR9ary4P7hQjjCAwdcLv HTTP/1.1" 200 -
-2024-12-01 13:07:24 - INFO - 127.0.0.1 - - [01/Dec/2024 13:07:24] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
-2024-12-01 13:14:10 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 13:14:10 - INFO -  * Restarting with stat
-2024-12-01 13:14:11 - WARNING -  * Debugger is active!
-2024-12-01 13:14:11 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:14:17 - INFO - 127.0.0.1 - - [01/Dec/2024 13:14:17] "GET / HTTP/1.1" 200 -
-2024-12-01 13:14:19 - INFO - 127.0.0.1 - - [01/Dec/2024 13:14:19] "GET /firewall_rules HTTP/1.1" 200 -
-2024-12-01 13:14:19 - INFO - 127.0.0.1 - - [01/Dec/2024 13:14:19] "GET /firewall_rules HTTP/1.1" 200 -
-2024-12-01 13:17:05 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 13:17:05 - INFO -  * Restarting with stat
-2024-12-01 13:17:06 - WARNING -  * Debugger is active!
-2024-12-01 13:17:06 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:17:33 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 13:17:33 - INFO -  * Restarting with stat
-2024-12-01 13:17:34 - WARNING -  * Debugger is active!
-2024-12-01 13:17:34 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:17:43 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 13:17:43 - INFO -  * Restarting with stat
-2024-12-01 13:17:44 - WARNING -  * Debugger is active!
-2024-12-01 13:17:44 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:18:27 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 13:18:27 - INFO -  * Restarting with stat
-2024-12-01 13:18:28 - WARNING -  * Debugger is active!
-2024-12-01 13:18:28 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:18:59 - INFO - 127.0.0.1 - - [01/Dec/2024 13:18:59] "[35m[1mGET /firewall_rules HTTP/1.1[0m" 500 -
-2024-12-01 13:18:59 - INFO - 127.0.0.1 - - [01/Dec/2024 13:18:59] "GET /firewall_rules?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
-2024-12-01 13:18:59 - INFO - 127.0.0.1 - - [01/Dec/2024 13:18:59] "GET /firewall_rules?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
-2024-12-01 13:18:59 - INFO - 127.0.0.1 - - [01/Dec/2024 13:18:59] "GET /firewall_rules?__debugger__=yes&cmd=resource&f=console.png&s=MbFCqu2Uw7aYfVzqZ9fG HTTP/1.1" 200 -
-2024-12-01 13:18:59 - INFO - 127.0.0.1 - - [01/Dec/2024 13:18:59] "GET /firewall_rules?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
-2024-12-01 13:20:17 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 13:20:17 - INFO -  * Restarting with stat
-2024-12-01 13:20:18 - WARNING -  * Debugger is active!
-2024-12-01 13:20:18 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:20:32 - INFO - 127.0.0.1 - - [01/Dec/2024 13:20:32] "GET /firewall_rules HTTP/1.1" 200 -
-2024-12-01 13:20:32 - INFO - 127.0.0.1 - - [01/Dec/2024 13:20:32] "GET /firewall_rules HTTP/1.1" 200 -
-2024-12-01 13:20:44 - INFO - 127.0.0.1 - - [01/Dec/2024 13:20:44] "GET /thread_protection HTTP/1.1" 200 -
-2024-12-01 13:20:50 - INFO - 127.0.0.1 - - [01/Dec/2024 13:20:50] "GET /key-vault HTTP/1.1" 200 -
-2024-12-01 13:20:52 - INFO - 127.0.0.1 - - [01/Dec/2024 13:20:52] "GET /thread_protection HTTP/1.1" 200 -
-2024-12-01 13:20:52 - INFO - 127.0.0.1 - - [01/Dec/2024 13:20:52] "GET /firewall_rules HTTP/1.1" 200 -
-2024-12-01 13:20:53 - INFO - 127.0.0.1 - - [01/Dec/2024 13:20:53] "GET /firewall_rules HTTP/1.1" 200 -
-2024-12-01 13:43:50 - INFO - 127.0.0.1 - - [01/Dec/2024 13:43:50] "GET / HTTP/1.1" 200 -
-2024-12-01 13:44:31 - INFO - 127.0.0.1 - - [01/Dec/2024 13:44:31] "GET / HTTP/1.1" 200 -
-2024-12-01 13:44:33 - INFO - 127.0.0.1 - - [01/Dec/2024 13:44:33] "GET / HTTP/1.1" 200 -
-2024-12-01 13:48:04 - INFO - 127.0.0.1 - - [01/Dec/2024 13:48:04] "GET / HTTP/1.1" 200 -
-2024-12-01 13:50:12 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 13:50:12 - INFO -  * Restarting with stat
-2024-12-01 13:50:13 - WARNING -  * Debugger is active!
-2024-12-01 13:50:13 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:50:40 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\add_data.py', reloading
-2024-12-01 13:50:40 - INFO -  * Restarting with stat
-2024-12-01 13:50:41 - WARNING -  * Debugger is active!
-2024-12-01 13:50:41 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:50:46 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\add_data.py', reloading
-2024-12-01 13:50:46 - INFO -  * Restarting with stat
-2024-12-01 13:50:47 - WARNING -  * Debugger is active!
-2024-12-01 13:50:47 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:50:49 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\add_data.py', reloading
-2024-12-01 13:50:49 - INFO -  * Restarting with stat
-2024-12-01 13:50:49 - WARNING -  * Debugger is active!
-2024-12-01 13:50:49 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:50:51 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\add_data.py', reloading
-2024-12-01 13:50:51 - INFO -  * Restarting with stat
-2024-12-01 13:50:51 - WARNING -  * Debugger is active!
-2024-12-01 13:50:51 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:50:52 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\add_data.py', reloading
-2024-12-01 13:50:53 - INFO -  * Restarting with stat
-2024-12-01 13:50:53 - WARNING -  * Debugger is active!
-2024-12-01 13:50:53 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:50:54 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\add_data.py', reloading
-2024-12-01 13:50:54 - INFO -  * Restarting with stat
-2024-12-01 13:50:55 - WARNING -  * Debugger is active!
-2024-12-01 13:50:55 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:50:57 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\add_data.py', reloading
-2024-12-01 13:50:57 - INFO -  * Restarting with stat
-2024-12-01 13:50:58 - WARNING -  * Debugger is active!
-2024-12-01 13:50:58 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:51:00 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\add_data.py', reloading
-2024-12-01 13:51:00 - INFO -  * Restarting with stat
-2024-12-01 13:51:01 - WARNING -  * Debugger is active!
-2024-12-01 13:51:01 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:51:03 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\add_data.py', reloading
-2024-12-01 13:51:03 - INFO -  * Restarting with stat
-2024-12-01 13:51:04 - WARNING -  * Debugger is active!
-2024-12-01 13:51:04 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:51:06 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\add_data.py', reloading
-2024-12-01 13:51:06 - INFO -  * Restarting with stat
-2024-12-01 13:51:07 - WARNING -  * Debugger is active!
-2024-12-01 13:51:07 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:51:09 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\add_data.py', reloading
-2024-12-01 13:51:09 - INFO -  * Restarting with stat
-2024-12-01 13:51:10 - WARNING -  * Debugger is active!
-2024-12-01 13:51:10 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:51:12 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\add_data.py', reloading
-2024-12-01 13:51:12 - INFO -  * Restarting with stat
-2024-12-01 13:51:13 - WARNING -  * Debugger is active!
-2024-12-01 13:51:13 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:51:22 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\add_data.py', reloading
-2024-12-01 13:51:22 - INFO -  * Restarting with stat
-2024-12-01 13:51:23 - WARNING -  * Debugger is active!
-2024-12-01 13:51:23 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:51:29 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 13:51:29 - INFO -  * Restarting with stat
-2024-12-01 13:51:30 - WARNING -  * Debugger is active!
-2024-12-01 13:51:30 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:51:41 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 13:51:41 - INFO -  * Restarting with stat
-2024-12-01 13:51:42 - WARNING -  * Debugger is active!
-2024-12-01 13:51:42 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:51:53 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 13:51:53 - INFO -  * Restarting with stat
-2024-12-01 13:51:54 - WARNING -  * Debugger is active!
-2024-12-01 13:51:54 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:53:53 - INFO - 127.0.0.1 - - [01/Dec/2024 13:53:53] "GET / HTTP/1.1" 200 -
-2024-12-01 13:58:08 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 13:58:08 - INFO -  * Restarting with stat
-2024-12-01 13:58:09 - WARNING -  * Debugger is active!
-2024-12-01 13:58:09 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 13:58:25 - INFO - 127.0.0.1 - - [01/Dec/2024 13:58:25] "GET /api_key HTTP/1.1" 200 -
-2024-12-01 13:58:25 - INFO - 127.0.0.1 - - [01/Dec/2024 13:58:25] "[33mGET /api_usage/user123 HTTP/1.1[0m" 404 -
-2024-12-01 13:59:02 - INFO - 127.0.0.1 - - [01/Dec/2024 13:59:02] "GET /api_key HTTP/1.1" 200 -
-2024-12-01 13:59:02 - INFO - 127.0.0.1 - - [01/Dec/2024 13:59:02] "[33mGET /api_usage/user123 HTTP/1.1[0m" 404 -
-2024-12-01 13:59:05 - INFO - 127.0.0.1 - - [01/Dec/2024 13:59:05] "POST /generate_api_key HTTP/1.1" 200 -
-2024-12-01 14:03:28 - INFO - 127.0.0.1 - - [01/Dec/2024 14:03:28] "GET /api_key HTTP/1.1" 200 -
-2024-12-01 14:03:28 - INFO - 127.0.0.1 - - [01/Dec/2024 14:03:28] "GET /api_usage/user123 HTTP/1.1" 200 -
-2024-12-01 14:04:14 - INFO - 127.0.0.1 - - [01/Dec/2024 14:04:14] "POST /generate_api_key HTTP/1.1" 200 -
-2024-12-01 14:04:20 - INFO - 127.0.0.1 - - [01/Dec/2024 14:04:20] "POST /generate_api_key HTTP/1.1" 200 -
-2024-12-01 14:04:37 - INFO - 127.0.0.1 - - [01/Dec/2024 14:04:37] "GET /api_key HTTP/1.1" 200 -
-2024-12-01 14:04:37 - INFO - 127.0.0.1 - - [01/Dec/2024 14:04:37] "GET /api_usage/user123 HTTP/1.1" 200 -
-2024-12-01 14:04:41 - INFO - 127.0.0.1 - - [01/Dec/2024 14:04:41] "POST /generate_api_key HTTP/1.1" 200 -
-2024-12-01 14:05:02 - INFO - 127.0.0.1 - - [01/Dec/2024 14:05:02] "GET /api_key HTTP/1.1" 200 -
-2024-12-01 14:05:02 - INFO - 127.0.0.1 - - [01/Dec/2024 14:05:02] "GET /api_usage/user123 HTTP/1.1" 200 -
-2024-12-01 14:05:05 - INFO - 127.0.0.1 - - [01/Dec/2024 14:05:05] "GET /api_key HTTP/1.1" 200 -
-2024-12-01 14:05:06 - INFO - 127.0.0.1 - - [01/Dec/2024 14:05:06] "GET /api_usage/user123 HTTP/1.1" 200 -
-2024-12-01 14:05:06 - INFO - 127.0.0.1 - - [01/Dec/2024 14:05:06] "POST /generate_api_key HTTP/1.1" 200 -
-2024-12-01 14:05:09 - INFO - 127.0.0.1 - - [01/Dec/2024 14:05:09] "POST /generate_api_key HTTP/1.1" 200 -
-2024-12-01 14:06:03 - INFO - 127.0.0.1 - - [01/Dec/2024 14:06:03] "GET /api_key HTTP/1.1" 200 -
-2024-12-01 14:06:04 - INFO - 127.0.0.1 - - [01/Dec/2024 14:06:04] "GET /api_usage/user123 HTTP/1.1" 200 -
-2024-12-01 14:06:05 - INFO - 127.0.0.1 - - [01/Dec/2024 14:06:05] "POST /generate_api_key HTTP/1.1" 200 -
-2024-12-01 14:06:32 - INFO - 127.0.0.1 - - [01/Dec/2024 14:06:32] "GET /api_key HTTP/1.1" 200 -
-2024-12-01 14:06:32 - INFO - 127.0.0.1 - - [01/Dec/2024 14:06:32] "GET /api_usage/user123 HTTP/1.1" 200 -
-2024-12-01 14:06:33 - INFO - 127.0.0.1 - - [01/Dec/2024 14:06:33] "POST /generate_api_key HTTP/1.1" 200 -
-2024-12-01 14:08:05 - INFO - 127.0.0.1 - - [01/Dec/2024 14:08:05] "[35m[1mGET /api_key HTTP/1.1[0m" 500 -
-2024-12-01 14:08:06 - INFO - 127.0.0.1 - - [01/Dec/2024 14:08:06] "GET /api_key?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
-2024-12-01 14:08:06 - INFO - 127.0.0.1 - - [01/Dec/2024 14:08:06] "GET /api_key?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
-2024-12-01 14:08:06 - INFO - 127.0.0.1 - - [01/Dec/2024 14:08:06] "GET /api_key?__debugger__=yes&cmd=resource&f=console.png&s=6CIWIJpxRpbtd7BDdTvz HTTP/1.1" 200 -
-2024-12-01 14:08:06 - INFO - 127.0.0.1 - - [01/Dec/2024 14:08:06] "GET /api_key?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
-2024-12-01 14:11:51 - INFO - 127.0.0.1 - - [01/Dec/2024 14:11:51] "GET /api_key HTTP/1.1" 200 -
-2024-12-01 14:11:51 - INFO - 127.0.0.1 - - [01/Dec/2024 14:11:51] "GET /api_usage/user123 HTTP/1.1" 200 -
-2024-12-01 14:11:55 - INFO - 127.0.0.1 - - [01/Dec/2024 14:11:55] "POST /generate_api_key HTTP/1.1" 200 -
-2024-12-01 15:30:46 - INFO - 127.0.0.1 - - [01/Dec/2024 15:30:46] "GET /api_key HTTP/1.1" 200 -
-2024-12-01 15:30:46 - INFO - 127.0.0.1 - - [01/Dec/2024 15:30:46] "GET /api_usage/user123 HTTP/1.1" 200 -
-2024-12-01 15:31:01 - INFO - 127.0.0.1 - - [01/Dec/2024 15:31:01] "POST /generate_api_key HTTP/1.1" 200 -
-2024-12-01 15:31:22 - INFO - 127.0.0.1 - - [01/Dec/2024 15:31:22] "GET /key-vault HTTP/1.1" 200 -
-2024-12-01 15:31:31 - INFO - 127.0.0.1 - - [01/Dec/2024 15:31:31] "GET / HTTP/1.1" 200 -
-2024-12-01 15:32:49 - INFO - 127.0.0.1 - - [01/Dec/2024 15:32:49] "GET / HTTP/1.1" 200 -
-2024-12-01 15:36:08 - INFO - Attempting to log out user: Cyrine
-2024-12-01 15:36:08 - INFO - User Cyrine logged out successfully
-2024-12-01 15:36:08 - INFO - 127.0.0.1 - - [01/Dec/2024 15:36:08] "[32mPOST /logout HTTP/1.1[0m" 302 -
-2024-12-01 15:36:08 - INFO - 127.0.0.1 - - [01/Dec/2024 15:36:08] "GET /login HTTP/1.1" 200 -
-2024-12-01 15:36:13 - INFO - 127.0.0.1 - - [01/Dec/2024 15:36:13] "GET / HTTP/1.1" 200 -
-2024-12-01 15:36:25 - INFO - 127.0.0.1 - - [01/Dec/2024 15:36:25] "GET /register HTTP/1.1" 200 -
-2024-12-01 15:42:26 - INFO - 127.0.0.1 - - [01/Dec/2024 15:42:26] "GET /register HTTP/1.1" 200 -
-2024-12-01 15:42:44 - INFO - 127.0.0.1 - - [01/Dec/2024 15:42:44] "GET /register HTTP/1.1" 200 -
-2024-12-01 15:43:31 - INFO - 127.0.0.1 - - [01/Dec/2024 15:43:31] "GET /register HTTP/1.1" 200 -
-2024-12-01 15:43:43 - INFO - 127.0.0.1 - - [01/Dec/2024 15:43:43] "GET /register HTTP/1.1" 200 -
-2024-12-01 15:58:36 - INFO - 127.0.0.1 - - [01/Dec/2024 15:58:36] "GET /login HTTP/1.1" 200 -
-2024-12-01 15:58:42 - INFO - 127.0.0.1 - - [01/Dec/2024 15:58:42] "GET /register HTTP/1.1" 200 -
-2024-12-01 15:58:44 - INFO - 127.0.0.1 - - [01/Dec/2024 15:58:44] "GET /login HTTP/1.1" 200 -
-2024-12-01 15:58:47 - INFO - 127.0.0.1 - - [01/Dec/2024 15:58:47] "GET /register HTTP/1.1" 200 -
-2024-12-01 15:58:48 - INFO - 127.0.0.1 - - [01/Dec/2024 15:58:48] "GET /login HTTP/1.1" 200 -
-2024-12-01 15:59:06 - INFO - 127.0.0.1 - - [01/Dec/2024 15:59:06] "POST /login HTTP/1.1" 200 -
-2024-12-01 15:59:06 - INFO - 127.0.0.1 - - [01/Dec/2024 15:59:06] "GET / HTTP/1.1" 200 -
-2024-12-01 15:59:11 - INFO - 127.0.0.1 - - [01/Dec/2024 15:59:11] "[32mGET /login HTTP/1.1[0m" 302 -
-2024-12-01 15:59:11 - INFO - 127.0.0.1 - - [01/Dec/2024 15:59:11] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-01 15:59:18 - INFO - 127.0.0.1 - - [01/Dec/2024 15:59:18] "GET /security-center HTTP/1.1" 200 -
-2024-12-01 15:59:26 - INFO - 127.0.0.1 - - [01/Dec/2024 15:59:26] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-01 15:59:27 - INFO - Attempting to log out user: admin
-2024-12-01 15:59:27 - INFO - User admin logged out successfully
-2024-12-01 15:59:27 - INFO - 127.0.0.1 - - [01/Dec/2024 15:59:27] "[32mPOST /logout HTTP/1.1[0m" 302 -
-2024-12-01 15:59:27 - INFO - 127.0.0.1 - - [01/Dec/2024 15:59:27] "GET /login HTTP/1.1" 200 -
-2024-12-01 16:04:11 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-12-01 16:04:11 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-01 16:04:11 - INFO -  * Restarting with stat
-2024-12-01 16:04:12 - WARNING -  * Debugger is active!
-2024-12-01 16:04:12 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 16:04:27 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-12-01 16:04:27 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-01 16:04:27 - INFO -  * Restarting with stat
-2024-12-01 16:04:28 - WARNING -  * Debugger is active!
-2024-12-01 16:04:28 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 16:04:33 - INFO - 127.0.0.1 - - [01/Dec/2024 16:04:33] "GET /login HTTP/1.1" 200 -
-2024-12-01 16:04:35 - INFO - 127.0.0.1 - - [01/Dec/2024 16:04:35] "GET /login HTTP/1.1" 200 -
-2024-12-01 16:04:36 - INFO - 127.0.0.1 - - [01/Dec/2024 16:04:36] "GET /login HTTP/1.1" 200 -
-2024-12-01 16:04:39 - INFO - 127.0.0.1 - - [01/Dec/2024 16:04:39] "GET /register HTTP/1.1" 200 -
-2024-12-01 16:05:10 - INFO - Attempting to send MFA setup email
-2024-12-01 16:05:12 - INFO - 127.0.0.1 - - [01/Dec/2024 16:05:12] "[32mPOST /register HTTP/1.1[0m" 302 -
-2024-12-01 16:05:12 - INFO - 127.0.0.1 - - [01/Dec/2024 16:05:12] "GET /login HTTP/1.1" 200 -
-2024-12-01 16:07:22 - INFO - 127.0.0.1 - - [01/Dec/2024 16:07:22] "POST /login HTTP/1.1" 200 -
-2024-12-01 16:07:22 - INFO - 127.0.0.1 - - [01/Dec/2024 16:07:22] "GET / HTTP/1.1" 200 -
-2024-12-01 16:07:29 - INFO - 127.0.0.1 - - [01/Dec/2024 16:07:29] "GET / HTTP/1.1" 200 -
-2024-12-01 16:07:31 - INFO - 127.0.0.1 - - [01/Dec/2024 16:07:31] "[32mGET /login HTTP/1.1[0m" 302 -
-2024-12-01 16:07:31 - INFO - 127.0.0.1 - - [01/Dec/2024 16:07:31] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-01 16:07:40 - INFO - 127.0.0.1 - - [01/Dec/2024 16:07:40] "GET /admin/create_user HTTP/1.1" 200 -
-2024-12-01 16:07:51 - INFO - 127.0.0.1 - - [01/Dec/2024 16:07:51] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-01 16:07:57 - INFO - 127.0.0.1 - - [01/Dec/2024 16:07:57] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-01 16:08:00 - INFO - 127.0.0.1 - - [01/Dec/2024 16:08:00] "GET /admin/user/assign-role/8 HTTP/1.1" 200 -
-2024-12-01 16:09:05 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 16:09:06 - INFO -  * Restarting with stat
-2024-12-01 16:09:06 - WARNING -  * Debugger is active!
-2024-12-01 16:09:06 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 16:09:26 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-12-01 16:09:26 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-01 16:09:26 - INFO -  * Restarting with stat
-2024-12-01 16:09:27 - WARNING -  * Debugger is active!
-2024-12-01 16:09:27 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 16:09:32 - INFO - Attempting to log out user: admin
-2024-12-01 16:09:32 - INFO - User admin logged out successfully
-2024-12-01 16:09:32 - INFO - 127.0.0.1 - - [01/Dec/2024 16:09:32] "[32mPOST /logout HTTP/1.1[0m" 302 -
-2024-12-01 16:09:32 - INFO - 127.0.0.1 - - [01/Dec/2024 16:09:32] "GET /login HTTP/1.1" 200 -
-2024-12-01 16:09:34 - INFO - 127.0.0.1 - - [01/Dec/2024 16:09:34] "GET /register HTTP/1.1" 200 -
-2024-12-01 16:09:43 - ERROR - Failed to send MFA setup email: The message does not specify a sender and a default sender has not been configured
-2024-12-01 16:09:43 - INFO - 127.0.0.1 - - [01/Dec/2024 16:09:43] "[32mPOST /register HTTP/1.1[0m" 302 -
-2024-12-01 16:09:43 - INFO - 127.0.0.1 - - [01/Dec/2024 16:09:43] "GET /register HTTP/1.1" 200 -
-2024-12-01 16:11:45 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 16:11:45 - INFO -  * Restarting with stat
-2024-12-01 16:11:46 - WARNING -  * Debugger is active!
-2024-12-01 16:11:46 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 16:12:01 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 16:12:01 - INFO -  * Restarting with stat
-2024-12-01 16:12:02 - WARNING -  * Debugger is active!
-2024-12-01 16:12:02 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 16:12:14 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 16:12:15 - INFO -  * Restarting with stat
-2024-12-01 16:12:16 - WARNING -  * Debugger is active!
-2024-12-01 16:12:16 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 16:12:30 - INFO - 127.0.0.1 - - [01/Dec/2024 16:12:30] "GET /register HTTP/1.1" 200 -
-2024-12-01 16:12:40 - INFO - Attempting to send MFA setup email
-2024-12-01 16:12:41 - ERROR - Failed to send MFA setup email: The message does not specify a sender and a default sender has not been configured
-2024-12-01 16:12:41 - INFO - 127.0.0.1 - - [01/Dec/2024 16:12:41] "[32mPOST /register HTTP/1.1[0m" 302 -
-2024-12-01 16:12:41 - INFO - 127.0.0.1 - - [01/Dec/2024 16:12:41] "GET /register HTTP/1.1" 200 -
-2024-12-01 16:15:17 - INFO - 127.0.0.1 - - [01/Dec/2024 16:15:17] "GET /register HTTP/1.1" 200 -
-2024-12-01 16:18:05 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 16:18:05 - INFO -  * Restarting with stat
-2024-12-01 16:18:06 - WARNING -  * Debugger is active!
-2024-12-01 16:18:06 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 16:18:47 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 16:18:47 - INFO -  * Restarting with stat
-2024-12-01 16:19:25 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-12-01 16:19:25 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-01 16:19:25 - INFO -  * Restarting with stat
-2024-12-01 16:19:25 - WARNING -  * Debugger is active!
-2024-12-01 16:19:25 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 16:19:37 - INFO - Attempting to send MFA setup email
-2024-12-01 16:19:39 - INFO - 127.0.0.1 - - [01/Dec/2024 16:19:39] "[32mPOST /register HTTP/1.1[0m" 302 -
-2024-12-01 16:19:39 - INFO - 127.0.0.1 - - [01/Dec/2024 16:19:39] "GET /login HTTP/1.1" 200 -
-2024-12-01 16:34:12 - WARNING - MFA token missing for user: sirine
-2024-12-01 16:34:12 - INFO - 127.0.0.1 - - [01/Dec/2024 16:34:12] "[31m[1mPOST /login HTTP/1.1[0m" 400 -
-2024-12-01 17:28:49 - INFO - 127.0.0.1 - - [01/Dec/2024 17:28:49] "GET /login HTTP/1.1" 200 -
-2024-12-01 17:28:56 - INFO - 127.0.0.1 - - [01/Dec/2024 17:28:56] "POST /login HTTP/1.1" 200 -
-2024-12-01 17:28:56 - INFO - 127.0.0.1 - - [01/Dec/2024 17:28:56] "GET / HTTP/1.1" 200 -
-2024-12-01 17:29:13 - INFO - 127.0.0.1 - - [01/Dec/2024 17:29:13] "[32mGET /login HTTP/1.1[0m" 302 -
-2024-12-01 17:29:13 - INFO - 127.0.0.1 - - [01/Dec/2024 17:29:13] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-01 17:29:15 - INFO - 127.0.0.1 - - [01/Dec/2024 17:29:15] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-01 17:29:18 - INFO - 127.0.0.1 - - [01/Dec/2024 17:29:18] "GET /asc_dashboard HTTP/1.1" 200 -
-2024-12-01 17:29:20 - INFO - 127.0.0.1 - - [01/Dec/2024 17:29:20] "GET /security-center HTTP/1.1" 200 -
-2024-12-01 17:29:22 - INFO - 127.0.0.1 - - [01/Dec/2024 17:29:22] "GET /sentinel HTTP/1.1" 200 -
-2024-12-01 17:29:24 - INFO - 127.0.0.1 - - [01/Dec/2024 17:29:24] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-01 17:29:26 - INFO - 127.0.0.1 - - [01/Dec/2024 17:29:26] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-01 17:29:28 - INFO - 127.0.0.1 - - [01/Dec/2024 17:29:28] "GET /admin/create_user HTTP/1.1" 200 -
-2024-12-01 17:29:30 - INFO - 127.0.0.1 - - [01/Dec/2024 17:29:30] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-01 17:29:33 - INFO - 127.0.0.1 - - [01/Dec/2024 17:29:33] "GET /admin/create_role HTTP/1.1" 200 -
-2024-12-01 17:42:50 - INFO - 127.0.0.1 - - [01/Dec/2024 17:42:50] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-01 17:42:52 - INFO - 127.0.0.1 - - [01/Dec/2024 17:42:52] "GET /admin/user/assign-role/1 HTTP/1.1" 200 -
-2024-12-01 17:43:38 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-12-01 17:43:38 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-01 17:43:38 - INFO -  * Restarting with stat
-2024-12-01 17:43:38 - WARNING -  * Debugger is active!
-2024-12-01 17:43:38 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 17:44:23 - INFO - 127.0.0.1 - - [01/Dec/2024 17:44:23] "GET /admin/user/assign-role/1 HTTP/1.1" 200 -
-2024-12-01 17:45:33 - INFO - 127.0.0.1 - - [01/Dec/2024 17:45:33] "[33mGET /index HTTP/1.1[0m" 404 -
-2024-12-01 17:45:36 - INFO - 127.0.0.1 - - [01/Dec/2024 17:45:36] "[33mGET /index HTTP/1.1[0m" 404 -
-2024-12-01 17:45:38 - INFO - Attempting to log out user: admin
-2024-12-01 17:45:38 - INFO - User admin logged out successfully
-2024-12-01 17:45:38 - INFO - 127.0.0.1 - - [01/Dec/2024 17:45:38] "[32mPOST /logout HTTP/1.1[0m" 302 -
-2024-12-01 17:45:38 - INFO - 127.0.0.1 - - [01/Dec/2024 17:45:38] "GET /login HTTP/1.1" 200 -
-2024-12-01 17:45:47 - INFO - 127.0.0.1 - - [01/Dec/2024 17:45:47] "GET / HTTP/1.1" 200 -
-2024-12-01 17:45:51 - INFO - 127.0.0.1 - - [01/Dec/2024 17:45:51] "GET /login HTTP/1.1" 200 -
-2024-12-01 17:46:05 - WARNING - MFA token missing for user: sirine
-2024-12-01 17:46:05 - INFO - 127.0.0.1 - - [01/Dec/2024 17:46:05] "[31m[1mPOST /login HTTP/1.1[0m" 400 -
-2024-12-01 17:47:27 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 17:47:27 - INFO -  * Restarting with stat
-2024-12-01 17:47:28 - WARNING -  * Debugger is active!
-2024-12-01 17:47:28 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 18:11:15 - INFO - 127.0.0.1 - - [01/Dec/2024 18:11:15] "GET /login HTTP/1.1" 200 -
-2024-12-01 18:11:21 - INFO - 127.0.0.1 - - [01/Dec/2024 18:11:21] "POST /login HTTP/1.1" 200 -
-2024-12-01 18:11:21 - INFO - 127.0.0.1 - - [01/Dec/2024 18:11:21] "GET / HTTP/1.1" 200 -
-2024-12-01 18:11:24 - INFO - 127.0.0.1 - - [01/Dec/2024 18:11:24] "[32mGET /login HTTP/1.1[0m" 302 -
-2024-12-01 18:11:25 - INFO - 127.0.0.1 - - [01/Dec/2024 18:11:25] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-01 18:11:41 - INFO - 127.0.0.1 - - [01/Dec/2024 18:11:41] "GET /admin/create_role HTTP/1.1" 200 -
-2024-12-01 18:11:48 - INFO - 127.0.0.1 - - [01/Dec/2024 18:11:48] "[35m[1mGET /admin/manage_users HTTP/1.1[0m" 500 -
-2024-12-01 18:11:48 - INFO - 127.0.0.1 - - [01/Dec/2024 18:11:48] "GET /admin/manage_users?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
-2024-12-01 18:11:48 - INFO - 127.0.0.1 - - [01/Dec/2024 18:11:48] "GET /admin/manage_users?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
-2024-12-01 18:11:49 - INFO - 127.0.0.1 - - [01/Dec/2024 18:11:49] "GET /admin/manage_users?__debugger__=yes&cmd=resource&f=console.png&s=glse1WbJvcEhG7ArEioW HTTP/1.1" 200 -
-2024-12-01 18:11:49 - INFO - 127.0.0.1 - - [01/Dec/2024 18:11:49] "GET /admin/manage_users?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
-2024-12-01 18:11:54 - INFO - 127.0.0.1 - - [01/Dec/2024 18:11:54] "[35m[1mGET /admin/manage_users HTTP/1.1[0m" 500 -
-2024-12-01 18:11:54 - INFO - 127.0.0.1 - - [01/Dec/2024 18:11:54] "[36mGET /admin/manage_users?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
-2024-12-01 18:11:54 - INFO - 127.0.0.1 - - [01/Dec/2024 18:11:54] "[36mGET /admin/manage_users?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
-2024-12-01 18:11:54 - INFO - 127.0.0.1 - - [01/Dec/2024 18:11:54] "[36mGET /admin/manage_users?__debugger__=yes&cmd=resource&f=console.png&s=glse1WbJvcEhG7ArEioW HTTP/1.1[0m" 304 -
-2024-12-01 18:12:10 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 18:12:10 - INFO -  * Restarting with stat
-2024-12-01 18:12:11 - WARNING -  * Debugger is active!
-2024-12-01 18:12:11 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 18:13:22 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 18:13:22 - INFO -  * Restarting with stat
-2024-12-01 18:13:23 - WARNING -  * Debugger is active!
-2024-12-01 18:13:23 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 18:13:32 - INFO - 127.0.0.1 - - [01/Dec/2024 18:13:32] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-01 18:13:34 - INFO - 127.0.0.1 - - [01/Dec/2024 18:13:34] "[35m[1mGET /admin/user/assign-role/1 HTTP/1.1[0m" 500 -
-2024-12-01 18:13:34 - INFO - 127.0.0.1 - - [01/Dec/2024 18:13:34] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
-2024-12-01 18:13:34 - INFO - 127.0.0.1 - - [01/Dec/2024 18:13:34] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
-2024-12-01 18:13:35 - INFO - 127.0.0.1 - - [01/Dec/2024 18:13:35] "GET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=console.png&s=c1qTiJKCU5qcGZ4sPuHx HTTP/1.1" 200 -
-2024-12-01 18:13:35 - INFO - 127.0.0.1 - - [01/Dec/2024 18:13:35] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
-2024-12-01 18:13:43 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 18:13:43 - INFO -  * Restarting with stat
-2024-12-01 18:13:43 - WARNING -  * Debugger is active!
-2024-12-01 18:13:43 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 18:13:44 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 18:13:45 - INFO -  * Restarting with stat
-2024-12-01 18:13:45 - WARNING -  * Debugger is active!
-2024-12-01 18:13:45 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 18:13:48 - INFO - 127.0.0.1 - - [01/Dec/2024 18:13:48] "[35m[1mGET /admin/user/assign-role/1 HTTP/1.1[0m" 500 -
-2024-12-01 18:13:48 - INFO - 127.0.0.1 - - [01/Dec/2024 18:13:48] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
-2024-12-01 18:13:48 - INFO - 127.0.0.1 - - [01/Dec/2024 18:13:48] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
-2024-12-01 18:13:48 - INFO - 127.0.0.1 - - [01/Dec/2024 18:13:48] "GET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=console.png&s=Rswykh49AMxtFxtAEHNt HTTP/1.1" 200 -
-2024-12-01 18:13:49 - INFO - 127.0.0.1 - - [01/Dec/2024 18:13:49] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
-2024-12-01 18:14:47 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 18:14:47 - INFO -  * Restarting with stat
-2024-12-01 18:14:47 - WARNING -  * Debugger is active!
-2024-12-01 18:14:47 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 18:14:53 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 18:14:53 - INFO -  * Restarting with stat
-2024-12-01 18:14:53 - WARNING -  * Debugger is active!
-2024-12-01 18:14:53 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 18:14:58 - INFO - 127.0.0.1 - - [01/Dec/2024 18:14:58] "[35m[1mGET /admin/user/assign-role/1 HTTP/1.1[0m" 500 -
-2024-12-01 18:14:58 - INFO - 127.0.0.1 - - [01/Dec/2024 18:14:58] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
-2024-12-01 18:14:58 - INFO - 127.0.0.1 - - [01/Dec/2024 18:14:58] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
-2024-12-01 18:14:58 - INFO - 127.0.0.1 - - [01/Dec/2024 18:14:58] "GET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=console.png&s=T5FGQ3AdiTGWC1g4p6i9 HTTP/1.1" 200 -
-2024-12-01 18:14:58 - INFO - 127.0.0.1 - - [01/Dec/2024 18:14:58] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
-2024-12-01 18:57:37 - INFO - 127.0.0.1 - - [01/Dec/2024 18:57:37] "[35m[1mGET /admin/user/assign-role/1 HTTP/1.1[0m" 500 -
-2024-12-01 18:57:37 - INFO - 127.0.0.1 - - [01/Dec/2024 18:57:37] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
-2024-12-01 18:57:37 - INFO - 127.0.0.1 - - [01/Dec/2024 18:57:37] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
-2024-12-01 18:57:37 - INFO - 127.0.0.1 - - [01/Dec/2024 18:57:37] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=console.png&s=T5FGQ3AdiTGWC1g4p6i9 HTTP/1.1[0m" 304 -
-2024-12-01 18:57:38 - INFO - 127.0.0.1 - - [01/Dec/2024 18:57:38] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
-2024-12-01 19:00:08 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 19:00:08 - INFO -  * Restarting with stat
-2024-12-01 19:00:09 - WARNING -  * Debugger is active!
-2024-12-01 19:00:09 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 19:00:11 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 19:00:11 - INFO -  * Restarting with stat
-2024-12-01 19:00:12 - WARNING -  * Debugger is active!
-2024-12-01 19:00:12 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 19:00:18 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 19:00:18 - INFO -  * Restarting with stat
-2024-12-01 19:00:19 - WARNING -  * Debugger is active!
-2024-12-01 19:00:19 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 19:00:24 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 19:00:24 - INFO -  * Restarting with stat
-2024-12-01 19:00:25 - WARNING -  * Debugger is active!
-2024-12-01 19:00:25 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 19:00:28 - INFO - 127.0.0.1 - - [01/Dec/2024 19:00:28] "[35m[1mGET /admin/user/assign-role/1 HTTP/1.1[0m" 500 -
-2024-12-01 19:00:28 - INFO - 127.0.0.1 - - [01/Dec/2024 19:00:28] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
-2024-12-01 19:00:28 - INFO - 127.0.0.1 - - [01/Dec/2024 19:00:28] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
-2024-12-01 19:00:28 - INFO - 127.0.0.1 - - [01/Dec/2024 19:00:28] "GET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=console.png&s=yaqLA7rjWJQ2SR07tTup HTTP/1.1" 200 -
-2024-12-01 19:00:28 - INFO - 127.0.0.1 - - [01/Dec/2024 19:00:28] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
-2024-12-01 19:00:41 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 19:00:42 - INFO -  * Restarting with stat
-2024-12-01 19:00:42 - WARNING -  * Debugger is active!
-2024-12-01 19:00:42 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 19:00:45 - INFO - 127.0.0.1 - - [01/Dec/2024 19:00:45] "[35m[1mGET /admin/user/assign-role/1 HTTP/1.1[0m" 500 -
-2024-12-01 19:00:45 - INFO - 127.0.0.1 - - [01/Dec/2024 19:00:45] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
-2024-12-01 19:00:45 - INFO - 127.0.0.1 - - [01/Dec/2024 19:00:45] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
-2024-12-01 19:00:45 - INFO - 127.0.0.1 - - [01/Dec/2024 19:00:45] "GET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=console.png&s=66HN6SKZb0Nby6dJfCyQ HTTP/1.1" 200 -
-2024-12-01 19:00:45 - INFO - 127.0.0.1 - - [01/Dec/2024 19:00:45] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
-2024-12-01 19:01:16 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 19:01:16 - INFO -  * Restarting with stat
-2024-12-01 19:01:17 - WARNING -  * Debugger is active!
-2024-12-01 19:01:17 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 19:01:22 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 19:01:22 - INFO -  * Restarting with stat
-2024-12-01 19:01:23 - WARNING -  * Debugger is active!
-2024-12-01 19:01:23 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 19:01:26 - INFO - 127.0.0.1 - - [01/Dec/2024 19:01:26] "[35m[1mGET /admin/user/assign-role/1 HTTP/1.1[0m" 500 -
-2024-12-01 19:01:26 - INFO - 127.0.0.1 - - [01/Dec/2024 19:01:26] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
-2024-12-01 19:01:26 - INFO - 127.0.0.1 - - [01/Dec/2024 19:01:26] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
-2024-12-01 19:01:26 - INFO - 127.0.0.1 - - [01/Dec/2024 19:01:26] "GET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=console.png&s=OcqMJCMVGAiXcWf3ubmj HTTP/1.1" 200 -
-2024-12-01 19:01:27 - INFO - 127.0.0.1 - - [01/Dec/2024 19:01:27] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
-2024-12-01 19:01:36 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 19:01:36 - INFO -  * Restarting with stat
-2024-12-01 19:01:37 - WARNING -  * Debugger is active!
-2024-12-01 19:01:37 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 19:01:41 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 19:01:41 - INFO -  * Restarting with stat
-2024-12-01 19:01:42 - WARNING -  * Debugger is active!
-2024-12-01 19:01:42 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 19:06:11 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 19:06:11 - INFO -  * Restarting with stat
-2024-12-01 19:06:12 - WARNING -  * Debugger is active!
-2024-12-01 19:06:12 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 19:06:47 - INFO - 127.0.0.1 - - [01/Dec/2024 19:06:47] "[35m[1mGET /admin/user/assign-role/1 HTTP/1.1[0m" 500 -
-2024-12-01 19:06:47 - INFO - 127.0.0.1 - - [01/Dec/2024 19:06:47] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
-2024-12-01 19:06:47 - INFO - 127.0.0.1 - - [01/Dec/2024 19:06:47] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
-2024-12-01 19:06:47 - INFO - 127.0.0.1 - - [01/Dec/2024 19:06:47] "GET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=console.png&s=tSEv19GfalCA2c2wAf9Z HTTP/1.1" 200 -
-2024-12-01 19:06:47 - INFO - 127.0.0.1 - - [01/Dec/2024 19:06:47] "[36mGET /admin/user/assign-role/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
-2024-12-01 19:10:08 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 19:10:08 - INFO -  * Restarting with stat
-2024-12-01 19:10:09 - WARNING -  * Debugger is active!
-2024-12-01 19:10:09 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 19:10:13 - INFO - 127.0.0.1 - - [01/Dec/2024 19:10:13] "GET /admin/user/assign-role/1 HTTP/1.1" 200 -
-2024-12-01 19:10:22 - INFO - 127.0.0.1 - - [01/Dec/2024 19:10:22] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-01 19:10:24 - INFO - 127.0.0.1 - - [01/Dec/2024 19:10:24] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-01 19:10:25 - INFO - 127.0.0.1 - - [01/Dec/2024 19:10:25] "GET /admin/user/assign-role/1 HTTP/1.1" 200 -
-2024-12-01 19:11:15 - INFO - 127.0.0.1 - - [01/Dec/2024 19:11:15] "GET /admin/user/assign-role/1 HTTP/1.1" 200 -
-2024-12-01 19:11:17 - INFO - 127.0.0.1 - - [01/Dec/2024 19:11:17] "GET /admin/user/assign-role/1 HTTP/1.1" 200 -
-2024-12-01 19:11:30 - INFO - 127.0.0.1 - - [01/Dec/2024 19:11:30] "GET /admin/user/assign-role/1 HTTP/1.1" 200 -
-2024-12-01 19:41:33 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 19:41:33 - INFO -  * Restarting with stat
-2024-12-01 19:41:33 - WARNING -  * Debugger is active!
-2024-12-01 19:41:33 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 19:41:36 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 19:41:36 - INFO -  * Restarting with stat
-2024-12-01 19:41:36 - WARNING -  * Debugger is active!
-2024-12-01 19:41:36 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 19:41:41 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 19:41:41 - INFO -  * Restarting with stat
-2024-12-01 19:41:42 - WARNING -  * Debugger is active!
-2024-12-01 19:41:42 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 19:41:43 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-01 19:41:43 - INFO -  * Restarting with stat
-2024-12-01 19:41:44 - WARNING -  * Debugger is active!
-2024-12-01 19:41:44 - INFO -  * Debugger PIN: 937-297-038
-2024-12-01 19:47:50 - INFO - 127.0.0.1 - - [01/Dec/2024 19:47:50] "GET /api_key HTTP/1.1" 200 -
-2024-12-01 19:47:51 - INFO - 127.0.0.1 - - [01/Dec/2024 19:47:51] "[33mGET /api_usage/user123 HTTP/1.1[0m" 404 -
-2024-12-01 19:47:57 - INFO - 127.0.0.1 - - [01/Dec/2024 19:47:57] "GET /api_key HTTP/1.1" 200 -
-2024-12-01 19:47:58 - INFO - 127.0.0.1 - - [01/Dec/2024 19:47:58] "[33mGET /api_usage/user123 HTTP/1.1[0m" 404 -
-2024-12-01 19:48:02 - INFO - 127.0.0.1 - - [01/Dec/2024 19:48:02] "GET /firewall_rules HTTP/1.1" 200 -
-2024-12-01 19:48:02 - INFO - 127.0.0.1 - - [01/Dec/2024 19:48:02] "GET /firewall_rules HTTP/1.1" 200 -
-2024-12-01 19:48:04 - INFO - 127.0.0.1 - - [01/Dec/2024 19:48:04] "GET /thread_protection HTTP/1.1" 200 -
-2024-12-01 19:48:06 - INFO - 127.0.0.1 - - [01/Dec/2024 19:48:06] "GET /key-vault HTTP/1.1" 200 -
-2024-12-01 19:48:30 - INFO - New secret 'Cloud' added by admin
-2024-12-01 19:48:30 - INFO - 127.0.0.1 - - [01/Dec/2024 19:48:30] "[32mPOST /key-vault/add HTTP/1.1[0m" 302 -
-2024-12-01 19:48:30 - INFO - 127.0.0.1 - - [01/Dec/2024 19:48:30] "GET /key-vault HTTP/1.1" 200 -
-2024-12-01 19:48:44 - INFO - New secret 'Azure' added by admin
-2024-12-01 19:48:44 - INFO - 127.0.0.1 - - [01/Dec/2024 19:48:44] "[32mPOST /key-vault/add HTTP/1.1[0m" 302 -
-2024-12-01 19:48:44 - INFO - 127.0.0.1 - - [01/Dec/2024 19:48:44] "GET /key-vault HTTP/1.1" 200 -
-2024-12-01 19:48:54 - INFO - 127.0.0.1 - - [01/Dec/2024 19:48:54] "GET /firewall_rules HTTP/1.1" 200 -
-2024-12-01 19:48:54 - INFO - 127.0.0.1 - - [01/Dec/2024 19:48:54] "GET /firewall_rules HTTP/1.1" 200 -
-2024-12-01 19:50:56 - INFO - Attempting to log out user: admin
-2024-12-01 19:50:56 - INFO - User admin logged out successfully
-2024-12-01 19:50:56 - INFO - 127.0.0.1 - - [01/Dec/2024 19:50:56] "[32mPOST /logout HTTP/1.1[0m" 302 -
-2024-12-01 19:50:56 - INFO - 127.0.0.1 - - [01/Dec/2024 19:50:56] "GET /login HTTP/1.1" 200 -
-2024-12-01 19:50:58 - INFO - 127.0.0.1 - - [01/Dec/2024 19:50:58] "GET /login HTTP/1.1" 200 -
-2024-12-01 19:51:09 - INFO - 127.0.0.1 - - [01/Dec/2024 19:51:09] "POST /login HTTP/1.1" 200 -
-2024-12-01 19:51:10 - INFO - 127.0.0.1 - - [01/Dec/2024 19:51:10] "GET / HTTP/1.1" 200 -
-2024-12-01 19:51:13 - INFO - 127.0.0.1 - - [01/Dec/2024 19:51:13] "[32mGET /login HTTP/1.1[0m" 302 -
-2024-12-01 19:51:14 - INFO - 127.0.0.1 - - [01/Dec/2024 19:51:14] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-01 19:51:54 - INFO - 127.0.0.1 - - [01/Dec/2024 19:51:54] "GET /admin/create_user HTTP/1.1" 200 -
-2024-12-01 19:51:56 - INFO - 127.0.0.1 - - [01/Dec/2024 19:51:56] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-01 19:51:57 - INFO - 127.0.0.1 - - [01/Dec/2024 19:51:57] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-01 19:52:08 - INFO - 127.0.0.1 - - [01/Dec/2024 19:52:08] "GET /admin/create_role HTTP/1.1" 200 -
-2024-12-01 19:52:19 - INFO - 127.0.0.1 - - [01/Dec/2024 19:52:19] "[32mPOST /admin/create_role HTTP/1.1[0m" 302 -
-2024-12-01 19:52:19 - INFO - 127.0.0.1 - - [01/Dec/2024 19:52:19] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-01 19:52:26 - INFO - 127.0.0.1 - - [01/Dec/2024 19:52:26] "GET /asc_dashboard HTTP/1.1" 200 -
-2024-12-01 19:52:33 - INFO - 127.0.0.1 - - [01/Dec/2024 19:52:33] "GET /security-center HTTP/1.1" 200 -
-2024-12-01 19:52:35 - INFO - 127.0.0.1 - - [01/Dec/2024 19:52:35] "GET /sentinel HTTP/1.1" 200 -
-2024-12-01 19:52:38 - INFO - 127.0.0.1 - - [01/Dec/2024 19:52:38] "GET /security-center HTTP/1.1" 200 -
-2024-12-01 19:52:38 - INFO - 127.0.0.1 - - [01/Dec/2024 19:52:38] "GET /asc_dashboard HTTP/1.1" 200 -
-2024-12-01 19:52:39 - INFO - 127.0.0.1 - - [01/Dec/2024 19:52:39] "GET /security-center HTTP/1.1" 200 -
-2024-12-01 19:52:40 - INFO - 127.0.0.1 - - [01/Dec/2024 19:52:40] "GET /sentinel HTTP/1.1" 200 -
-2024-12-01 19:52:43 - INFO - 127.0.0.1 - - [01/Dec/2024 19:52:43] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-01 19:52:47 - INFO - 127.0.0.1 - - [01/Dec/2024 19:52:47] "GET /admin/user/assign-role/1 HTTP/1.1" 200 -
-2024-12-01 19:52:50 - INFO - 127.0.0.1 - - [01/Dec/2024 19:52:50] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-01 19:52:52 - INFO - Attempting to log out user: admin
-2024-12-01 19:52:52 - INFO - User admin logged out successfully
-2024-12-01 19:52:52 - INFO - 127.0.0.1 - - [01/Dec/2024 19:52:52] "[32mPOST /logout HTTP/1.1[0m" 302 -
-2024-12-01 19:52:52 - INFO - 127.0.0.1 - - [01/Dec/2024 19:52:52] "GET /login HTTP/1.1" 200 -
-2024-12-01 19:53:10 - WARNING - MFA token missing for user: sirine
-2024-12-01 19:53:10 - INFO - 127.0.0.1 - - [01/Dec/2024 19:53:10] "[31m[1mPOST /login HTTP/1.1[0m" 400 -
-2024-12-01 19:53:55 - WARNING - Invalid MFA token for user: sirine
-2024-12-01 19:53:55 - INFO - 127.0.0.1 - - [01/Dec/2024 19:53:55] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
-2024-12-01 19:54:13 - WARNING - Invalid MFA token for user: sirine
-2024-12-01 19:54:13 - INFO - 127.0.0.1 - - [01/Dec/2024 19:54:13] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
-2024-12-01 19:54:15 - WARNING - Invalid MFA token for user: sirine
-2024-12-01 19:54:15 - INFO - 127.0.0.1 - - [01/Dec/2024 19:54:15] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
-2024-12-01 19:54:42 - INFO - 127.0.0.1 - - [01/Dec/2024 19:54:42] "POST /login HTTP/1.1" 200 -
-2024-12-01 19:54:42 - INFO - 127.0.0.1 - - [01/Dec/2024 19:54:42] "GET / HTTP/1.1" 200 -
-2024-12-01 19:54:50 - INFO - 127.0.0.1 - - [01/Dec/2024 19:54:50] "GET /key-vault HTTP/1.1" 200 -
-2024-12-01 19:54:57 - INFO - New secret 'hut' added by sirine
-2024-12-01 19:54:57 - INFO - 127.0.0.1 - - [01/Dec/2024 19:54:57] "[32mPOST /key-vault/add HTTP/1.1[0m" 302 -
-2024-12-01 19:54:57 - INFO - 127.0.0.1 - - [01/Dec/2024 19:54:57] "GET /key-vault HTTP/1.1" 200 -
-2024-12-01 19:55:02 - INFO - 127.0.0.1 - - [01/Dec/2024 19:55:02] "GET /thread_protection HTTP/1.1" 200 -
-2024-12-01 19:55:05 - INFO - 127.0.0.1 - - [01/Dec/2024 19:55:05] "GET /firewall_rules HTTP/1.1" 200 -
-2024-12-01 19:55:05 - INFO - 127.0.0.1 - - [01/Dec/2024 19:55:05] "GET /firewall_rules HTTP/1.1" 200 -
-2024-12-01 19:55:10 - INFO - 127.0.0.1 - - [01/Dec/2024 19:55:10] "GET /api_key HTTP/1.1" 200 -
-2024-12-01 19:55:10 - INFO - 127.0.0.1 - - [01/Dec/2024 19:55:10] "[33mGET /api_usage/user123 HTTP/1.1[0m" 404 -
-2024-12-01 19:55:11 - INFO - 127.0.0.1 - - [01/Dec/2024 19:55:11] "POST /generate_api_key HTTP/1.1" 200 -
-2024-12-01 19:55:14 - INFO - Attempting to log out user: sirine
-2024-12-01 19:55:14 - INFO - User sirine logged out successfully
-2024-12-01 19:55:14 - INFO - 127.0.0.1 - - [01/Dec/2024 19:55:14] "[32mPOST /logout HTTP/1.1[0m" 302 -
-2024-12-01 19:55:14 - INFO - 127.0.0.1 - - [01/Dec/2024 19:55:14] "GET /login HTTP/1.1" 200 -
-2024-12-01 19:57:55 - INFO - 127.0.0.1 - - [01/Dec/2024 19:57:55] "GET /login HTTP/1.1" 200 -
-2024-12-01 19:57:57 - INFO - 127.0.0.1 - - [01/Dec/2024 19:57:57] "GET /register HTTP/1.1" 200 -
-2024-12-01 19:59:38 - INFO - 127.0.0.1 - - [01/Dec/2024 19:59:38] "GET /login HTTP/1.1" 200 -
-2024-12-01 20:42:40 - INFO - 127.0.0.1 - - [01/Dec/2024 20:42:40] "GET / HTTP/1.1" 200 -
-2024-12-01 20:43:17 - INFO - 127.0.0.1 - - [01/Dec/2024 20:43:17] "GET / HTTP/1.1" 200 -
-2024-12-01 20:43:18 - INFO - 127.0.0.1 - - [01/Dec/2024 20:43:18] "GET / HTTP/1.1" 200 -
-2024-12-01 20:43:19 - INFO - 127.0.0.1 - - [01/Dec/2024 20:43:19] "GET / HTTP/1.1" 200 -
-2024-12-01 20:44:52 - INFO - 127.0.0.1 - - [01/Dec/2024 20:44:52] "GET / HTTP/1.1" 200 -
-2024-12-01 20:45:38 - INFO - 127.0.0.1 - - [01/Dec/2024 20:45:38] "GET / HTTP/1.1" 200 -
-2024-12-01 21:02:32 - INFO - 127.0.0.1 - - [01/Dec/2024 21:02:32] "GET /login HTTP/1.1" 200 -
-2024-12-01 21:02:37 - INFO - 127.0.0.1 - - [01/Dec/2024 21:02:37] "POST /login HTTP/1.1" 200 -
-2024-12-01 21:02:37 - INFO - 127.0.0.1 - - [01/Dec/2024 21:02:37] "GET / HTTP/1.1" 200 -
-2024-12-01 21:02:54 - INFO - 127.0.0.1 - - [01/Dec/2024 21:02:54] "[32mGET /login HTTP/1.1[0m" 302 -
-2024-12-01 21:02:55 - INFO - 127.0.0.1 - - [01/Dec/2024 21:02:55] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-01 21:03:01 - INFO - 127.0.0.1 - - [01/Dec/2024 21:03:01] "[33mGET /index HTTP/1.1[0m" 404 -
-2024-12-01 21:08:30 - INFO - Attempting to log out user: admin
-2024-12-01 21:08:30 - INFO - User admin logged out successfully
-2024-12-01 21:08:30 - INFO - 127.0.0.1 - - [01/Dec/2024 21:08:30] "[32mPOST /logout HTTP/1.1[0m" 302 -
-2024-12-01 21:08:30 - INFO - 127.0.0.1 - - [01/Dec/2024 21:08:30] "GET /login HTTP/1.1" 200 -
-2024-12-01 21:08:33 - INFO - 127.0.0.1 - - [01/Dec/2024 21:08:33] "GET / HTTP/1.1" 200 -
-2024-12-01 21:08:40 - INFO - 127.0.0.1 - - [01/Dec/2024 21:08:40] "POST /login HTTP/1.1" 200 -
-2024-12-01 21:08:40 - INFO - 127.0.0.1 - - [01/Dec/2024 21:08:40] "GET / HTTP/1.1" 200 -
-2024-12-04 21:11:44 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-12-04 21:11:44 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-04 21:11:44 - INFO -  * Restarting with stat
-2024-12-04 21:11:44 - WARNING -  * Debugger is active!
-2024-12-04 21:11:44 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 21:12:31 - INFO - 127.0.0.1 - - [04/Dec/2024 21:12:31] "GET / HTTP/1.1" 200 -
-2024-12-04 21:12:32 - INFO - 127.0.0.1 - - [04/Dec/2024 21:12:32] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
-2024-12-04 21:12:38 - INFO - 127.0.0.1 - - [04/Dec/2024 21:12:38] "GET /login HTTP/1.1" 200 -
-2024-12-04 21:12:43 - INFO - 127.0.0.1 - - [04/Dec/2024 21:12:43] "POST /login HTTP/1.1" 200 -
-2024-12-04 21:12:43 - INFO - 127.0.0.1 - - [04/Dec/2024 21:12:43] "GET / HTTP/1.1" 200 -
-2024-12-04 21:20:27 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 21:20:27 - INFO -  * Restarting with stat
-2024-12-04 21:20:29 - WARNING -  * Debugger is active!
-2024-12-04 21:20:29 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 21:20:37 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 21:20:37 - INFO -  * Restarting with stat
-2024-12-04 21:20:38 - WARNING -  * Debugger is active!
-2024-12-04 21:20:38 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 21:21:30 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 21:21:30 - INFO -  * Restarting with stat
-2024-12-04 21:21:31 - WARNING -  * Debugger is active!
-2024-12-04 21:21:31 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 21:21:32 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 21:21:32 - INFO -  * Restarting with stat
-2024-12-04 21:21:33 - WARNING -  * Debugger is active!
-2024-12-04 21:21:33 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 21:21:36 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 21:21:36 - INFO -  * Restarting with stat
-2024-12-04 21:21:37 - WARNING -  * Debugger is active!
-2024-12-04 21:21:37 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 21:21:40 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 21:21:40 - INFO -  * Restarting with stat
-2024-12-04 21:21:41 - WARNING -  * Debugger is active!
-2024-12-04 21:21:41 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 21:21:42 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 21:21:42 - INFO -  * Restarting with stat
-2024-12-04 21:21:42 - WARNING -  * Debugger is active!
-2024-12-04 21:21:42 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 21:21:45 - INFO - 127.0.0.1 - - [04/Dec/2024 21:21:45] "[32mGET /login HTTP/1.1[0m" 302 -
-2024-12-04 21:21:45 - INFO - 127.0.0.1 - - [04/Dec/2024 21:21:45] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-04 21:21:47 - INFO - Attempting to log out user: admin
-2024-12-04 21:21:47 - INFO - User admin logged out successfully
-2024-12-04 21:21:47 - INFO - 127.0.0.1 - - [04/Dec/2024 21:21:47] "[32mPOST /logout HTTP/1.1[0m" 302 -
-2024-12-04 21:21:47 - INFO - 127.0.0.1 - - [04/Dec/2024 21:21:47] "GET /login HTTP/1.1" 200 -
-2024-12-04 21:21:52 - INFO - 127.0.0.1 - - [04/Dec/2024 21:21:52] "POST /login HTTP/1.1" 200 -
-2024-12-04 21:21:52 - INFO - 127.0.0.1 - - [04/Dec/2024 21:21:52] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-04 21:23:37 - INFO - 127.0.0.1 - - [04/Dec/2024 21:23:37] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-04 21:23:39 - INFO - 127.0.0.1 - - [04/Dec/2024 21:23:39] "[31m[1mPOST /admin/admin/delete-role/1 HTTP/1.1[0m" 405 -
-2024-12-04 21:24:45 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 21:24:45 - INFO -  * Restarting with stat
-2024-12-04 21:24:46 - WARNING -  * Debugger is active!
-2024-12-04 21:24:46 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 21:24:50 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 21:24:50 - INFO -  * Restarting with stat
-2024-12-04 21:24:51 - WARNING -  * Debugger is active!
-2024-12-04 21:24:51 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 21:24:52 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 21:24:52 - INFO -  * Restarting with stat
-2024-12-04 21:24:53 - WARNING -  * Debugger is active!
-2024-12-04 21:24:53 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 21:31:37 - INFO - 127.0.0.1 - - [04/Dec/2024 21:31:37] "[35m[1mGET /admin/edit-role/1 HTTP/1.1[0m" 500 -
-2024-12-04 21:31:37 - INFO - 127.0.0.1 - - [04/Dec/2024 21:31:37] "GET /admin/edit-role/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
-2024-12-04 21:31:37 - INFO - 127.0.0.1 - - [04/Dec/2024 21:31:37] "GET /admin/edit-role/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
-2024-12-04 21:31:37 - INFO - 127.0.0.1 - - [04/Dec/2024 21:31:37] "GET /admin/edit-role/1?__debugger__=yes&cmd=resource&f=console.png&s=XM2OQ6xBa6H2p4ephV0x HTTP/1.1" 200 -
-2024-12-04 21:31:37 - INFO - 127.0.0.1 - - [04/Dec/2024 21:31:37] "GET /admin/edit-role/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
-2024-12-04 21:31:43 - INFO - 127.0.0.1 - - [04/Dec/2024 21:31:43] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-04 21:31:45 - INFO - 127.0.0.1 - - [04/Dec/2024 21:31:45] "GET /admin/user/assign-role/1 HTTP/1.1" 200 -
-2024-12-04 21:32:18 - INFO - 127.0.0.1 - - [04/Dec/2024 21:32:18] "GET /admin/user/assign-role/1 HTTP/1.1" 200 -
-2024-12-04 21:40:43 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 21:40:43 - INFO -  * Restarting with stat
-2024-12-04 21:40:44 - WARNING -  * Debugger is active!
-2024-12-04 21:40:44 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 21:41:09 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 21:41:09 - INFO -  * Restarting with stat
-2024-12-04 21:41:10 - WARNING -  * Debugger is active!
-2024-12-04 21:41:10 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 21:41:24 - INFO - 127.0.0.1 - - [04/Dec/2024 21:41:24] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-04 21:41:26 - INFO - 127.0.0.1 - - [04/Dec/2024 21:41:26] "[31m[1mPOST /admin/admin/delete-role/2 HTTP/1.1[0m" 405 -
-2024-12-04 21:42:50 - INFO - 127.0.0.1 - - [04/Dec/2024 21:42:50] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-04 21:46:24 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 21:46:24 - INFO -  * Restarting with stat
-2024-12-04 21:46:25 - WARNING -  * Debugger is active!
-2024-12-04 21:46:25 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 21:46:29 - INFO - 127.0.0.1 - - [04/Dec/2024 21:46:29] "[31m[1mPOST /admin/admin/delete-role/2 HTTP/1.1[0m" 405 -
-2024-12-04 21:47:09 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 21:47:09 - INFO -  * Restarting with stat
-2024-12-04 21:47:10 - WARNING -  * Debugger is active!
-2024-12-04 21:47:10 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 21:47:24 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 21:47:24 - INFO -  * Restarting with stat
-2024-12-04 21:47:25 - WARNING -  * Debugger is active!
-2024-12-04 21:47:25 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 21:47:28 - INFO - 127.0.0.1 - - [04/Dec/2024 21:47:28] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-04 21:47:30 - INFO - 127.0.0.1 - - [04/Dec/2024 21:47:30] "[32mPOST /admin/delete_role/2 HTTP/1.1[0m" 302 -
-2024-12-04 21:47:30 - INFO - 127.0.0.1 - - [04/Dec/2024 21:47:30] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-04 21:47:34 - INFO - 127.0.0.1 - - [04/Dec/2024 21:47:34] "[35m[1mGET /admin/edit-role/1 HTTP/1.1[0m" 500 -
-2024-12-04 21:47:34 - INFO - 127.0.0.1 - - [04/Dec/2024 21:47:34] "[36mGET /admin/edit-role/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
-2024-12-04 21:47:34 - INFO - 127.0.0.1 - - [04/Dec/2024 21:47:34] "[36mGET /admin/edit-role/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
-2024-12-04 21:47:34 - INFO - 127.0.0.1 - - [04/Dec/2024 21:47:34] "GET /admin/edit-role/1?__debugger__=yes&cmd=resource&f=console.png&s=f5G6qxlcgtEmN2J1FioK HTTP/1.1" 200 -
-2024-12-04 21:59:51 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 21:59:51 - INFO -  * Restarting with stat
-2024-12-04 21:59:52 - WARNING -  * Debugger is active!
-2024-12-04 21:59:52 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 21:59:55 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 21:59:55 - INFO -  * Restarting with stat
-2024-12-04 21:59:55 - WARNING -  * Debugger is active!
-2024-12-04 21:59:55 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:01:09 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 22:01:09 - INFO -  * Restarting with stat
-2024-12-04 22:01:10 - WARNING -  * Debugger is active!
-2024-12-04 22:01:10 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:01:32 - INFO - 127.0.0.1 - - [04/Dec/2024 22:01:32] "[33mGET /admin/edit-role/1 HTTP/1.1[0m" 404 -
-2024-12-04 22:02:51 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 22:02:51 - INFO -  * Restarting with stat
-2024-12-04 22:02:52 - WARNING -  * Debugger is active!
-2024-12-04 22:02:52 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:02:56 - INFO - 127.0.0.1 - - [04/Dec/2024 22:02:56] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-04 22:02:57 - INFO - 127.0.0.1 - - [04/Dec/2024 22:02:57] "[35m[1mGET /admin/edit_role/1 HTTP/1.1[0m" 500 -
-2024-12-04 22:02:57 - INFO - 127.0.0.1 - - [04/Dec/2024 22:02:57] "GET /admin/edit_role/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
-2024-12-04 22:02:57 - INFO - 127.0.0.1 - - [04/Dec/2024 22:02:57] "GET /admin/edit_role/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
-2024-12-04 22:02:57 - INFO - 127.0.0.1 - - [04/Dec/2024 22:02:57] "GET /admin/edit_role/1?__debugger__=yes&cmd=resource&f=console.png&s=VKOrnJkZhekx9rXYXLwd HTTP/1.1" 200 -
-2024-12-04 22:02:57 - INFO - 127.0.0.1 - - [04/Dec/2024 22:02:57] "GET /admin/edit_role/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
-2024-12-04 22:05:05 - INFO - 127.0.0.1 - - [04/Dec/2024 22:05:05] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-04 22:05:06 - INFO - 127.0.0.1 - - [04/Dec/2024 22:05:06] "GET /admin/edit_role/1 HTTP/1.1" 200 -
-2024-12-04 22:07:50 - INFO - 127.0.0.1 - - [04/Dec/2024 22:07:50] "GET /admin/edit_role/1 HTTP/1.1" 200 -
-2024-12-04 22:07:59 - INFO - 127.0.0.1 - - [04/Dec/2024 22:07:59] "GET /admin/edit_role/1 HTTP/1.1" 200 -
-2024-12-04 22:08:06 - INFO - 127.0.0.1 - - [04/Dec/2024 22:08:06] "GET /admin/edit_role/1 HTTP/1.1" 200 -
-2024-12-04 22:08:28 - INFO - 127.0.0.1 - - [04/Dec/2024 22:08:28] "GET /admin/edit_role/1 HTTP/1.1" 200 -
-2024-12-04 22:12:06 - INFO - 127.0.0.1 - - [04/Dec/2024 22:12:06] "[35m[1mGET /admin/edit_role/1 HTTP/1.1[0m" 500 -
-2024-12-04 22:12:06 - INFO - 127.0.0.1 - - [04/Dec/2024 22:12:06] "[36mGET /admin/edit_role/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
-2024-12-04 22:12:06 - INFO - 127.0.0.1 - - [04/Dec/2024 22:12:06] "[36mGET /admin/edit_role/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
-2024-12-04 22:12:06 - INFO - 127.0.0.1 - - [04/Dec/2024 22:12:06] "[36mGET /admin/edit_role/1?__debugger__=yes&cmd=resource&f=console.png&s=VKOrnJkZhekx9rXYXLwd HTTP/1.1[0m" 304 -
-2024-12-04 22:12:06 - INFO - 127.0.0.1 - - [04/Dec/2024 22:12:06] "[36mGET /admin/edit_role/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
-2024-12-04 22:13:16 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 22:13:16 - INFO -  * Restarting with stat
-2024-12-04 22:13:22 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-12-04 22:13:22 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-04 22:13:22 - INFO -  * Restarting with stat
-2024-12-04 22:13:23 - WARNING -  * Debugger is active!
-2024-12-04 22:13:23 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:13:26 - INFO - 127.0.0.1 - - [04/Dec/2024 22:13:26] "[33mGET /admin/edit_role/1 HTTP/1.1[0m" 404 -
-2024-12-04 22:13:27 - INFO - 127.0.0.1 - - [04/Dec/2024 22:13:27] "[33mGET /admin/edit_role/1 HTTP/1.1[0m" 404 -
-2024-12-04 22:13:30 - INFO - 127.0.0.1 - - [04/Dec/2024 22:13:30] "[33mGET /admin/edit_role/1 HTTP/1.1[0m" 404 -
-2024-12-04 22:14:00 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 22:14:00 - INFO -  * Restarting with stat
-2024-12-04 22:14:00 - WARNING -  * Debugger is active!
-2024-12-04 22:14:01 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:14:03 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 22:14:03 - INFO -  * Restarting with stat
-2024-12-04 22:14:03 - WARNING -  * Debugger is active!
-2024-12-04 22:14:03 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:14:09 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 22:14:10 - INFO -  * Restarting with stat
-2024-12-04 22:14:10 - WARNING -  * Debugger is active!
-2024-12-04 22:14:10 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:15:28 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 22:15:28 - INFO -  * Restarting with stat
-2024-12-04 22:15:29 - WARNING -  * Debugger is active!
-2024-12-04 22:15:29 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:15:55 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 22:15:55 - INFO -  * Restarting with stat
-2024-12-04 22:15:55 - WARNING -  * Debugger is active!
-2024-12-04 22:15:55 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:16:00 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 22:16:00 - INFO -  * Restarting with stat
-2024-12-04 22:16:00 - WARNING -  * Debugger is active!
-2024-12-04 22:16:00 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:16:03 - INFO - 127.0.0.1 - - [04/Dec/2024 22:16:03] "GET /admin/edit_role/1 HTTP/1.1" 200 -
-2024-12-04 22:16:17 - INFO - 127.0.0.1 - - [04/Dec/2024 22:16:17] "[32mPOST /admin/edit_role/1 HTTP/1.1[0m" 302 -
-2024-12-04 22:16:17 - INFO - 127.0.0.1 - - [04/Dec/2024 22:16:17] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-04 22:16:49 - INFO - 127.0.0.1 - - [04/Dec/2024 22:16:49] "GET /admin/edit_role/1 HTTP/1.1" 200 -
-2024-12-04 22:16:52 - INFO - 127.0.0.1 - - [04/Dec/2024 22:16:52] "[32mPOST /admin/edit_role/1 HTTP/1.1[0m" 302 -
-2024-12-04 22:16:52 - INFO - 127.0.0.1 - - [04/Dec/2024 22:16:52] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-04 22:16:55 - INFO - 127.0.0.1 - - [04/Dec/2024 22:16:55] "GET /admin/create_role HTTP/1.1" 200 -
-2024-12-04 22:17:02 - INFO - 127.0.0.1 - - [04/Dec/2024 22:17:02] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-04 22:17:04 - INFO - 127.0.0.1 - - [04/Dec/2024 22:17:04] "GET /admin/create_user HTTP/1.1" 200 -
-2024-12-04 22:17:24 - INFO - 127.0.0.1 - - [04/Dec/2024 22:17:24] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-04 22:17:30 - INFO - 127.0.0.1 - - [04/Dec/2024 22:17:30] "GET /admin/create_role HTTP/1.1" 200 -
-2024-12-04 22:17:31 - INFO - 127.0.0.1 - - [04/Dec/2024 22:17:31] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-04 22:17:34 - INFO - 127.0.0.1 - - [04/Dec/2024 22:17:34] "GET /admin/edit_role/1 HTTP/1.1" 200 -
-2024-12-04 22:17:38 - INFO - 127.0.0.1 - - [04/Dec/2024 22:17:38] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-04 22:17:40 - INFO - 127.0.0.1 - - [04/Dec/2024 22:17:40] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-04 22:17:41 - INFO - 127.0.0.1 - - [04/Dec/2024 22:17:41] "GET /asc_dashboard HTTP/1.1" 200 -
-2024-12-04 22:18:42 - INFO - 127.0.0.1 - - [04/Dec/2024 22:18:42] "GET /security-center HTTP/1.1" 200 -
-2024-12-04 22:18:59 - INFO - 127.0.0.1 - - [04/Dec/2024 22:18:59] "GET /sentinel HTTP/1.1" 200 -
-2024-12-04 22:19:07 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:07] "GET /asc_dashboard HTTP/1.1" 200 -
-2024-12-04 22:19:18 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:18] "GET /sentinel HTTP/1.1" 200 -
-2024-12-04 22:19:19 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:19] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-04 22:19:20 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:20] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-04 22:19:22 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:22] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-04 22:19:23 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:23] "GET /sentinel HTTP/1.1" 200 -
-2024-12-04 22:19:23 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:23] "GET /security-center HTTP/1.1" 200 -
-2024-12-04 22:19:24 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:24] "GET /asc_dashboard HTTP/1.1" 200 -
-2024-12-04 22:19:25 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:25] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-04 22:19:27 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:27] "GET /asc_dashboard HTTP/1.1" 200 -
-2024-12-04 22:19:27 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:27] "GET /security-center HTTP/1.1" 200 -
-2024-12-04 22:19:28 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:28] "GET /sentinel HTTP/1.1" 200 -
-2024-12-04 22:19:29 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:29] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-04 22:19:29 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:29] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-04 22:19:32 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:32] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-04 22:19:36 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:36] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-04 22:19:38 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:38] "[35m[1mGET /admin/user/edit/1 HTTP/1.1[0m" 500 -
-2024-12-04 22:19:38 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:38] "GET /admin/user/edit/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
-2024-12-04 22:19:38 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:38] "GET /admin/user/edit/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
-2024-12-04 22:19:38 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:38] "GET /admin/user/edit/1?__debugger__=yes&cmd=resource&f=console.png&s=RvZtskFr9H0vC1VF5ZZE HTTP/1.1" 200 -
-2024-12-04 22:19:38 - INFO - 127.0.0.1 - - [04/Dec/2024 22:19:38] "GET /admin/user/edit/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
-2024-12-04 22:23:02 - INFO - 127.0.0.1 - - [04/Dec/2024 22:23:02] "[35m[1mGET /admin/user/edit/1 HTTP/1.1[0m" 500 -
-2024-12-04 22:23:02 - INFO - 127.0.0.1 - - [04/Dec/2024 22:23:02] "[36mGET /admin/user/edit/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
-2024-12-04 22:23:02 - INFO - 127.0.0.1 - - [04/Dec/2024 22:23:02] "[36mGET /admin/user/edit/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
-2024-12-04 22:23:02 - INFO - 127.0.0.1 - - [04/Dec/2024 22:23:02] "[36mGET /admin/user/edit/1?__debugger__=yes&cmd=resource&f=console.png&s=RvZtskFr9H0vC1VF5ZZE HTTP/1.1[0m" 304 -
-2024-12-04 22:23:02 - INFO - 127.0.0.1 - - [04/Dec/2024 22:23:02] "[36mGET /admin/user/edit/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
-2024-12-04 22:26:32 - INFO - 127.0.0.1 - - [04/Dec/2024 22:26:32] "GET /admin/user/edit/1 HTTP/1.1" 200 -
-2024-12-04 22:30:51 - INFO - 127.0.0.1 - - [04/Dec/2024 22:30:51] "GET /admin/user/edit/1 HTTP/1.1" 200 -
-2024-12-04 22:35:03 - INFO - 127.0.0.1 - - [04/Dec/2024 22:35:03] "GET /admin/user/edit/1 HTTP/1.1" 200 -
-2024-12-04 22:35:20 - INFO - 127.0.0.1 - - [04/Dec/2024 22:35:20] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-04 22:35:23 - INFO - 127.0.0.1 - - [04/Dec/2024 22:35:23] "GET /admin/user/edit/2 HTTP/1.1" 200 -
-2024-12-04 22:35:38 - INFO - 127.0.0.1 - - [04/Dec/2024 22:35:38] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-04 22:35:44 - INFO - 127.0.0.1 - - [04/Dec/2024 22:35:44] "[32mPOST /admin/user/delete/5 HTTP/1.1[0m" 302 -
-2024-12-04 22:35:44 - INFO - 127.0.0.1 - - [04/Dec/2024 22:35:44] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-04 22:35:49 - INFO - 127.0.0.1 - - [04/Dec/2024 22:35:49] "GET /admin/user/assign-role/1 HTTP/1.1" 200 -
-2024-12-04 22:36:00 - INFO - 127.0.0.1 - - [04/Dec/2024 22:36:00] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-04 22:36:02 - INFO - 127.0.0.1 - - [04/Dec/2024 22:36:02] "GET /admin/create_role HTTP/1.1" 200 -
-2024-12-04 22:37:05 - INFO - 127.0.0.1 - - [04/Dec/2024 22:37:05] "[32mPOST /admin/create_role HTTP/1.1[0m" 302 -
-2024-12-04 22:37:05 - INFO - 127.0.0.1 - - [04/Dec/2024 22:37:05] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-04 22:37:37 - INFO - 127.0.0.1 - - [04/Dec/2024 22:37:37] "GET /admin/create_role HTTP/1.1" 200 -
-2024-12-04 22:40:52 - INFO - 127.0.0.1 - - [04/Dec/2024 22:40:52] "[32mPOST /admin/create_role HTTP/1.1[0m" 302 -
-2024-12-04 22:40:52 - INFO - 127.0.0.1 - - [04/Dec/2024 22:40:52] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-04 22:41:32 - INFO - 127.0.0.1 - - [04/Dec/2024 22:41:32] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-04 22:41:33 - INFO - 127.0.0.1 - - [04/Dec/2024 22:41:33] "GET /admin/user/assign-role/1 HTTP/1.1" 200 -
-2024-12-04 22:41:36 - INFO - 127.0.0.1 - - [04/Dec/2024 22:41:36] "GET /admin/user/assign-role/2 HTTP/1.1" 200 -
-2024-12-04 22:41:44 - INFO - 127.0.0.1 - - [04/Dec/2024 22:41:44] "[35m[1mPOST /admin/user/assign-role/2 HTTP/1.1[0m" 500 -
-2024-12-04 22:41:44 - INFO - 127.0.0.1 - - [04/Dec/2024 22:41:44] "GET /admin/user/assign-role/2?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
-2024-12-04 22:41:44 - INFO - 127.0.0.1 - - [04/Dec/2024 22:41:44] "GET /admin/user/assign-role/2?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
-2024-12-04 22:41:44 - INFO - 127.0.0.1 - - [04/Dec/2024 22:41:44] "GET /admin/user/assign-role/2?__debugger__=yes&cmd=resource&f=console.png&s=RvZtskFr9H0vC1VF5ZZE HTTP/1.1" 200 -
-2024-12-04 22:41:44 - INFO - 127.0.0.1 - - [04/Dec/2024 22:41:44] "GET /admin/user/assign-role/2?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
-2024-12-04 22:42:53 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 22:42:53 - INFO -  * Restarting with stat
-2024-12-04 22:42:54 - WARNING -  * Debugger is active!
-2024-12-04 22:42:54 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:42:57 - INFO - 127.0.0.1 - - [04/Dec/2024 22:42:57] "[33mPOST /admin/user/assign-role/2 HTTP/1.1[0m" 404 -
-2024-12-04 22:43:01 - INFO - 127.0.0.1 - - [04/Dec/2024 22:43:01] "[33mPOST /admin/user/assign-role/2 HTTP/1.1[0m" 404 -
-2024-12-04 22:44:07 - INFO - 127.0.0.1 - - [04/Dec/2024 22:44:07] "[33mPOST /admin/user/assign-role/2 HTTP/1.1[0m" 404 -
-2024-12-04 22:44:38 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 22:44:38 - INFO -  * Restarting with stat
-2024-12-04 22:44:39 - WARNING -  * Debugger is active!
-2024-12-04 22:44:39 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:44:40 - INFO - 127.0.0.1 - - [04/Dec/2024 22:44:40] "[33mPOST /admin/user/assign-role/2 HTTP/1.1[0m" 404 -
-2024-12-04 22:46:28 - INFO - 127.0.0.1 - - [04/Dec/2024 22:46:28] "[33mGET /admin/user/assign-role/2 HTTP/1.1[0m" 404 -
-2024-12-04 22:46:31 - INFO - 127.0.0.1 - - [04/Dec/2024 22:46:31] "[33mGET /admin/user/assign-role/1 HTTP/1.1[0m" 404 -
-2024-12-04 22:46:47 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 22:46:47 - INFO -  * Restarting with stat
-2024-12-04 22:46:48 - WARNING -  * Debugger is active!
-2024-12-04 22:46:48 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:46:49 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 22:46:49 - INFO -  * Restarting with stat
-2024-12-04 22:46:50 - WARNING -  * Debugger is active!
-2024-12-04 22:46:50 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:46:51 - INFO - 127.0.0.1 - - [04/Dec/2024 22:46:51] "[33mGET /admin/user/assign-role/1 HTTP/1.1[0m" 404 -
-2024-12-04 22:46:54 - INFO - 127.0.0.1 - - [04/Dec/2024 22:46:54] "[33mGET /admin/user/assign-role/1 HTTP/1.1[0m" 404 -
-2024-12-04 22:46:59 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 22:46:59 - INFO -  * Restarting with stat
-2024-12-04 22:47:00 - WARNING -  * Debugger is active!
-2024-12-04 22:47:00 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:47:52 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 22:47:52 - INFO -  * Restarting with stat
-2024-12-04 22:47:53 - WARNING -  * Debugger is active!
-2024-12-04 22:47:53 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:48:15 - INFO - 127.0.0.1 - - [04/Dec/2024 22:48:15] "[33mGET /admin/user/assign-role/1 HTTP/1.1[0m" 404 -
-2024-12-04 22:49:20 - INFO - 127.0.0.1 - - [04/Dec/2024 22:49:20] "[33mGET /admin/user/assign-role/1 HTTP/1.1[0m" 404 -
-2024-12-04 22:51:24 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 22:51:24 - INFO -  * Restarting with stat
-2024-12-04 22:51:24 - WARNING -  * Debugger is active!
-2024-12-04 22:51:24 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:51:25 - INFO - 127.0.0.1 - - [04/Dec/2024 22:51:25] "[33mGET /admin/user/assign-role/1 HTTP/1.1[0m" 404 -
-2024-12-04 22:51:28 - INFO - 127.0.0.1 - - [04/Dec/2024 22:51:28] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-04 22:51:30 - INFO - 127.0.0.1 - - [04/Dec/2024 22:51:30] "GET /admin/assign_role/1 HTTP/1.1" 200 -
-2024-12-04 22:51:37 - INFO - 127.0.0.1 - - [04/Dec/2024 22:51:37] "[35m[1mPOST /admin/assign_role/1 HTTP/1.1[0m" 500 -
-2024-12-04 22:51:37 - INFO - 127.0.0.1 - - [04/Dec/2024 22:51:37] "GET /admin/assign_role/1?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
-2024-12-04 22:51:37 - INFO - 127.0.0.1 - - [04/Dec/2024 22:51:37] "GET /admin/assign_role/1?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
-2024-12-04 22:51:37 - INFO - 127.0.0.1 - - [04/Dec/2024 22:51:37] "GET /admin/assign_role/1?__debugger__=yes&cmd=resource&f=console.png&s=HvYvST4tYkLkjzB2QKjQ HTTP/1.1" 200 -
-2024-12-04 22:51:37 - INFO - 127.0.0.1 - - [04/Dec/2024 22:51:37] "GET /admin/assign_role/1?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
-2024-12-04 22:51:56 - INFO - 127.0.0.1 - - [04/Dec/2024 22:51:56] "GET /admin/assign_role/3 HTTP/1.1" 200 -
-2024-12-04 22:51:59 - INFO - 127.0.0.1 - - [04/Dec/2024 22:51:59] "[35m[1mPOST /admin/assign_role/3 HTTP/1.1[0m" 500 -
-2024-12-04 22:51:59 - INFO - 127.0.0.1 - - [04/Dec/2024 22:51:59] "GET /admin/assign_role/3?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
-2024-12-04 22:51:59 - INFO - 127.0.0.1 - - [04/Dec/2024 22:51:59] "GET /admin/assign_role/3?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
-2024-12-04 22:51:59 - INFO - 127.0.0.1 - - [04/Dec/2024 22:51:59] "GET /admin/assign_role/3?__debugger__=yes&cmd=resource&f=console.png&s=HvYvST4tYkLkjzB2QKjQ HTTP/1.1" 200 -
-2024-12-04 22:51:59 - INFO - 127.0.0.1 - - [04/Dec/2024 22:51:59] "GET /admin/assign_role/3?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
-2024-12-04 22:53:40 - INFO - Attempting to log out user: admin
-2024-12-04 22:53:40 - INFO - User admin logged out successfully
-2024-12-04 22:53:40 - INFO - 127.0.0.1 - - [04/Dec/2024 22:53:40] "[32mPOST /logout HTTP/1.1[0m" 302 -
-2024-12-04 22:53:40 - INFO - 127.0.0.1 - - [04/Dec/2024 22:53:40] "GET /login HTTP/1.1" 200 -
-2024-12-04 22:54:59 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 22:54:59 - INFO -  * Restarting with stat
-2024-12-04 22:55:00 - WARNING -  * Debugger is active!
-2024-12-04 22:55:00 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:55:44 - INFO - 127.0.0.1 - - [04/Dec/2024 22:55:44] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
-2024-12-04 22:55:46 - INFO - 127.0.0.1 - - [04/Dec/2024 22:55:46] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
-2024-12-04 22:55:48 - INFO - 127.0.0.1 - - [04/Dec/2024 22:55:48] "GET /login HTTP/1.1" 200 -
-2024-12-04 22:55:53 - INFO - 127.0.0.1 - - [04/Dec/2024 22:55:53] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
-2024-12-04 22:55:57 - INFO - 127.0.0.1 - - [04/Dec/2024 22:55:57] "GET /login HTTP/1.1" 200 -
-2024-12-04 22:56:02 - INFO - 127.0.0.1 - - [04/Dec/2024 22:56:02] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
-2024-12-04 22:56:03 - INFO - 127.0.0.1 - - [04/Dec/2024 22:56:03] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
-2024-12-04 22:56:03 - INFO - 127.0.0.1 - - [04/Dec/2024 22:56:03] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
-2024-12-04 22:56:12 - INFO - 127.0.0.1 - - [04/Dec/2024 22:56:12] "[32mGET /admin/assign_role/1 HTTP/1.1[0m" 302 -
-2024-12-04 22:56:12 - INFO - 127.0.0.1 - - [04/Dec/2024 22:56:12] "GET /login?next=/admin/assign_role/1 HTTP/1.1" 200 -
-2024-12-04 22:56:21 - INFO - 127.0.0.1 - - [04/Dec/2024 22:56:21] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
-2024-12-04 22:56:23 - INFO - 127.0.0.1 - - [04/Dec/2024 22:56:23] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
-2024-12-04 22:56:57 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 22:56:57 - INFO -  * Restarting with stat
-2024-12-04 22:57:10 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-12-04 22:57:10 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-04 22:57:10 - INFO -  * Restarting with stat
-2024-12-04 22:57:10 - WARNING -  * Debugger is active!
-2024-12-04 22:57:10 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 22:57:13 - INFO - 127.0.0.1 - - [04/Dec/2024 22:57:13] "POST /login HTTP/1.1" 200 -
-2024-12-04 22:57:13 - INFO - 127.0.0.1 - - [04/Dec/2024 22:57:13] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-04 23:00:50 - INFO - 127.0.0.1 - - [04/Dec/2024 23:00:50] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-04 23:00:51 - INFO - 127.0.0.1 - - [04/Dec/2024 23:00:51] "GET /admin/assign_role/1 HTTP/1.1" 200 -
-2024-12-04 23:00:58 - INFO - 127.0.0.1 - - [04/Dec/2024 23:00:58] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-04 23:01:04 - INFO - 127.0.0.1 - - [04/Dec/2024 23:01:04] "GET /admin/user/edit/1 HTTP/1.1" 200 -
-2024-12-04 23:01:08 - INFO - 127.0.0.1 - - [04/Dec/2024 23:01:08] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-04 23:01:11 - INFO - 127.0.0.1 - - [04/Dec/2024 23:01:11] "GET /admin/assign_role/1 HTTP/1.1" 200 -
-2024-12-04 23:01:23 - INFO - 127.0.0.1 - - [04/Dec/2024 23:01:23] "GET /admin/assign_role/1 HTTP/1.1" 200 -
-2024-12-04 23:01:27 - INFO - 127.0.0.1 - - [04/Dec/2024 23:01:27] "GET /admin/assign_role/6 HTTP/1.1" 200 -
-2024-12-04 23:01:40 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 23:01:40 - INFO -  * Restarting with stat
-2024-12-04 23:01:42 - WARNING -  * Debugger is active!
-2024-12-04 23:01:42 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 23:01:49 - INFO - 127.0.0.1 - - [04/Dec/2024 23:01:49] "[32mPOST /admin/assign_role/6 HTTP/1.1[0m" 302 -
-2024-12-04 23:01:49 - INFO - 127.0.0.1 - - [04/Dec/2024 23:01:49] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-04 23:01:54 - INFO - 127.0.0.1 - - [04/Dec/2024 23:01:54] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-04 23:02:40 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 23:02:40 - INFO -  * Restarting with stat
-2024-12-04 23:02:41 - WARNING -  * Debugger is active!
-2024-12-04 23:02:41 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 23:03:03 - INFO - Attempting to log out user: admin
-2024-12-04 23:03:03 - INFO - User admin logged out successfully
-2024-12-04 23:03:03 - INFO - 127.0.0.1 - - [04/Dec/2024 23:03:03] "[32mPOST /logout HTTP/1.1[0m" 302 -
-2024-12-04 23:03:03 - INFO - 127.0.0.1 - - [04/Dec/2024 23:03:03] "GET /login HTTP/1.1" 200 -
-2024-12-04 23:03:10 - WARNING - Failed password attempt for user: sirine
-2024-12-04 23:03:10 - INFO - 127.0.0.1 - - [04/Dec/2024 23:03:10] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
-2024-12-04 23:03:15 - WARNING - Login attempt for non-existent user: sirinefakhfakh03@gmail.com
-2024-12-04 23:03:15 - INFO - 127.0.0.1 - - [04/Dec/2024 23:03:15] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
-2024-12-04 23:03:21 - INFO - 127.0.0.1 - - [04/Dec/2024 23:03:21] "GET /register HTTP/1.1" 200 -
-2024-12-04 23:03:31 - INFO - 127.0.0.1 - - [04/Dec/2024 23:03:31] "[32mPOST /register HTTP/1.1[0m" 302 -
-2024-12-04 23:03:31 - INFO - 127.0.0.1 - - [04/Dec/2024 23:03:31] "GET /register HTTP/1.1" 200 -
-2024-12-04 23:03:35 - INFO - 127.0.0.1 - - [04/Dec/2024 23:03:35] "GET /login HTTP/1.1" 200 -
-2024-12-04 23:03:48 - WARNING - Failed password attempt for user: sirine
-2024-12-04 23:03:48 - INFO - 127.0.0.1 - - [04/Dec/2024 23:03:48] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
-2024-12-04 23:04:02 - INFO - 127.0.0.1 - - [04/Dec/2024 23:04:02] "POST /login HTTP/1.1" 200 -
-2024-12-04 23:04:02 - INFO - 127.0.0.1 - - [04/Dec/2024 23:04:02] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-04 23:04:06 - INFO - 127.0.0.1 - - [04/Dec/2024 23:04:06] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-04 23:04:08 - INFO - 127.0.0.1 - - [04/Dec/2024 23:04:08] "[32mPOST /admin/user/delete/2 HTTP/1.1[0m" 302 -
-2024-12-04 23:04:08 - INFO - 127.0.0.1 - - [04/Dec/2024 23:04:08] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-04 23:04:11 - INFO - 127.0.0.1 - - [04/Dec/2024 23:04:11] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-04 23:10:15 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 23:10:16 - INFO -  * Restarting with stat
-2024-12-04 23:10:17 - WARNING -  * Debugger is active!
-2024-12-04 23:10:17 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 23:10:25 - INFO - 127.0.0.1 - - [04/Dec/2024 23:10:25] "GET /admin/manage_roles HTTP/1.1" 200 -
-2024-12-04 23:10:25 - INFO - 127.0.0.1 - - [04/Dec/2024 23:10:25] "GET /asc_dashboard HTTP/1.1" 200 -
-2024-12-04 23:10:26 - INFO - 127.0.0.1 - - [04/Dec/2024 23:10:26] "GET /security-center HTTP/1.1" 200 -
-2024-12-04 23:10:26 - INFO - 127.0.0.1 - - [04/Dec/2024 23:10:26] "GET /sentinel HTTP/1.1" 200 -
-2024-12-04 23:10:27 - INFO - 127.0.0.1 - - [04/Dec/2024 23:10:27] "GET /admin/manage_users HTTP/1.1" 200 -
-2024-12-04 23:10:28 - INFO - 127.0.0.1 - - [04/Dec/2024 23:10:28] "GET /admin/admin/dashboard HTTP/1.1" 200 -
-2024-12-04 23:10:28 - INFO - Attempting to log out user: admin
-2024-12-04 23:10:28 - INFO - User admin logged out successfully
-2024-12-04 23:10:28 - INFO - 127.0.0.1 - - [04/Dec/2024 23:10:28] "[32mPOST /logout HTTP/1.1[0m" 302 -
-2024-12-04 23:10:28 - INFO - 127.0.0.1 - - [04/Dec/2024 23:10:28] "GET /login HTTP/1.1" 200 -
-2024-12-04 23:10:32 - INFO - 127.0.0.1 - - [04/Dec/2024 23:10:32] "GET /register HTTP/1.1" 200 -
-2024-12-04 23:10:49 - INFO - 127.0.0.1 - - [04/Dec/2024 23:10:49] "[35m[1mPOST /register HTTP/1.1[0m" 500 -
-2024-12-04 23:10:49 - INFO - 127.0.0.1 - - [04/Dec/2024 23:10:49] "GET /register?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
-2024-12-04 23:10:49 - INFO - 127.0.0.1 - - [04/Dec/2024 23:10:49] "GET /register?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
-2024-12-04 23:10:49 - INFO - 127.0.0.1 - - [04/Dec/2024 23:10:49] "GET /register?__debugger__=yes&cmd=resource&f=console.png&s=KKsNP3ShXZusOiE02zHm HTTP/1.1" 200 -
-2024-12-04 23:10:49 - INFO - 127.0.0.1 - - [04/Dec/2024 23:10:49] "GET /register?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
-2024-12-04 23:11:52 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 23:11:52 - INFO -  * Restarting with stat
-2024-12-04 23:11:53 - WARNING -  * Debugger is active!
-2024-12-04 23:11:53 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 23:11:56 - INFO - 127.0.0.1 - - [04/Dec/2024 23:11:56] "[35m[1mPOST /register HTTP/1.1[0m" 500 -
-2024-12-04 23:11:56 - INFO - 127.0.0.1 - - [04/Dec/2024 23:11:56] "[36mGET /register?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
-2024-12-04 23:11:56 - INFO - 127.0.0.1 - - [04/Dec/2024 23:11:56] "[36mGET /register?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
-2024-12-04 23:11:56 - INFO - 127.0.0.1 - - [04/Dec/2024 23:11:56] "GET /register?__debugger__=yes&cmd=resource&f=console.png&s=yrfV2m7Gf7wO5YY7zyCx HTTP/1.1" 200 -
-2024-12-04 23:11:56 - INFO - 127.0.0.1 - - [04/Dec/2024 23:11:56] "[36mGET /register?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
-2024-12-04 23:17:20 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-12-04 23:17:20 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-04 23:17:20 - INFO -  * Restarting with stat
-2024-12-04 23:17:21 - WARNING -  * Debugger is active!
-2024-12-04 23:17:21 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 23:17:42 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
- * Running on http://127.0.0.1:5000
-2024-12-04 23:17:42 - INFO - [33mPress CTRL+C to quit[0m
-2024-12-04 23:17:42 - INFO -  * Restarting with stat
-2024-12-04 23:17:43 - WARNING -  * Debugger is active!
-2024-12-04 23:17:43 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 23:17:51 - INFO - Attempting to send MFA setup email
-2024-12-04 23:17:55 - INFO - 127.0.0.1 - - [04/Dec/2024 23:17:55] "[32mPOST /register HTTP/1.1[0m" 302 -
-2024-12-04 23:17:55 - INFO - 127.0.0.1 - - [04/Dec/2024 23:17:55] "GET /login HTTP/1.1" 200 -
-2024-12-04 23:17:55 - INFO - 127.0.0.1 - - [04/Dec/2024 23:17:55] "GET /register HTTP/1.1" 200 -
-2024-12-04 23:18:03 - INFO - 127.0.0.1 - - [04/Dec/2024 23:18:03] "GET /login HTTP/1.1" 200 -
-2024-12-04 23:18:24 - WARNING - MFA token missing for user: sirine
-2024-12-04 23:18:24 - INFO - 127.0.0.1 - - [04/Dec/2024 23:18:24] "[31m[1mPOST /login HTTP/1.1[0m" 400 -
-2024-12-04 23:18:32 - WARNING - Invalid MFA token for user: sirine
-2024-12-04 23:18:32 - INFO - 127.0.0.1 - - [04/Dec/2024 23:18:32] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
-2024-12-04 23:18:42 - INFO - 127.0.0.1 - - [04/Dec/2024 23:18:42] "GET /login HTTP/1.1" 200 -
-2024-12-04 23:18:48 - WARNING - Login attempt for non-existent user: sirinefakhfakh03@gmail.com
-2024-12-04 23:18:48 - INFO - 127.0.0.1 - - [04/Dec/2024 23:18:48] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
-2024-12-04 23:20:46 - WARNING - Login attempt for non-existent user: sirinefakhfakh03@gmail.com
-2024-12-04 23:20:46 - INFO - 127.0.0.1 - - [04/Dec/2024 23:20:46] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
-2024-12-04 23:20:55 - WARNING - Login attempt for non-existent user: sirinefakhfakh03@gmail.com
-2024-12-04 23:20:55 - INFO - 127.0.0.1 - - [04/Dec/2024 23:20:55] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
-2024-12-04 23:20:57 - INFO - 127.0.0.1 - - [04/Dec/2024 23:20:57] "GET /login HTTP/1.1" 200 -
-2024-12-04 23:21:02 - WARNING - MFA token missing for user: sirine
-2024-12-04 23:21:02 - INFO - 127.0.0.1 - - [04/Dec/2024 23:21:02] "[31m[1mPOST /login HTTP/1.1[0m" 400 -
-2024-12-04 23:21:12 - INFO - 127.0.0.1 - - [04/Dec/2024 23:21:12] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
-2024-12-04 23:21:27 - WARNING - Invalid MFA token for user: sirine
-2024-12-04 23:21:27 - INFO - 127.0.0.1 - - [04/Dec/2024 23:21:27] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
-2024-12-04 23:21:43 - INFO - 127.0.0.1 - - [04/Dec/2024 23:21:43] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
-2024-12-04 23:21:44 - INFO - 127.0.0.1 - - [04/Dec/2024 23:21:44] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
-2024-12-04 23:21:44 - INFO - 127.0.0.1 - - [04/Dec/2024 23:21:44] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
-2024-12-04 23:21:45 - INFO - 127.0.0.1 - - [04/Dec/2024 23:21:45] "GET /login HTTP/1.1" 200 -
-2024-12-04 23:21:51 - WARNING - MFA token missing for user: sirine
-2024-12-04 23:21:51 - INFO - 127.0.0.1 - - [04/Dec/2024 23:21:51] "[31m[1mPOST /login HTTP/1.1[0m" 400 -
-2024-12-04 23:22:02 - WARNING - Invalid MFA token for user: sirine
-2024-12-04 23:22:02 - INFO - 127.0.0.1 - - [04/Dec/2024 23:22:02] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
-2024-12-04 23:22:13 - INFO - 127.0.0.1 - - [04/Dec/2024 23:22:13] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
-2024-12-04 23:22:52 - INFO - 127.0.0.1 - - [04/Dec/2024 23:22:52] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
-2024-12-04 23:22:54 - INFO - 127.0.0.1 - - [04/Dec/2024 23:22:54] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
-2024-12-04 23:25:54 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 23:25:54 - INFO -  * Restarting with stat
-2024-12-04 23:25:55 - WARNING -  * Debugger is active!
-2024-12-04 23:25:55 - INFO -  * Debugger PIN: 140-212-037
-2024-12-04 23:26:04 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
-2024-12-04 23:26:04 - INFO -  * Restarting with stat
-2024-12-04 23:26:04 - WARNING -  * Debugger is active!
-2024-12-04 23:26:04 - INFO -  * Debugger PIN: 140-212-037
+
 2024-12-04 23:26:10 - INFO - 127.0.0.1 - - [04/Dec/2024 23:26:10] "GET /login HTTP/1.1" 200 -
 2024-12-04 23:26:21 - INFO - 127.0.0.1 - - [04/Dec/2024 23:26:21] "GET /register HTTP/1.1" 200 -
 2024-12-04 23:26:30 - INFO - 127.0.0.1 - - [04/Dec/2024 23:26:30] "[32mPOST /register HTTP/1.1[0m" 302 -
@@ -1215,3 +174,309 @@
 2024-12-05 10:38:53 - INFO - 127.0.0.1 - - [05/Dec/2024 10:38:53] "POST /encrypt HTTP/1.1" 200 -
 2024-12-05 10:38:58 - INFO - 127.0.0.1 - - [05/Dec/2024 10:38:58] "GET /encrypt HTTP/1.1" 200 -
 2024-12-05 10:39:06 - INFO - 127.0.0.1 - - [05/Dec/2024 10:39:06] "POST /decrypt HTTP/1.1" 200 -
+2024-12-09 14:45:16 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2024-12-09 14:45:16 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-09 14:45:16 - INFO -  * Restarting with stat
+2024-12-09 14:45:17 - WARNING -  * Debugger is active!
+2024-12-09 14:45:17 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 14:45:46 - INFO - 127.0.0.1 - - [09/Dec/2024 14:45:46] "GET /login HTTP/1.1" 200 -
+2024-12-09 14:45:47 - INFO - 127.0.0.1 - - [09/Dec/2024 14:45:47] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-12-09 14:45:56 - INFO - 127.0.0.1 - - [09/Dec/2024 14:45:56] "POST /login HTTP/1.1" 200 -
+2024-12-09 14:45:56 - INFO - 127.0.0.1 - - [09/Dec/2024 14:45:56] "GET /admin/admin/dashboard HTTP/1.1" 200 -
+2024-12-09 14:46:12 - INFO - 127.0.0.1 - - [09/Dec/2024 14:46:12] "GET /admin/manage_roles HTTP/1.1" 200 -
+2024-12-09 14:46:14 - INFO - 127.0.0.1 - - [09/Dec/2024 14:46:14] "GET /admin/manage_users HTTP/1.1" 200 -
+2024-12-09 14:46:20 - INFO - 127.0.0.1 - - [09/Dec/2024 14:46:20] "GET /asc_dashboard HTTP/1.1" 200 -
+2024-12-09 14:46:26 - INFO - 127.0.0.1 - - [09/Dec/2024 14:46:26] "GET /asc_dashboard HTTP/1.1" 200 -
+2024-12-09 14:46:27 - INFO - 127.0.0.1 - - [09/Dec/2024 14:46:27] "GET /security-center HTTP/1.1" 200 -
+2024-12-09 14:46:33 - INFO - 127.0.0.1 - - [09/Dec/2024 14:46:33] "GET /security-center HTTP/1.1" 200 -
+2024-12-09 14:46:34 - INFO - 127.0.0.1 - - [09/Dec/2024 14:46:34] "GET /sentinel HTTP/1.1" 200 -
+2024-12-09 14:46:37 - INFO - 127.0.0.1 - - [09/Dec/2024 14:46:37] "GET /admin/admin/dashboard HTTP/1.1" 200 -
+2024-12-09 14:46:41 - INFO - 127.0.0.1 - - [09/Dec/2024 14:46:41] "GET /admin/admin/dashboard HTTP/1.1" 200 -
+2024-12-09 14:46:43 - INFO - Attempting to log out user: admin
+2024-12-09 14:46:43 - INFO - User admin logged out successfully
+2024-12-09 14:46:43 - INFO - 127.0.0.1 - - [09/Dec/2024 14:46:43] "[32mPOST /logout HTTP/1.1[0m" 302 -
+2024-12-09 14:46:43 - INFO - 127.0.0.1 - - [09/Dec/2024 14:46:43] "GET /login HTTP/1.1" 200 -
+2024-12-09 14:46:53 - INFO - 127.0.0.1 - - [09/Dec/2024 14:46:53] "GET / HTTP/1.1" 200 -
+2024-12-09 14:51:41 - INFO - 127.0.0.1 - - [09/Dec/2024 14:51:41] "GET /encrypt HTTP/1.1" 200 -
+2024-12-09 14:55:52 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 14:55:52 - INFO -  * Restarting with stat
+2024-12-09 14:55:53 - WARNING -  * Debugger is active!
+2024-12-09 14:55:53 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 14:55:56 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 14:55:56 - INFO -  * Restarting with stat
+2024-12-09 14:56:30 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2024-12-09 14:56:30 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-09 14:56:30 - INFO -  * Restarting with stat
+2024-12-09 14:56:31 - WARNING -  * Debugger is active!
+2024-12-09 14:56:31 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 14:56:47 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 14:56:47 - INFO -  * Restarting with stat
+2024-12-09 14:56:57 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2024-12-09 14:56:57 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-09 14:56:57 - INFO -  * Restarting with stat
+2024-12-09 14:56:58 - WARNING -  * Debugger is active!
+2024-12-09 14:56:58 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 14:57:56 - INFO - 127.0.0.1 - - [09/Dec/2024 14:57:56] "[33mGET /encrypt_drive HTTP/1.1[0m" 404 -
+2024-12-09 14:58:41 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 14:58:41 - INFO -  * Restarting with stat
+2024-12-09 14:58:42 - WARNING -  * Debugger is active!
+2024-12-09 14:58:42 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 15:13:42 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 15:13:43 - INFO -  * Restarting with stat
+2024-12-09 15:13:43 - WARNING -  * Debugger is active!
+2024-12-09 15:13:43 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 15:13:48 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 15:13:48 - INFO -  * Restarting with stat
+2024-12-09 15:13:49 - WARNING -  * Debugger is active!
+2024-12-09 15:13:49 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 15:15:09 - INFO - 127.0.0.1 - - [09/Dec/2024 15:15:09] "GET /upload HTTP/1.1" 200 -
+2024-12-09 15:20:05 - INFO - 127.0.0.1 - - [09/Dec/2024 15:20:05] "GET /upload HTTP/1.1" 200 -
+2024-12-09 15:20:37 - INFO - 127.0.0.1 - - [09/Dec/2024 15:20:37] "GET /upload HTTP/1.1" 200 -
+2024-12-09 15:20:38 - INFO - 127.0.0.1 - - [09/Dec/2024 15:20:38] "[32mPOST /upload HTTP/1.1[0m" 302 -
+2024-12-09 15:20:38 - INFO - 127.0.0.1 - - [09/Dec/2024 15:20:38] "GET /upload HTTP/1.1" 200 -
+2024-12-09 15:23:09 - INFO - 127.0.0.1 - - [09/Dec/2024 15:23:09] "[32mPOST /upload HTTP/1.1[0m" 302 -
+2024-12-09 15:23:09 - INFO - 127.0.0.1 - - [09/Dec/2024 15:23:09] "GET / HTTP/1.1" 200 -
+2024-12-09 18:41:28 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 18:41:28 - INFO -  * Restarting with stat
+2024-12-09 18:41:29 - WARNING -  * Debugger is active!
+2024-12-09 18:41:29 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 18:41:49 - INFO - 127.0.0.1 - - [09/Dec/2024 18:41:49] "GET / HTTP/1.1" 200 -
+2024-12-09 18:41:56 - INFO - 127.0.0.1 - - [09/Dec/2024 18:41:56] "GET /upload HTTP/1.1" 200 -
+2024-12-09 18:42:03 - INFO - 127.0.0.1 - - [09/Dec/2024 18:42:03] "[32mPOST /upload HTTP/1.1[0m" 302 -
+2024-12-09 18:42:03 - INFO - 127.0.0.1 - - [09/Dec/2024 18:42:03] "GET / HTTP/1.1" 200 -
+2024-12-09 18:43:33 - INFO - 127.0.0.1 - - [09/Dec/2024 18:43:33] "GET /upload HTTP/1.1" 200 -
+2024-12-09 18:43:37 - INFO - 127.0.0.1 - - [09/Dec/2024 18:43:37] "[32mPOST /upload HTTP/1.1[0m" 302 -
+2024-12-09 18:43:37 - INFO - 127.0.0.1 - - [09/Dec/2024 18:43:37] "GET / HTTP/1.1" 200 -
+2024-12-09 18:43:49 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 18:43:49 - INFO -  * Restarting with stat
+2024-12-09 18:43:50 - WARNING -  * Debugger is active!
+2024-12-09 18:43:50 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 18:44:02 - INFO - 127.0.0.1 - - [09/Dec/2024 18:44:02] "GET /upload HTTP/1.1" 200 -
+2024-12-09 18:44:06 - INFO - 127.0.0.1 - - [09/Dec/2024 18:44:06] "[32mPOST /upload HTTP/1.1[0m" 302 -
+2024-12-09 18:44:06 - INFO - 127.0.0.1 - - [09/Dec/2024 18:44:06] "GET / HTTP/1.1" 200 -
+2024-12-09 18:44:20 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 18:44:20 - INFO -  * Restarting with stat
+2024-12-09 18:44:21 - WARNING -  * Debugger is active!
+2024-12-09 18:44:21 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:24:39 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:24:39 - INFO -  * Restarting with stat
+2024-12-09 21:24:40 - WARNING -  * Debugger is active!
+2024-12-09 21:24:40 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:25:05 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:25:05 - INFO -  * Restarting with stat
+2024-12-09 21:25:06 - WARNING -  * Debugger is active!
+2024-12-09 21:25:06 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:25:30 - INFO - 127.0.0.1 - - [09/Dec/2024 21:25:30] "GET /login HTTP/1.1" 200 -
+2024-12-09 21:25:39 - INFO - 127.0.0.1 - - [09/Dec/2024 21:25:39] "GET /login HTTP/1.1" 200 -
+2024-12-09 21:25:57 - WARNING - Login attempt for non-existent user: sirine
+2024-12-09 21:25:57 - INFO - 127.0.0.1 - - [09/Dec/2024 21:25:57] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+2024-12-09 21:29:34 - INFO - 127.0.0.1 - - [09/Dec/2024 21:29:34] "GET /register HTTP/1.1" 200 -
+2024-12-09 21:29:48 - INFO - Attempting to send MFA setup email
+2024-12-09 21:29:51 - INFO - 127.0.0.1 - - [09/Dec/2024 21:29:51] "[32mPOST /register HTTP/1.1[0m" 302 -
+2024-12-09 21:29:51 - INFO - 127.0.0.1 - - [09/Dec/2024 21:29:51] "GET /login HTTP/1.1" 200 -
+2024-12-09 21:31:29 - INFO - 127.0.0.1 - - [09/Dec/2024 21:31:29] "GET /register HTTP/1.1" 200 -
+2024-12-09 21:31:40 - INFO - Attempting to send MFA setup email
+2024-12-09 21:31:43 - INFO - 127.0.0.1 - - [09/Dec/2024 21:31:43] "[32mPOST /register HTTP/1.1[0m" 302 -
+2024-12-09 21:31:43 - INFO - 127.0.0.1 - - [09/Dec/2024 21:31:43] "GET /login HTTP/1.1" 200 -
+2024-12-09 21:33:41 - WARNING - MFA token missing for user: firas
+2024-12-09 21:33:41 - INFO - 127.0.0.1 - - [09/Dec/2024 21:33:41] "[31m[1mPOST /login HTTP/1.1[0m" 400 -
+2024-12-09 21:33:49 - INFO - 127.0.0.1 - - [09/Dec/2024 21:33:49] "POST /login HTTP/1.1" 200 -
+2024-12-09 21:33:49 - INFO - 127.0.0.1 - - [09/Dec/2024 21:33:49] "GET / HTTP/1.1" 200 -
+2024-12-09 21:34:02 - INFO - 127.0.0.1 - - [09/Dec/2024 21:34:02] "GET /thread_protection HTTP/1.1" 200 -
+2024-12-09 21:34:06 - INFO - 127.0.0.1 - - [09/Dec/2024 21:34:06] "POST /create_alert HTTP/1.1" 200 -
+2024-12-09 21:34:47 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:34:47 - INFO -  * Restarting with stat
+2024-12-09 21:34:47 - WARNING -  * Debugger is active!
+2024-12-09 21:34:47 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:35:21 - INFO - 127.0.0.1 - - [09/Dec/2024 21:35:21] "[35m[1mPOST /create_alert HTTP/1.1[0m" 500 -
+2024-12-09 21:35:36 - INFO - 127.0.0.1 - - [09/Dec/2024 21:35:36] "[35m[1mPOST /create_alert HTTP/1.1[0m" 500 -
+2024-12-09 21:36:27 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:36:27 - INFO -  * Restarting with stat
+2024-12-09 21:36:27 - WARNING -  * Debugger is active!
+2024-12-09 21:36:27 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:36:32 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:36:32 - INFO -  * Restarting with stat
+2024-12-09 21:36:32 - WARNING -  * Debugger is active!
+2024-12-09 21:36:32 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:36:38 - INFO - 127.0.0.1 - - [09/Dec/2024 21:36:38] "POST /create_alert HTTP/1.1" 200 -
+2024-12-09 21:38:59 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:38:59 - INFO -  * Restarting with stat
+2024-12-09 21:39:00 - WARNING -  * Debugger is active!
+2024-12-09 21:39:00 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:39:03 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:39:03 - INFO -  * Restarting with stat
+2024-12-09 21:39:04 - WARNING -  * Debugger is active!
+2024-12-09 21:39:04 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:39:14 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:39:14 - INFO -  * Restarting with stat
+2024-12-09 21:39:15 - WARNING -  * Debugger is active!
+2024-12-09 21:39:15 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:39:27 - INFO - 127.0.0.1 - - [09/Dec/2024 21:39:27] "POST /create_alert HTTP/1.1" 200 -
+2024-12-09 21:39:54 - INFO - 127.0.0.1 - - [09/Dec/2024 21:39:54] "POST /create_alert HTTP/1.1" 200 -
+2024-12-09 21:40:57 - INFO - 127.0.0.1 - - [09/Dec/2024 21:40:57] "GET /thread_protection HTTP/1.1" 200 -
+2024-12-09 21:41:00 - INFO - 127.0.0.1 - - [09/Dec/2024 21:41:00] "GET /key-vault HTTP/1.1" 200 -
+2024-12-09 21:41:01 - INFO - 127.0.0.1 - - [09/Dec/2024 21:41:01] "GET /firewall_rules HTTP/1.1" 200 -
+2024-12-09 21:41:02 - INFO - 127.0.0.1 - - [09/Dec/2024 21:41:02] "GET /firewall_rules HTTP/1.1" 200 -
+2024-12-09 21:41:03 - INFO - 127.0.0.1 - - [09/Dec/2024 21:41:03] "GET /api_key HTTP/1.1" 200 -
+2024-12-09 21:41:04 - INFO - 127.0.0.1 - - [09/Dec/2024 21:41:04] "[33mGET /api_usage/user123 HTTP/1.1[0m" 404 -
+2024-12-09 21:41:07 - INFO - 127.0.0.1 - - [09/Dec/2024 21:41:07] "POST /generate_api_key HTTP/1.1" 200 -
+2024-12-09 21:41:11 - INFO - 127.0.0.1 - - [09/Dec/2024 21:41:11] "[35m[1mGET /encrypt HTTP/1.1[0m" 500 -
+2024-12-09 21:41:11 - INFO - 127.0.0.1 - - [09/Dec/2024 21:41:11] "GET /encrypt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2024-12-09 21:41:11 - INFO - 127.0.0.1 - - [09/Dec/2024 21:41:11] "GET /encrypt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2024-12-09 21:41:11 - INFO - 127.0.0.1 - - [09/Dec/2024 21:41:11] "GET /encrypt?__debugger__=yes&cmd=resource&f=console.png&s=1f5p09fr8fkQEqAXts1B HTTP/1.1" 200 -
+2024-12-09 21:41:11 - INFO - 127.0.0.1 - - [09/Dec/2024 21:41:11] "GET /encrypt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2024-12-09 21:42:02 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:42:02 - INFO -  * Restarting with stat
+2024-12-09 21:42:03 - WARNING -  * Debugger is active!
+2024-12-09 21:42:03 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:42:07 - INFO - 127.0.0.1 - - [09/Dec/2024 21:42:07] "[35m[1mGET /encrypt HTTP/1.1[0m" 500 -
+2024-12-09 21:42:07 - INFO - 127.0.0.1 - - [09/Dec/2024 21:42:07] "[36mGET /encrypt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2024-12-09 21:42:08 - INFO - 127.0.0.1 - - [09/Dec/2024 21:42:08] "[36mGET /encrypt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2024-12-09 21:42:08 - INFO - 127.0.0.1 - - [09/Dec/2024 21:42:08] "GET /encrypt?__debugger__=yes&cmd=resource&f=console.png&s=j7F4UJ8WNASNuhHQxDLo HTTP/1.1" 200 -
+2024-12-09 21:42:08 - INFO - 127.0.0.1 - - [09/Dec/2024 21:42:08] "[36mGET /encrypt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-12-09 21:43:32 - INFO - 127.0.0.1 - - [09/Dec/2024 21:43:32] "[35m[1mGET /encrypt HTTP/1.1[0m" 500 -
+2024-12-09 21:43:32 - INFO - 127.0.0.1 - - [09/Dec/2024 21:43:32] "[36mGET /encrypt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2024-12-09 21:43:33 - INFO - 127.0.0.1 - - [09/Dec/2024 21:43:33] "[36mGET /encrypt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2024-12-09 21:43:33 - INFO - 127.0.0.1 - - [09/Dec/2024 21:43:33] "[36mGET /encrypt?__debugger__=yes&cmd=resource&f=console.png&s=j7F4UJ8WNASNuhHQxDLo HTTP/1.1[0m" 304 -
+2024-12-09 21:43:33 - INFO - 127.0.0.1 - - [09/Dec/2024 21:43:33] "[36mGET /encrypt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-12-09 21:44:03 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:44:03 - INFO -  * Restarting with stat
+2024-12-09 21:44:03 - WARNING -  * Debugger is active!
+2024-12-09 21:44:03 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:44:04 - INFO - 127.0.0.1 - - [09/Dec/2024 21:44:04] "[32mGET /encrypt HTTP/1.1[0m" 302 -
+2024-12-09 21:44:04 - INFO - 127.0.0.1 - - [09/Dec/2024 21:44:04] "GET / HTTP/1.1" 200 -
+2024-12-09 21:44:06 - INFO - 127.0.0.1 - - [09/Dec/2024 21:44:06] "[32mGET /encrypt HTTP/1.1[0m" 302 -
+2024-12-09 21:44:07 - INFO - 127.0.0.1 - - [09/Dec/2024 21:44:07] "GET / HTTP/1.1" 200 -
+2024-12-09 21:47:04 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:47:04 - INFO -  * Restarting with stat
+2024-12-09 21:47:05 - WARNING -  * Debugger is active!
+2024-12-09 21:47:05 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:47:15 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:47:15 - INFO -  * Restarting with stat
+2024-12-09 21:47:16 - WARNING -  * Debugger is active!
+2024-12-09 21:47:16 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:47:22 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:47:22 - INFO -  * Restarting with stat
+2024-12-09 21:47:23 - WARNING -  * Debugger is active!
+2024-12-09 21:47:23 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:47:24 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:47:24 - INFO -  * Restarting with stat
+2024-12-09 21:47:25 - WARNING -  * Debugger is active!
+2024-12-09 21:47:25 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:47:32 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:47:32 - INFO -  * Restarting with stat
+2024-12-09 21:47:33 - WARNING -  * Debugger is active!
+2024-12-09 21:47:33 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:47:44 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:47:44 - INFO -  * Restarting with stat
+2024-12-09 21:47:45 - WARNING -  * Debugger is active!
+2024-12-09 21:47:45 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:47:46 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:47:46 - INFO -  * Restarting with stat
+2024-12-09 21:47:47 - WARNING -  * Debugger is active!
+2024-12-09 21:47:47 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:47:50 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:47:50 - INFO -  * Restarting with stat
+2024-12-09 21:47:51 - WARNING -  * Debugger is active!
+2024-12-09 21:47:51 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:50:59 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:50:59 - INFO -  * Restarting with stat
+2024-12-09 21:50:59 - WARNING -  * Debugger is active!
+2024-12-09 21:50:59 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:51:13 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:51:13 - INFO -  * Restarting with stat
+2024-12-09 21:51:32 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2024-12-09 21:51:32 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-09 21:51:32 - INFO -  * Restarting with stat
+2024-12-09 21:51:32 - WARNING -  * Debugger is active!
+2024-12-09 21:51:32 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:52:07 - INFO - 127.0.0.1 - - [09/Dec/2024 21:52:07] "[35m[1mGET /encrypt HTTP/1.1[0m" 500 -
+2024-12-09 21:52:07 - INFO - 127.0.0.1 - - [09/Dec/2024 21:52:07] "[36mGET /encrypt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2024-12-09 21:52:07 - INFO - 127.0.0.1 - - [09/Dec/2024 21:52:07] "[36mGET /encrypt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2024-12-09 21:52:08 - INFO - 127.0.0.1 - - [09/Dec/2024 21:52:08] "GET /encrypt?__debugger__=yes&cmd=resource&f=console.png&s=CoLYfIbUoDumfn6X5IK8 HTTP/1.1" 200 -
+2024-12-09 21:52:08 - INFO - 127.0.0.1 - - [09/Dec/2024 21:52:08] "[36mGET /encrypt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-12-09 21:52:52 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 21:52:52 - INFO -  * Restarting with stat
+2024-12-09 21:52:56 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2024-12-09 21:52:56 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-09 21:52:56 - INFO -  * Restarting with stat
+2024-12-09 21:52:57 - WARNING -  * Debugger is active!
+2024-12-09 21:52:57 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 21:52:59 - INFO - 127.0.0.1 - - [09/Dec/2024 21:52:59] "[35m[1mGET /encrypt HTTP/1.1[0m" 500 -
+2024-12-09 21:52:59 - INFO - 127.0.0.1 - - [09/Dec/2024 21:52:59] "[36mGET /encrypt?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2024-12-09 21:52:59 - INFO - 127.0.0.1 - - [09/Dec/2024 21:52:59] "[36mGET /encrypt?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2024-12-09 21:53:00 - INFO - 127.0.0.1 - - [09/Dec/2024 21:53:00] "GET /encrypt?__debugger__=yes&cmd=resource&f=console.png&s=9BY399F6Ltn75D5i5ieG HTTP/1.1" 200 -
+2024-12-09 21:53:00 - INFO - 127.0.0.1 - - [09/Dec/2024 21:53:00] "[36mGET /encrypt?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-12-09 21:55:07 - INFO - 127.0.0.1 - - [09/Dec/2024 21:55:07] "GET /encrypt HTTP/1.1" 200 -
+2024-12-09 21:55:15 - INFO - 127.0.0.1 - - [09/Dec/2024 21:55:15] "GET / HTTP/1.1" 200 -
+2024-12-09 21:58:56 - INFO - 127.0.0.1 - - [09/Dec/2024 21:58:56] "GET /encrypt HTTP/1.1" 200 -
+2024-12-09 21:59:03 - INFO - 127.0.0.1 - - [09/Dec/2024 21:59:03] "GET / HTTP/1.1" 200 -
+2024-12-09 21:59:04 - INFO - 127.0.0.1 - - [09/Dec/2024 21:59:04] "GET /encrypt HTTP/1.1" 200 -
+2024-12-09 22:01:34 - INFO - 127.0.0.1 - - [09/Dec/2024 22:01:34] "GET / HTTP/1.1" 200 -
+2024-12-09 22:01:36 - INFO - 127.0.0.1 - - [09/Dec/2024 22:01:36] "GET /firewall_rules HTTP/1.1" 200 -
+2024-12-09 22:01:36 - INFO - 127.0.0.1 - - [09/Dec/2024 22:01:36] "GET /firewall_rules HTTP/1.1" 200 -
+2024-12-09 22:01:37 - INFO - 127.0.0.1 - - [09/Dec/2024 22:01:37] "GET /thread_protection HTTP/1.1" 200 -
+2024-12-09 22:01:42 - INFO - 127.0.0.1 - - [09/Dec/2024 22:01:42] "POST /create_alert HTTP/1.1" 200 -
+2024-12-09 22:01:42 - INFO - 127.0.0.1 - - [09/Dec/2024 22:01:42] "POST /create_alert HTTP/1.1" 200 -
+2024-12-09 22:01:44 - INFO - 127.0.0.1 - - [09/Dec/2024 22:01:44] "POST /create_alert HTTP/1.1" 200 -
+2024-12-09 22:01:45 - INFO - 127.0.0.1 - - [09/Dec/2024 22:01:45] "POST /create_alert HTTP/1.1" 200 -
+2024-12-09 22:01:46 - INFO - 127.0.0.1 - - [09/Dec/2024 22:01:46] "POST /create_alert HTTP/1.1" 200 -
+2024-12-09 22:02:59 - INFO - 127.0.0.1 - - [09/Dec/2024 22:02:59] "GET /api_key HTTP/1.1" 200 -
+2024-12-09 22:03:00 - INFO - 127.0.0.1 - - [09/Dec/2024 22:03:00] "[33mGET /api_usage/user123 HTTP/1.1[0m" 404 -
+2024-12-09 22:03:02 - INFO - Attempting to log out user: firas
+2024-12-09 22:03:02 - INFO - User firas logged out successfully
+2024-12-09 22:03:02 - INFO - 127.0.0.1 - - [09/Dec/2024 22:03:02] "[32mPOST /logout HTTP/1.1[0m" 302 -
+2024-12-09 22:03:02 - INFO - 127.0.0.1 - - [09/Dec/2024 22:03:02] "GET /login HTTP/1.1" 200 -
+2024-12-09 22:03:13 - INFO - 127.0.0.1 - - [09/Dec/2024 22:03:13] "POST /login HTTP/1.1" 200 -
+2024-12-09 22:03:13 - INFO - 127.0.0.1 - - [09/Dec/2024 22:03:13] "GET /admin/admin/dashboard HTTP/1.1" 200 -
+2024-12-09 22:03:17 - INFO - 127.0.0.1 - - [09/Dec/2024 22:03:17] "GET /admin/manage_roles HTTP/1.1" 200 -
+2024-12-09 22:03:19 - INFO - 127.0.0.1 - - [09/Dec/2024 22:03:19] "GET /admin/create_role HTTP/1.1" 200 -
+2024-12-09 22:08:55 - INFO - 127.0.0.1 - - [09/Dec/2024 22:08:55] "GET /admin/create_role HTTP/1.1" 200 -
+2024-12-09 22:09:32 - INFO - 127.0.0.1 - - [09/Dec/2024 22:09:32] "[32mPOST /admin/create_role HTTP/1.1[0m" 302 -
+2024-12-09 22:09:32 - INFO - 127.0.0.1 - - [09/Dec/2024 22:09:32] "GET /admin/manage_roles HTTP/1.1" 200 -
+2024-12-09 22:09:38 - INFO - 127.0.0.1 - - [09/Dec/2024 22:09:38] "GET /admin/create_role HTTP/1.1" 200 -
+2024-12-09 22:09:53 - INFO - 127.0.0.1 - - [09/Dec/2024 22:09:53] "[32mPOST /admin/create_role HTTP/1.1[0m" 302 -
+2024-12-09 22:09:53 - INFO - 127.0.0.1 - - [09/Dec/2024 22:09:53] "GET /admin/manage_roles HTTP/1.1" 200 -
+2024-12-09 22:22:14 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 22:22:14 - INFO -  * Restarting with stat
+2024-12-09 22:22:14 - WARNING -  * Debugger is active!
+2024-12-09 22:22:14 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 22:23:46 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 22:23:46 - INFO -  * Restarting with stat
+2024-12-09 22:23:53 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5001
+2024-12-09 22:23:53 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-09 22:23:53 - INFO -  * Restarting with stat
+2024-12-09 22:23:54 - WARNING -  * Debugger is active!
+2024-12-09 22:23:54 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 22:25:09 - INFO -  * Detected change in 'C:\\Users\\sirin\\OneDrive\\Bureau\\azure-security-simulator\\app.py', reloading
+2024-12-09 22:25:09 - INFO -  * Restarting with stat
+2024-12-09 22:25:10 - WARNING -  * Debugger is active!
+2024-12-09 22:25:10 - INFO -  * Debugger PIN: 314-528-673
+2024-12-09 22:26:40 - INFO - 127.0.0.1 - - [09/Dec/2024 22:26:40] "[32mPOST /admin/delete_role/2 HTTP/1.1[0m" 302 -
+2024-12-09 22:26:40 - INFO - 127.0.0.1 - - [09/Dec/2024 22:26:40] "GET /admin/manage_roles HTTP/1.1" 200 -
+2024-12-09 22:26:42 - INFO - 127.0.0.1 - - [09/Dec/2024 22:26:42] "GET /admin/create_role HTTP/1.1" 200 -
+2024-12-09 22:27:05 - INFO - 127.0.0.1 - - [09/Dec/2024 22:27:05] "[32mPOST /admin/create_role HTTP/1.1[0m" 302 -
+2024-12-09 22:27:05 - INFO - 127.0.0.1 - - [09/Dec/2024 22:27:05] "GET /admin/manage_roles HTTP/1.1" 200 -
+2024-12-09 22:27:12 - INFO - 127.0.0.1 - - [09/Dec/2024 22:27:12] "GET /admin/manage_users HTTP/1.1" 200 -
+2024-12-09 22:27:15 - INFO - 127.0.0.1 - - [09/Dec/2024 22:27:15] "GET /admin/assign_role/9 HTTP/1.1" 200 -
+2024-12-09 22:27:21 - INFO - 127.0.0.1 - - [09/Dec/2024 22:27:21] "[32mPOST /admin/assign_role/9 HTTP/1.1[0m" 302 -
+2024-12-09 22:27:21 - INFO - 127.0.0.1 - - [09/Dec/2024 22:27:21] "GET /admin/manage_users HTTP/1.1" 200 -
+2024-12-09 22:27:32 - INFO - 127.0.0.1 - - [09/Dec/2024 22:27:32] "GET /admin/admin/dashboard HTTP/1.1" 200 -
+2024-12-09 22:30:02 - INFO - Attempting to log out user: admin
+2024-12-09 22:30:02 - INFO - User admin logged out successfully
+2024-12-09 22:30:02 - INFO - 127.0.0.1 - - [09/Dec/2024 22:30:02] "[32mPOST /logout HTTP/1.1[0m" 302 -
+2024-12-09 22:30:02 - INFO - 127.0.0.1 - - [09/Dec/2024 22:30:02] "GET /login HTTP/1.1" 200 -
+2024-12-09 22:30:16 - WARNING - MFA token missing for user: firas
+2024-12-09 22:30:16 - INFO - 127.0.0.1 - - [09/Dec/2024 22:30:16] "[31m[1mPOST /login HTTP/1.1[0m" 400 -
+2024-12-09 22:30:28 - INFO - 127.0.0.1 - - [09/Dec/2024 22:30:28] "POST /login HTTP/1.1" 200 -
+2024-12-09 22:30:28 - INFO - 127.0.0.1 - - [09/Dec/2024 22:30:28] "GET / HTTP/1.1" 200 -
+2024-12-09 22:30:31 - INFO - 127.0.0.1 - - [09/Dec/2024 22:30:31] "GET /encrypt HTTP/1.1" 200 -
+2024-12-09 22:30:34 - INFO - 127.0.0.1 - - [09/Dec/2024 22:30:34] "GET / HTTP/1.1" 200 -
+2024-12-09 22:30:36 - INFO - 127.0.0.1 - - [09/Dec/2024 22:30:36] "GET /encrypt HTTP/1.1" 200 -
+2024-12-09 22:30:41 - INFO - 127.0.0.1 - - [09/Dec/2024 22:30:41] "GET / HTTP/1.1" 200 -

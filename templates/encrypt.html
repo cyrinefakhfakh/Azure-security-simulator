@@ -35,7 +35,35 @@
                         <option value="caesar">Caesar Cipher - Simple Encryption</option>
                         <option value="scrypt">Scrypt - Memory-Hard Key Derivation</option>
                         <option value="aes">AES - Advanced Encryption Standard</option>
+                    </select>
+                </div>
 
+                <div id="aes-options" class="mb-4" style="display: none;">
+                    <label for="aes_key_size" class="block text-gray-700 font-semibold mb-2">
+                        AES Key Size:
+                    </label>
+                    <select 
+                        id="aes_key_size" 
+                        name="aes_key_size" 
+                        class="w-full py-3 px-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        <option value="128">128 bits</option>
+                        <option value="192">192 bits</option>
+                        <option value="256">256 bits</option>
+                    </select>
+
+                    <label for="aes_mode" class="block text-gray-700 font-semibold mb-2 mt-4">
+                        AES Mode:
+                    </label>
+                    <select 
+                        id="aes_mode" 
+                        name="aes_mode" 
+                        class="w-full py-3 px-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        <option value="cbc">CBC - Cipher Block Chaining</option>
+                        <option value="ecb">ECB - Electronic Codebook</option>
+                        <option value="cfb">CFB - Cipher Feedback</option>
+                        <option value="ofb">OFB - Output Feedback</option>
                     </select>
                 </div>
 
@@ -95,6 +123,36 @@
                         <option value="fernet">Fernet - Symmetric Decryption</option>
                         <option value="caesar">Caesar Cipher - Simple Decryption</option>
                         <option value="scrypt">Scrypt - Memory-Hard Key Derivation</option>
+                        <option value="aes">AES - Advanced Encryption Standard</option>
+                    </select>
+                </div>
+
+                <div id="aes-decrypt-options" class="mb-4" style="display: none;">
+                    <label for="aes_decrypt_key_size" class="block text-gray-700 font-semibold mb-2">
+                        AES Key Size:
+                    </label>
+                    <select 
+                        id="aes_decrypt_key_size" 
+                        name="aes_decrypt_key_size" 
+                        class="w-full py-3 px-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        <option value="128">128 bits</option>
+                        <option value="192">192 bits</option>
+                        <option value="256">256 bits</option>
+                    </select>
+
+                    <label for="aes_decrypt_mode" class="block text-gray-700 font-semibold mb-2 mt-4">
+                        AES Mode:
+                    </label>
+                    <select 
+                        id="aes_decrypt_mode" 
+                        name="aes_decrypt_mode" 
+                        class="w-full py-3 px-4 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                        <option value="cbc">CBC - Cipher Block Chaining</option>
+                        <option value="ecb">ECB - Electronic Codebook</option>
+                        <option value="cfb">CFB - Cipher Feedback</option>
+                        <option value="ofb">OFB - Output Feedback</option>
                     </select>
                 </div>
 
@@ -130,13 +188,22 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const encryptionTypeSelect = document.getElementById('encryption_type');
+    const aesOptions = document.getElementById('aes-options');
     const passwordField = document.getElementById('password-field');
     const passwordInput = document.getElementById('password');
+    
     const decryptionTypeSelect = document.getElementById('decryption_type');
+    const aesDecryptOptions = document.getElementById('aes-decrypt-options');
     const decryptPasswordField = document.getElementById('decrypt-password-field');
     const decryptPasswordInput = document.getElementById('decrypt_password');
 
     encryptionTypeSelect.addEventListener('change', function() {
+        if (this.value === 'aes') {
+            aesOptions.style.display = 'block';
+        } else {
+            aesOptions.style.display = 'none';
+        }
+
         if (this.value === 'scrypt') {
             passwordField.style.display = 'block';
             passwordInput.required = true;
@@ -147,6 +214,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     decryptionTypeSelect.addEventListener('change', function() {
+        if (this.value === 'aes') {
+            aesDecryptOptions.style.display = 'block';
+        } else {
+            aesDecryptOptions.style.display = 'none';
+        }
+
         if (this.value === 'scrypt') {
             decryptPasswordField.style.display = 'block';
             decryptPasswordInput.required = true;
@@ -159,6 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
     clearButton.addEventListener('click', function() {
         document.getElementById('data').value = '';
         encryptionTypeSelect.value = 'fernet';
+        aesOptions.style.display = 'none';
         passwordField.style.display = 'none';
         passwordInput.value = '';
         passwordInput.required = false;
@@ -167,6 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
     clearDecryptButton.addEventListener('click', function() {
         document.getElementById('encrypted_data').value = '';
         decryptionTypeSelect.value = 'fernet';
+        aesDecryptOptions.style.display = 'none';
         decryptPasswordField.style.display = 'none';
         decryptPasswordInput.value = '';
         decryptPasswordInput.required = false;
@@ -174,3 +249,4 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 {% endblock %}
+</document_content>
