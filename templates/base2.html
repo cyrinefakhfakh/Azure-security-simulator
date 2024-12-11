@@ -33,6 +33,9 @@
                     <a href="{{ url_for('encrypt') }}" class=" hover:bg-gray-600 px-4 py-2 rounded transition flex items-center">
                         <i data-feather="lock" class="mr-2"></i>Encrypt
                     </a>
+                    <a href="{{ url_for('upload_file') }}" class=" hover:bg-gray-600 px-4 py-2 rounded transition flex items-center">
+                        <i data-feather="key" class="mr-2"></i>Upload
+                    </a>
                     
                     <form action="{{ url_for('logout') }}" method="POST">
                         <button type="submit" class="hover:text-gray-200">Logout</button>

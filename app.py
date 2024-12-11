@@ -35,13 +35,10 @@ from cryptography.hazmat.primitives import padding
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key'
-
-
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///azure_sim.db'
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
-
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
@@ -58,11 +55,11 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S'
 )
 
-# Generate encryption key for Key Vault simulation
+
 encryption_key = Fernet.generate_key()
 cipher_suite = Fernet(encryption_key)
 
-# Models
+
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
@@ -72,9 +69,7 @@ class User(UserMixin, db.Model):
     totp_secret = db.Column(db.String(120), nullable=True)
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'), nullable=True)
     role_relation = db.relationship('Role', backref='users', foreign_keys=[role_id])
-    
-    
-    is_active = db.Column(db.Boolean, default=True)  # Add this for user status
+    is_active = db.Column(db.Boolean, default=True)  
 
     def has_permission(self, permission_name):
         if not self.role_relation:
@@ -83,6 +78,7 @@ class User(UserMixin, db.Model):
             exists().where(
                 and_(
                     RolePermission.role_id == self.role_relation.id,
+                    RolePermission.permission_id == Permission.id,
                     Permission.name == permission_name
                 )
             )
@@ -154,7 +150,6 @@ class RolePermission(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
     permission_id = db.Column(db.Integer, db.ForeignKey('permission.id'))
-    
     permission = db.relationship('Permission', back_populates='role_permissions')
     role = db.relationship('Role', back_populates='role_permissions')
     
@@ -167,13 +162,9 @@ def thread_protection():
     if request.method == 'POST':
         data = request.get_json()
         level = data.get('protectionLevel')
-        # Example logic for handling protection level
-        # Implement database logging, thresholds, etc.
         return jsonify({'success': f'Thread protection set to {level}'}), 200
 
     return render_template('thread_protection.html')
-
-
 
 def verify_permissions():
     with app.app_context():
@@ -184,8 +175,6 @@ def verify_permissions():
                 existing_assoc = RolePermission.query.filter_by(role_id=role.id, permission_id=permission.id).first()
                 if not existing_assoc:
                     print(f"Permission '{permission.name}' is not assigned to role '{role.name}'")
-
-
 
 
 
@@ -276,9 +265,10 @@ def encrypt():
 @app.route('/decrypt', methods=['POST'])
 @login_required
 def decrypt():
+    if not current_user.has_permission('encrypt'):
+        return render_template('error.html')  # Redirigez vers la page d'accueil ou une autre page
+
     
-    if not current_user.has_permission('decrypt'):
-        return render_template('error.html')
     
     encrypted_data = request.form['encrypted_data']
     decryption_type = request.form['decryption_type']
@@ -308,19 +298,133 @@ def decrypt():
         return jsonify({'error': str(e)}), 400
 
     return jsonify({'decrypted_data': decrypted_data})
+def check_user_permissions(username):
+    with app.app_context():
+        user = User.query.filter_by(username=username).first()
+        if user:
+            print(f"User role: {user.role}")
+            print(f"User role relation: {user.role_relation}")
+            has_encrypt = user.has_permission('encrypt')
+            print(f"Has encrypt permission: {has_encrypt}")
+
+
+@app.route('/manage_roles')
+@login_required
+def manage_roles():
+    roles = db.session.query(Role).options(
+        joinedload(Role.role_permissions).joinedload(RolePermission.permission)
+    ).all()
+    return render_template('admin/manage_roles.html', roles=roles)
+
+class CreateRoleForm(FlaskForm):
+    name = StringField('Role Name', validators=[DataRequired()])
+    description = TextAreaField('Description')
+    submit = SubmitField('Create Role')
+
+class EditRoleForm(FlaskForm):
+    name = StringField('Role Name', validators=[DataRequired()])
+    description = TextAreaField('Description')
+    submit = SubmitField('Update Role')
+class DeleteRoleForm(FlaskForm):
+    submit = SubmitField('Delete Role')
+admin_bp = Blueprint('admin_bp', __name__)
+@admin_bp.route('/edit_role/<int:role_id>', methods=['GET', 'POST'])
+@login_required
+def edit_role(role_id):
+    role = Role.query.get_or_404(role_id)
+    form = EditRoleForm(obj=role)
+
+    if form.validate_on_submit():
+        try:
+            form.populate_obj(role)
+            db.session.commit()
+            flash('Role updated successfully!', 'success')
+        except Exception as e:
+            db.session.rollback()
+            flash(f'Error updating role: {e}', 'danger')
+        return redirect(url_for('admin_bp.manage_roles'))
+    
+    return render_template('edit_role.html', form=form, role=role)
 
 
 
+@admin_bp.route('manage_roles', methods=['GET'])
+@login_required
+def manage_roles():
+    
+    
+    roles = Role.query.all()
+    return render_template('admin/manage_roles.html', roles=roles)
 
 
+@admin_bp.route('/create_role', methods=['GET', 'POST'])
+@login_required
+def create_role():
+    if current_user.role != 'admin':
+        flash('Access denied. Admin rights required.', 'danger')
+        return redirect(url_for('index'))
+    
+    if request.method == 'POST':
+        role_name = request.form.get('name')
+        role_description = request.form.get('description')
+        permissions = request.form.getlist('permissions')
+       
+        
+        # Vérifiez si le rôle existe déjà
+        existing_role = Role.query.filter_by(name=role_name).first()
+        if existing_role:
+            flash('Role name already exists', 'danger')
+            return redirect(url_for('admin_bp.create_role'))
+        
+        new_role = Role(name=role_name, description=role_description)
+        db.session.add(new_role)
+        db.session.commit()
+        
+        # Ajoutez les permissions au rôle
+        for permission_name in permissions:
+            permission = Permission.query.filter_by(name=permission_name).first()
+            if permission:
+                role_permission = RolePermission(role_id=new_role.id, permission_id=permission.id)
+                db.session.add(role_permission)
+        
+        db.session.commit()
+        flash('Role created successfully', 'success')
+        return redirect(url_for('admin_bp.manage_roles'))
+    
+    permissions = Permission.query.all()
+    return render_template('admin/create_role.html', permissions=permissions)
 
 
+from sqlalchemy.orm import joinedload
 
+@admin_bp.route('/delete_role/<int:role_id>', methods=['POST'])
+def delete_role(role_id):
+    role = Role.query.get_or_404(role_id)
+    db.session.delete(role)
+    db.session.commit()
+    flash('Role deleted successfully', 'success')
+    return redirect(url_for('admin_bp.manage_roles'))
 
+@admin_bp.route('/assign_role/<int:user_id>', methods=['GET', 'POST'])
+@login_required
+def assign_role(user_id):
+    user = User.query.get_or_404(user_id)
+    roles = Role.query.all()
+    
+    if request.method == 'POST':
+        role_id = request.form.get('role_id')
+        if role_id:
+            role = Role.query.get(role_id)
+            if role:
+            # Retrieve all Permission objects linked to the role
+                permissions = [rp.permission for rp in role.role_permissions]
+                print(f"Permissions for role {role.name}: {[perm.name for perm in permissions]}")
 
-
-
-
+                flash('Role assigned successfully', 'success')
+                return redirect(url_for('admin_bp.manage_users'))
+        flash('Invalid role selected', 'danger')
+    
+    return render_template('admin/assign_role.html', user=user, roles=roles)
 
 @app.route('/create_alert', methods=['POST'])
 def create_alert():
@@ -330,19 +434,13 @@ def create_alert():
     if not message:
         return jsonify({'success': False, 'error': 'Message is required'}), 400
     
-    # Send email (assuming you have configured Flask-Mail)
     try:
-        msg = Message("Security Alert", sender="sirinefakhfakh03@gmail.com", recipients=["kahlaoui.firas2017@gmail.com"])
+        msg = Message("Security Alert", sender="sirinefakhfakh03@gmail.com", recipients=["sirinefakhfakh03@gmail.com"])
         msg.body = message
         mail.send(msg)
         return jsonify({'success': True})
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
-
-
-
-
-
 
 
 @app.route('/asc_dashboard')
@@ -465,38 +563,8 @@ def add_compliance_status():
     return jsonify({'success': 'Compliance status added successfully'}), 200
 
 
-# RBAC Decorator
-def requires_permission(permission_name):
-    def decorator(f):
-        @wraps(f)
-        def decorated_function(*args, **kwargs):
-            # Check if user is authenticated
-            if not current_user.is_authenticated:
-                abort(401)
-            
-            # Get user's role
-            user_role = current_user.role_relation
-            
-            if not user_role:
-                abort(403)
-            
-            # Check if role has required permission
-            has_permission = db.session.query(exists().where(
-                and_(
-                    RolePermission.role_id == user_role.id,
-                    Permission.name == permission_name
-                )
-            )).scalar()
-            
-            if not has_permission:
-                abort(403)
-            
-            return f(*args, **kwargs)
-        return decorated_function
-    return decorator
 
-# Define the admin blueprint
-admin_bp = Blueprint('admin_bp', __name__)
+
 
 
 def log_firewall_rule(user_id, rule, timestamp):
@@ -517,16 +585,15 @@ def firewall_rules():
         if len(rule) > 100:
             return jsonify({'error': 'Rule must be 100 characters or less'}), 400
         
-        # Add more robust validation
+       
         if not re.match(r'^[a-zA-Z0-9\s\-_]+$', rule):
             return jsonify({'error': 'Invalid rule format'}), 400
         
-        # Simulated logging (replace with actual logging)
-        # log_firewall_rule(current_user.id, rule, datetime.now())
+       
         
         return jsonify({'success': f'Firewall rule added: {rule}'}), 200
     
-    # Simulated fetch from the database
+    
     rules = ["Allow HTTP", "Deny SSH"]
     return render_template('firewall_rules.html', rules=rules)
 
@@ -554,16 +621,14 @@ def secure_endpoint():
         api_usage[api_key]['requests'] += 1
         api_usage[api_key]['last_used'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         return jsonify({"message": "Secure data accessed!"})
-    else:
-        return jsonify({"error": "Invalid API key"}), 401
+    
 
 @app.route('/api_usage/<user_id>', methods=['GET'])
 def get_api_usage(user_id):
     user_api_key = api_keys.get(user_id)
     if user_api_key and user_api_key in api_usage:
         return jsonify(api_usage[user_api_key])
-    else:
-        return jsonify({"error": "No API usage found"}), 404
+    
 
 @app.route('/api_key')
 def api_key_page():
@@ -574,49 +639,12 @@ def api_key_page():
 
 
 
-
-
-
-
-
-
-@app.route('/add-example-users')
-@login_required
-def add_example_users():
-    example_users = [
-        {'username': 'Ali ', 'email': 'Ali@example.com', 'password': 'adminpass', 'role': 'admin'},
-        {'username': 'user1', 'email': 'user1@example.com', 'password': 'user1pass', 'role': 'user'},
-        {'username': 'user2', 'email': 'user2@example.com', 'password': 'user2pass', 'role': 'user'},
-        {'username': 'user3', 'email': 'user3@example.com','password': 'user3pass', 'role': 'user'},
-    ]
-    
-    for user_data in example_users:
-        user = User(
-            username=user_data['username'], 
-            email=user_data['email'], 
-            role=user_data['role']
-        )
-        user.password_hash = generate_password_hash(user_data['password'])
-        db.session.add(user)
-    
-    db.session.commit()
-    
-    return 'Example users added successfully!'
-
-
 @admin_bp.route('/admin/dashboard')
 @login_required
 def admin_dashboard():
-    
-    
-    # Dashboard statistics
     total_users = User.query.count()
     active_users = User.query.filter(User.is_active == True).count()
-    
-    # Get users with their roles
     users = User.query.all()
-    
-    # Get roles and permissions for display
     roles = Role.query.all()
     permissions = Permission.query.all()
     
@@ -645,19 +673,13 @@ def toggle_user_status():
         }), 403
     
     data = request.get_json()
-    user_id = data.get('user_id')
-    
-    
+    user_id = data.get('user_id') 
     user = User.query.get_or_404(user_id)
-        
-        # Prevent toggling your own account
     if user.id == current_user.id:
             return jsonify({
                 'success': False, 
                 'message': 'Cannot modify own account'
             }), 400
-        
-        # Toggle user's active status
     user.is_active = not user.is_active
     db.session.commit()
         
@@ -667,10 +689,6 @@ def toggle_user_status():
             'new_status': user.is_active
         })
     
-    
-   
-
-
 class RoleForm(FlaskForm):
     name = StringField('Role Name', 
         validators=[
@@ -734,12 +752,8 @@ def users():
 @admin_bp.route('/manage_users', methods=['GET'])
 @login_required
 def manage_users():
-    # Ensure only users with manage user permissions can access
-    
-    
-    users = User.query.all()  # Fetch all users from the database
+    users = User.query.all()  
     return render_template('admin/manage_users.html', users=users)
-
 
 
 @admin_bp.route('/user/edit/<int:user_id>', methods=['GET', 'POST'])
@@ -754,8 +768,7 @@ def edit_user(user_id):
     if request.method == 'POST':
         user.role = request.form.get('role')
         user.username = request.form.get('username')
-        
-        # Optional: password reset
+
         new_password = request.form.get('password')
         if new_password:
             user.password_hash = generate_password_hash(new_password)
@@ -788,19 +801,10 @@ def user_activity(user_id):
 
 
 
-
-
-
-
-
-
-
-
 @login_manager.user_loader
 def load_user(user_id):
     return db.session.get(User, int(user_id))
 
-# Azure AD simulation
 def generate_token(user):
     token = jwt.encode({
         'user_id': user.id,
@@ -816,22 +820,19 @@ def generate_token(user):
 def init_db():
     with app.app_context():
         db.create_all()
-        
-        # First ensure a default role exists
         admin_role = Role.query.filter_by(name='admin').first()
         if not admin_role:
             admin_role = Role(name='admin', description='Administrator role')
             db.session.add(admin_role)
             db.session.commit()
         
-        # Check if admin user exists
         if not User.query.filter_by(username='admin').first():
             admin_user = User(
                 username='admin',
                 email='admin@gmail.com',
                 password_hash=generate_password_hash('admin'),
                 role='admin',
-                role_relation=admin_role, # Set the role relationship
+                role_relation=admin_role, 
                 
             )
             db.session.add(admin_user)
@@ -844,7 +845,7 @@ def init_permissions():
             'create_user', 'edit_user', 'delete_user', 'view_users',
             'create_content', 'edit_content', 'delete_content', 'publish_content',
             'create_role', 'edit_role', 'delete_role', 'assign_roles',
-            'view_logs', 'manage_settings', 'backup_system', 'restore_system'
+            'view_logs', 'manage_settings', 'backup_system', 'restore_system','encrypt', 'decrypt'
         ]
         
         for perm_name in permissions:
@@ -868,14 +869,6 @@ def delete_user(user_id):
     
     flash('User deleted successfully', 'success')
     return redirect(url_for('admin_bp.manage_users'))
-
-
-
-
-
-
-
-
 
 def assign_all_permissions_to_admin():
     with app.app_context():
@@ -903,7 +896,7 @@ def index():
 def login():
     if current_user.is_authenticated:
         if current_user.role == 'admin':
-            return redirect(url_for('admin_bp.admin_dashboard'))  # Admin goes to dashboard
+            return redirect(url_for('admin_bp.admin_dashboard')) 
         else:
             return redirect(url_for('/')) 
 
@@ -911,48 +904,64 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
         token = request.form.get('token')
-        
-        # Validate input
+
         if not username or not password:
             app.logger.warning("Login attempt with missing credentials")
             return jsonify({'error': 'Username and password are required'}), 400
-        
-        # Find user
+
         user = User.query.filter_by(username=username).first()
         if not user:
             app.logger.warning(f"Login attempt for non-existent user: {username}")
             return jsonify({'error': 'Invalid credentials'}), 401
-        
-        # Verify password
+
         if not check_password_hash(user.password_hash, password):
             app.logger.warning(f"Failed password attempt for user: {username}")
             return jsonify({'error': 'Invalid credentials'}), 401
-        
-        # MFA verification
+
         if user.totp_secret:
             if not token:
                 app.logger.warning(f"MFA token missing for user: {username}")
                 return jsonify({'error': 'MFA token required'}), 400
-            # Verify the token here (assuming you have a function to verify the token)
             if not verify_totp_token(user.totp_secret, token):
                 app.logger.warning(f"Invalid MFA token for user: {username}")
                 return jsonify({'error': 'Invalid MFA token'}), 401
         
+        # Log the user in
         login_user(user)
-        login_user(user)
+
+        # Send login notification email
+        try:
+            msg = Message(
+                "Login Notification",
+                sender="sirinefakhfakh03@example.com",
+                recipients=[user.email]  # Assumes `user.email` stores the user's email address
+            )
+            msg.body = f"""
+            Hello {user.username},
+
+ We hope this message finds you well.
+
+ We wanted to inform you that you have successfully logged into your account. We’re thrilled to have you back! If you need any assistance or have any questions, feel free to reach out to our support team at any time.
+
+For your security, remember to keep your login details confidential and avoid sharing them with anyone. If you notice any suspicious activity on your account, please contact us immediately.
+
+ Thank you for choosing our service. We appreciate your trust and look forward to serving you.
+
+  Best regards,
+Cyrine security App Team
+                                        """
+
+            mail.send(msg)
+            app.logger.info(f"Login notification email sent to {user.email}")
+        except Exception as e:
+            app.logger.error(f"Failed to send login email to {user.email}: {e}")
+
         if user.role == 'admin':
             return jsonify({'redirect': url_for('admin_bp.admin_dashboard')})
         else:
             return jsonify({'redirect': url_for('index')})
-        
-
+    
     return render_template('login.html')
-
-
-
-
-
-
 
 def verify_totp_token(secret, token):
     totp = pyotp.TOTP(secret)
@@ -965,13 +974,13 @@ def register():
         email = request.form['email']
         password = request.form['password']
         
-        # Vérifiez si l'email existe déjà
+        
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
             flash('Email address already exists', 'error')
             return redirect(url_for('register'))
         
-        # Hash the password
+        
         password_hash = generate_password_hash(password)
         
         # Create a new user
@@ -1012,7 +1021,7 @@ def register():
             <html>
             <body>
                 <p>Dear {username},</p>
-                <p>Welcome to <strong>YourAppName</strong>! To enhance your account security, please set up Multi-Factor Authentication (MFA).</p>
+                <p>Welcome to <strong>Azure security simulator</strong>! To enhance your account security, please set up Multi-Factor Authentication (MFA).</p>
                 <p>Scan the QR code attached or use this secret code: <strong>{totp_secret}</strong></p>
                 <p>If you're ready, click the button below to set up your MFA:</p>
                 <p style="text-align:center;">
@@ -1036,10 +1045,6 @@ def register():
             return redirect(url_for('register'))
     
     return render_template('register.html')
-
-
-
-
 
 
 
@@ -1156,12 +1161,6 @@ def analyze_security_events(events):
 
 
 
-
-
-
-
-
-
 class CreateUserForm(FlaskForm):
     username = StringField('Username', validators=[
         DataRequired(), 
@@ -1243,122 +1242,6 @@ def create_user():
 
 
 
-@app.route('/manage_roles')
-@login_required
-def manage_roles():
-    roles = db.session.query(Role).options(
-        joinedload(Role.role_permissions).joinedload(RolePermission.permission)
-    ).all()
-    return render_template('admin/manage_roles.html', roles=roles)
-
-class CreateRoleForm(FlaskForm):
-    name = StringField('Role Name', validators=[DataRequired()])
-    description = TextAreaField('Description')
-    submit = SubmitField('Create Role')
-
-class EditRoleForm(FlaskForm):
-    name = StringField('Role Name', validators=[DataRequired()])
-    description = TextAreaField('Description')
-    submit = SubmitField('Update Role')
-class DeleteRoleForm(FlaskForm):
-    submit = SubmitField('Delete Role')
-@admin_bp.route('/edit_role/<int:role_id>', methods=['GET', 'POST'])
-@login_required
-def edit_role(role_id):
-    role = Role.query.get_or_404(role_id)
-    form = EditRoleForm(obj=role)
-
-    if form.validate_on_submit():
-        try:
-            form.populate_obj(role)
-            db.session.commit()
-            flash('Role updated successfully!', 'success')
-        except Exception as e:
-            db.session.rollback()
-            flash(f'Error updating role: {e}', 'danger')
-        return redirect(url_for('admin_bp.manage_roles'))
-    
-    return render_template('edit_role.html', form=form, role=role)
-
-
-
-@admin_bp.route('manage_roles', methods=['GET'])
-@login_required
-def manage_roles():
-    
-    
-    roles = Role.query.all()
-    return render_template('admin/manage_roles.html', roles=roles)
-
-
-@admin_bp.route('/create_role', methods=['GET', 'POST'])
-@login_required
-def create_role():
-    if current_user.role != 'admin':
-        flash('Access denied. Admin rights required.', 'danger')
-        return redirect(url_for('index'))
-    
-    if request.method == 'POST':
-        role_name = request.form.get('name')
-        role_description = request.form.get('description')
-        permissions = request.form.getlist('permissions')
-       
-        
-        # Vérifiez si le rôle existe déjà
-        existing_role = Role.query.filter_by(name=role_name).first()
-        if existing_role:
-            flash('Role name already exists', 'danger')
-            return redirect(url_for('admin_bp.create_role'))
-        
-        new_role = Role(name=role_name, description=role_description)
-        db.session.add(new_role)
-        db.session.commit()
-        
-        # Ajoutez les permissions au rôle
-        for permission_name in permissions:
-            permission = Permission.query.filter_by(name=permission_name).first()
-            if permission:
-                role_permission = RolePermission(role_id=new_role.id, permission_id=permission.id)
-                db.session.add(role_permission)
-        
-        db.session.commit()
-        flash('Role created successfully', 'success')
-        return redirect(url_for('admin_bp.manage_roles'))
-    
-    permissions = Permission.query.all()
-    return render_template('admin/create_role.html', permissions=permissions)
-
-
-from sqlalchemy.orm import joinedload
-
-@admin_bp.route('/delete_role/<int:role_id>', methods=['POST'])
-def delete_role(role_id):
-    role = Role.query.get_or_404(role_id)
-    db.session.delete(role)
-    db.session.commit()
-    flash('Role deleted successfully', 'success')
-    return redirect(url_for('admin_bp.manage_roles'))
-
-@admin_bp.route('/assign_role/<int:user_id>', methods=['GET', 'POST'])
-@login_required
-def assign_role(user_id):
-    user = User.query.get_or_404(user_id)
-    roles = Role.query.all()
-    
-    if request.method == 'POST':
-        role_id = request.form.get('role_id')
-        if role_id:
-            role = Role.query.get(role_id)
-            if role:
-                user.role_relation = role
-                db.session.commit()
-                flash('Role assigned successfully', 'success')
-                return redirect(url_for('admin_bp.manage_users'))
-        flash('Invalid role selected', 'danger')
-    
-    return render_template('admin/assign_role.html', user=user, roles=roles)
-
-
 
 def generate_login_qr(user):
     # Générer un jeton JWT pour le login
@@ -1376,9 +1259,6 @@ def generate_login_qr(user):
     qr_buffer.seek(0)
     return qr_buffer
 app.register_blueprint(admin_bp, url_prefix='/admin')
-
-
-
 
 
 
@@ -1466,12 +1346,34 @@ def upload_file():
     return render_template('upload.html')
 
 
+def initialize_default_permissions():
+    """
+    Create default system permissions if they don't exist.
+    This ensures critical permissions are always available.
+    """
+    default_permissions = [
+        {'name': 'create_role', 'description': 'Create new user roles'},
+        {'name': 'edit_role', 'description': 'Modify existing user roles'},
+        {'name': 'delete_role', 'description': 'Remove user roles'},
+        {'name': 'view_roles', 'description': 'View role details'},
+        {'name': 'encrypt', 'description': 'Use encryption functionality'},
+        {'name': 'decrypt', 'description': 'Use decryption functionality'},
+        {'name': 'manage_users', 'description': 'Manage user accounts'},
+        {'name': 'view_security_logs', 'description': 'Access security event logs'}
+    ]
 
-
-
-
-
-
+    with app.app_context():
+        for perm_data in default_permissions:
+            existing_permission = Permission.query.filter_by(name=perm_data['name']).first()
+            if not existing_permission:
+                new_permission = Permission(
+                    name=perm_data['name'], 
+                    description=perm_data['description']
+                )
+                db.session.add(new_permission)
+        
+        # Commit the new permissions
+        db.session.commit()
 
 
 
@@ -1479,5 +1381,8 @@ if __name__ == '__main__':
     with app.app_context():
         init_db()
         init_permissions()
+        initialize_default_permissions()
         assign_all_permissions_to_admin()
+        check_user_permissions('firas')
+        
     app.run(debug=True,port=5001)
