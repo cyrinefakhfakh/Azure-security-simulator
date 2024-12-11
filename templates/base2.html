@@ -34,7 +34,10 @@
                         <i data-feather="lock" class="mr-2"></i>Encrypt
                     </a>
                     <a href="{{ url_for('upload_file') }}" class=" hover:bg-gray-600 px-4 py-2 rounded transition flex items-center">
-                        <i data-feather="key" class="mr-2"></i>Upload
+                        <i data-feather="hard-drive" class="mr-2"></i>Disk
+                    </a>
+                    <a href="{{ url_for('profile') }}" class=" hover:bg-gray-600 px-4 py-2 rounded transition flex items-center">
+                        <i data-feather="user" class="mr-2"></i>Profile
                     </a>
                     
                     <form action="{{ url_for('logout') }}" method="POST">

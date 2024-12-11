@@ -8,8 +8,20 @@
             <div class="p-6">
                 <h1 class="text-2xl font-bold mb-6">File Encryption</h1>
                 <p class="text-gray-600 mb-4">
-                    Upload a file to encrypt it securely. You can later decrypt the file using the same key.
+                    Upload a file to encrypt it securely. After encryption, you can download the file and later decrypt it using the same key.
                 </p>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="mb-4">
+                        {% for category, message in messages %}
+                        <div class="p-4 mb-2 text-white bg-{{ 'red' if category == 'error' else 'green' }}-500 rounded">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% endwith %}
 
                 <form method="post" enctype="multipart/form-data" class="space-y-4">
                     <div class="flex flex-col">
@@ -29,6 +41,16 @@
                         </button>
                     </div>
                 </form>
+                {% if download_link %}
+                <div class="mt-6">
+                    <a 
+                        href="{{ download_link }}" 
+                        class="text-blue-600 hover:underline"
+                        target="_blank">
+                        Download Encrypted File
+                    </a>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>

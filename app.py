@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify, abort
+from flask import Flask, send_from_directory,render_template, request, redirect, url_for, flash, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -87,10 +87,11 @@ class User(UserMixin, db.Model):
 class Secret(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
-    value = db.Column(db.Text, nullable=False)
+    value = db.Column(db.Text, nullable=False)  # Encrypted file content or secret
+    key = db.Column(db.Text, nullable=False)  # Encrypted encryption key
     created_by = db.Column(db.Integer, db.ForeignKey('user.id'))
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
-    
+
 
 class SecurityEvent(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -614,13 +615,28 @@ def generate_api_key():
     api_usage[new_api_key] = {'requests': 0, 'last_used': None}
     return jsonify({'api_key': new_api_key})
 
+api_usage = {
+    "valid-api-key-123": {"requests": 0, "last_used": ""}
+}
+
 @app.route('/secure_endpoint', methods=['GET'])
 def secure_endpoint():
+    # Get the API key from request headers
     api_key = request.headers.get('x-api-key')
-    if api_key in api_usage:
-        api_usage[api_key]['requests'] += 1
-        api_usage[api_key]['last_used'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        return jsonify({"message": "Secure data accessed!"})
+
+    if not api_key:
+        return jsonify({"error": "API key is required"}), 400  # Bad request if no API key is provided
+
+    if api_key not in api_usage:
+        return jsonify({"error": "Invalid API key"}), 401  # Unauthorized if API key is not valid
+
+    # Update usage statistics if API key is valid
+    api_usage[api_key]['requests'] += 1
+    api_usage[api_key]['last_used'] = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+
+    # Return a success message
+    return jsonify({"message": "Secure data accessed!", "usage": api_usage[api_key]})
+
     
 
 @app.route('/api_usage/<user_id>', methods=['GET'])
@@ -870,6 +886,63 @@ def delete_user(user_id):
     flash('User deleted successfully', 'success')
     return redirect(url_for('admin_bp.manage_users'))
 
+from flask import current_app
+@app.route('/profile', methods=['GET', 'POST'])
+@login_required
+def profile():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        
+        # Track if password was changed
+        password_changed = False
+        
+        if username:
+            current_user.username = username
+        
+        if email:
+            current_user.email = email
+        
+        if password:
+            # Check password complexity (optional)
+            if len(password) < 8:
+                flash('Password must be at least 8 characters long', 'danger')
+                return redirect(url_for('profile'))
+            
+            current_user.password_hash = generate_password_hash(password)
+            password_changed = True
+        
+        # Save changes to the database
+        try:
+            db.session.commit()
+            
+            # Send email notification if password was changed
+            if password_changed:
+                mail = Mail(current_app)
+                msg = Message('Password Changed', 
+                              sender=current_app.config['MAIL_DEFAULT_SENDER'],
+                              recipients=[current_user.email])
+                msg.body = f"""
+                Hello {current_user.username},
+
+                Your account password has been changed. 
+                If you did not make this change, please contact support immediately.
+
+                Best regards,
+                Your Application Team
+                """
+                mail.send(msg)
+            
+            flash('Profile updated successfully', 'success')
+        except Exception as e:
+            db.session.rollback()
+            flash('An error occurred while updating your profile', 'danger')
+        
+        return redirect(url_for('profile'))
+    
+    return render_template('profile.html', user=current_user)
+
 def assign_all_permissions_to_admin():
     with app.app_context():
         admin_role = Role.query.filter_by(name='admin').first()
@@ -898,7 +971,7 @@ def login():
         if current_user.role == 'admin':
             return redirect(url_for('admin_bp.admin_dashboard')) 
         else:
-            return redirect(url_for('/')) 
+            return redirect(url_for('index')) 
 
     if request.method == 'POST':
         username = request.form.get('username')
@@ -1057,59 +1130,7 @@ def logout():
     app.logger.info(f"User {username} logged out successfully")
     return redirect(url_for('login'))
 
-@app.route('/key-vault')
-@login_required
-def key_vault():
-    secrets = Secret.query.filter_by(created_by=current_user.id).all()
-    # Decrypt the secrets before sending to template
-    decrypted_secrets = []
-    for secret in secrets:
-        try:
-            decrypted_value = cipher_suite.decrypt(secret.value).decode()
-            decrypted_secrets.append({
-                'id': secret.id,
-                'name': secret.name,
-                'value': decrypted_value,
-                'created_at': secret.created_at
-            })
-        except Exception as e:
-            logging.error(f"Error decrypting secret {secret.id}: {str(e)}")
-            flash(f"Error decrypting secret {secret.name}", "error")
-            
-    return render_template('key_vault.html', secrets=decrypted_secrets)
 
-@app.route('/key-vault/add', methods=['POST'])
-@login_required
-def add_secret():
-    try:
-        name = request.form['name']
-        value = request.form['value']
-        
-        # Validate input
-        if not name or not value:
-            flash('Secret name and value cannot be empty', 'error')
-            return redirect(url_for('key_vault'))
-        
-        # Encrypt with error handling
-        try:
-            encrypted_value = cipher_suite.encrypt(value.encode())
-        except Exception as e:
-            app.logger.error(f"Encryption error: {str(e)}")
-            flash('Error encrypting secret', 'error')
-            return redirect(url_for('key_vault'))
-        
-        secret = Secret(name=name, value=encrypted_value, created_by=current_user.id)
-        db.session.add(secret)
-        db.session.commit()
-        
-        app.logger.info(f"New secret '{name}' added by {current_user.username}")
-        flash('Secret added successfully', 'success')
-    except Exception as e:
-        db.session.rollback()
-        app.logger.error(f"Error adding secret: {str(e)}")
-        flash('Failed to add secret', 'error')
-    
-    return redirect(url_for('key_vault'))
 
 @app.route('/security-center')
 @login_required
@@ -1265,7 +1286,9 @@ app.register_blueprint(admin_bp, url_prefix='/admin')
 
 
 from werkzeug.utils import secure_filename
-
+from werkzeug.utils import secure_filename
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.backends import default_backend
 UPLOAD_FOLDER = './uploads'
 ENCRYPTED_FOLDER = './encrypted'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -1274,40 +1297,54 @@ os.makedirs(ENCRYPTED_FOLDER, exist_ok=True)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['ENCRYPTED_FOLDER'] = ENCRYPTED_FOLDER
 
-def encrypt_file(file_path, key):
-    """Encrypts a file with AES encryption."""
-    with open(file_path, 'rb') as file:
-        data = file.read()
-
-    iv = os.urandom(16)
+def encrypt_file(file_data, key):
+    """Encrypts the file using AES encryption"""
+    iv = os.urandom(16)  # Generate a random initialization vector
     cipher = Cipher(algorithms.AES(key), modes.CFB(iv), backend=default_backend())
     encryptor = cipher.encryptor()
-    encrypted_data = iv + encryptor.update(data) + encryptor.finalize()
+    encrypted_data = iv + encryptor.update(file_data) + encryptor.finalize()
+    return encrypted_data
 
-    encrypted_file_path = os.path.join(app.config['ENCRYPTED_FOLDER'], f"encrypted_{os.path.basename(file_path)}")
-    with open(encrypted_file_path, 'wb') as enc_file:
-        enc_file.write(encrypted_data)
-    
-    return encrypted_file_path
+def decrypt_file(secret):
+    """Decrypts the file using the stored encryption key"""
+    # Decrypt the encryption key first
+    encryption_key = cipher_suite.decrypt(secret.key)  # Decrypt the key using the same cipher_suite
 
-def decrypt_file(file_path, key):
-    """Decrypts a file encrypted with AES encryption."""
-    with open(file_path, 'rb') as file:
-        data = file.read()
+    # Extract the IV (first 16 bytes)
+    iv = secret.value[:16]  # The first 16 bytes are the IV
+    encrypted_value = secret.value[16:]  # The rest is the encrypted file data
 
-    iv = data[:16]
-    encrypted_data = data[16:]
-    cipher = Cipher(algorithms.AES(key), modes.CFB(iv), backend=default_backend())
+    # Decrypt the file content using the decryption key
+    cipher = Cipher(algorithms.AES(encryption_key), modes.CFB(iv), backend=default_backend())
     decryptor = cipher.decryptor()
-    decrypted_data = decryptor.update(encrypted_data) + decryptor.finalize()
+    decrypted_data = decryptor.update(encrypted_value) + decryptor.finalize()
 
-    decrypted_file_path = os.path.join(app.config['UPLOAD_FOLDER'], f"decrypted_{os.path.basename(file_path)}")
-    with open(decrypted_file_path, 'wb') as dec_file:
-        dec_file.write(decrypted_data)
-    
-    return decrypted_file_path
+    return decrypted_data
+
+
+def store_encrypted_file_and_key(filename, file_data, encryption_key):
+    # Encrypt the file content
+    encrypted_data, iv = encrypt_file(file_data, encryption_key)
+
+    # Encrypt the encryption key itself (for storage)
+    encrypted_key = cipher_suite.encrypt(encryption_key)  # Use a secure cipher_suite
+
+    # Save encrypted file data (not just the path)
+    encrypted_file_data = encrypted_data  # The encrypted content itself
+
+    # Save the secret (file content and encryption key)
+    secret = Secret(
+        name=filename,
+        value=encrypted_file_data,  # Store the encrypted file content here
+        key=encrypted_key,  # Store the encrypted encryption key
+        created_by=current_user.id
+    )
+    db.session.add(secret)
+    db.session.commit()
+    flash('File encrypted and key stored successfully', 'success')
 
 @app.route('/upload', methods=['GET', 'POST'])
+@login_required
 def upload_file():
     if request.method == 'POST':
         if 'file' not in request.files:
@@ -1322,28 +1359,107 @@ def upload_file():
         if file:
             # Secure the filename
             filename = secure_filename(file.filename)
-
-            # Read file contents in memory
             file_data = file.read()
 
-            # Generate a fixed encryption key (you can replace this with dynamic key logic)
-            encryption_key = b'16byteslongkey__'
+            # Generate a random encryption key for this file
+            encryption_key = os.urandom(32)  # AES 256-bit key
 
             # Encrypt the file data
-            iv = os.urandom(16)  # Initialization vector for AES
+            iv = os.urandom(16)  # Initialization vector
             cipher = Cipher(algorithms.AES(encryption_key), modes.CFB(iv), backend=default_backend())
             encryptor = cipher.encryptor()
             encrypted_data = iv + encryptor.update(file_data) + encryptor.finalize()
+
+            # Encrypt the key with a master key for secure storage
+            encrypted_key = cipher_suite.encrypt(encryption_key)
 
             # Save the encrypted file
             encrypted_file_path = os.path.join(app.config['ENCRYPTED_FOLDER'], f"encrypted_{filename}")
             with open(encrypted_file_path, 'wb') as encrypted_file:
                 encrypted_file.write(encrypted_data)
 
-            flash(f"File encrypted and saved at {encrypted_file_path}", 'success')
-            return redirect(url_for('index'))
+            # Store metadata and key in the Secret database
+            try:
+                secret = Secret(
+                    name=f"{filename}",
+                    value=encrypted_file_path,
+                    key=encrypted_key,  # Store the encrypted key
+                    created_by=current_user.id
+                )
+                db.session.add(secret)
+                db.session.commit()
+                flash('File encrypted and key stored successfully', 'success')
+            except Exception as e:
+                db.session.rollback()
+                app.logger.error(f"Failed to store encrypted file and key: {str(e)}")
+                flash('Failed to save encryption data', 'error')
+
+            return redirect(url_for('key_vault'))
 
     return render_template('upload.html')
+
+@app.route('/download/<filename>')
+def download_file(filename):
+    """Allows users to download encrypted files."""
+    return send_from_directory(app.config['ENCRYPTED_FOLDER'], filename, as_attachment=True)
+
+
+
+@app.route('/key-vault')
+@login_required
+def key_vault():
+    # Retrieve secrets for the current user
+    secrets = Secret.query.filter_by(created_by=current_user.id).all()
+
+    # Prepare a list of secrets (without decryption)
+    secret_data = []
+    for secret in secrets:
+        secret_data.append({
+            'id': secret.id,
+            'name': secret.name,
+            'value': secret.value,  # Display encrypted value (file data or path)
+            'key': secret.key,  # Display encrypted key
+            'created_at': secret.created_at
+        })
+
+    return render_template('key_vault.html', secrets=secret_data)
+
+@app.route('/key-vault/add', methods=['POST'])
+@login_required
+def add_secret():
+    try:
+        name = request.form['name']
+        value = request.form['value']
+        
+        # Validate input
+        if not name or not value:
+            flash('Secret name and value cannot be empty', 'error')
+            return redirect(url_for('key_vault'))
+        
+        # Generate a random encryption key for this secret
+        encryption_key = os.urandom(32)  # 256-bit key
+        
+        # Encrypt the value
+        cipher = Cipher(algorithms.AES(encryption_key), modes.CFB(os.urandom(16)), backend=default_backend())
+        encryptor = cipher.encryptor()
+        encrypted_value = encryptor.update(value.encode()) + encryptor.finalize()
+        
+        # Encrypt the encryption key with a master key (cipher_suite)
+        encrypted_key = cipher_suite.encrypt(encryption_key)
+        
+        # Save to database
+        secret = Secret(name=name, value=encrypted_value, key=encrypted_key, created_by=current_user.id)
+        db.session.add(secret)
+        db.session.commit()
+        
+        app.logger.info(f"New secret '{name}' added by {current_user.username}")
+        flash('Secret added successfully', 'success')
+    except Exception as e:
+        db.session.rollback()
+        app.logger.error(f"Error adding secret: {str(e)}")
+        flash('Failed to add secret', 'error')
+    
+    return redirect(url_for('key_vault'))
 
 
 def initialize_default_permissions():

@@ -1,10 +1,8 @@
-
 {% extends "base2.html" %}
 {% block content %}
 
 <div class="bg-white p-6 rounded-lg shadow-md">
     <h2 class="text-2xl font-bold mb-6">Key Vault</h2>
-    
     
     <div class="mb-8">
         <h3 class="text-xl font-semibold mb-4">Add New Secret</h3>
@@ -61,54 +59,69 @@
                            readonly
                            class="w-full bg-gray-50 px-3 py-2 rounded-md text-sm font-mono">
                 </div>
+                <div class="mt-2">
+                    <input type="password" 
+                           id="key-{{ secret.id }}" 
+                           value="{{ secret.key }}" 
+                           readonly
+                           class="w-full bg-gray-50 px-3 py-2 rounded-md text-sm font-mono">
+                </div>
+                <button onclick="toggleKey('key-{{ secret.id }}')" 
+                        class="text-sm px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-md mt-2">
+                    <span class="toggle-key-text">Show Key</span>
+                </button>
                 <p class="text-sm text-gray-500 mt-2">Created: {{ secret.created_at }}</p>
             </div>
             {% endfor %}
         </div>
+        
     </div>
 </div>
 
 <script>
-function toggleSecret(elementId) {
-    const input = document.getElementById(elementId);
-    const button = event.currentTarget;
-    const toggleText = button.querySelector('.toggle-text');
-    
-    if (input.type === "password") {
-        input.type = "text";
-        toggleText.textContent = "Hide";
-    } else {
-        input.type = "password";
-        toggleText.textContent = "Show";
-    }
-}
-
-function copyToClipboard(elementId) {
-    const input = document.getElementById(elementId);
-    input.type = "text";  // Temporarily show the text to copy it
-    input.select();
-    document.execCommand('copy');
-    input.type = "password";  // Hide it again
-    
-    // Show feedback
-    const button = event.currentTarget;
-    const originalText = button.textContent;
-    button.textContent = "Copied!";
-    setTimeout(() => {
-        button.innerHTML = originalText;
-    }, 2000);
-}
-
-// Auto-hide secrets after 30 seconds if they're visible
-setInterval(() => {
-    const inputs = document.querySelectorAll('input[type="text"]');
-    inputs.forEach(input => {
-        if (input.id.startsWith('secret-')) {
+    function toggleSecret(elementId) {
+        const input = document.getElementById(elementId);
+        const button = event.currentTarget;
+        const toggleText = button.querySelector('.toggle-text');
+        
+        if (input.type === "password") {
+            input.type = "text";
+            toggleText.textContent = "Hide";
+        } else {
             input.type = "password";
-            const button = input.parentElement.parentElement.querySelector('.toggle-text');
-            if (button) button.textContent = "Show";
+            toggleText.textContent = "Show";
         }
-    });
-}, 30000);
-</script>
+    }
+    
+    function toggleKey(elementId) {
+        const input = document.getElementById(elementId);
+        const button = event.currentTarget;
+        const toggleKeyText = button.querySelector('.toggle-key-text');
+        
+        if (input.type === "password") {
+            input.type = "text";
+            toggleKeyText.textContent = "Hide Key";
+        } else {
+            input.type = "password";
+            toggleKeyText.textContent = "Show Key";
+        }
+    }
+    
+    function copyToClipboard(elementId) {
+        const input = document.getElementById(elementId);
+        input.type = "text";  // Temporarily show the text to copy it
+        input.select();
+        document.execCommand('copy');
+        input.type = "password";  // Hide it again
+        
+        // Show feedback
+        const button = event.currentTarget;
+        const originalText = button.textContent;
+        button.textContent = "Copied!";
+        setTimeout(() => {
+            button.innerHTML = originalText;
+        }, 2000);
+    }
+    </script>
+
 {% endblock %}
